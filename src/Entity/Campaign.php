@@ -10,8 +10,8 @@ use Datetime;
 
 #[ORM\Entity(repositoryClass: CampaignRepository::class)]
 #[UniqueEntity(
-    fields: ['name'],
-    message: 'Ce nom existe déjà'
+    fields: ['uuid'],
+    message: 'Cet uuid existe déjà'
 )]
 
 class Campaign
@@ -48,7 +48,7 @@ class Campaign
     private Company $company;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private int $hasCollege;
+    private bool $hasCollege;
 
     public function getId(): ?int
     {
@@ -151,12 +151,12 @@ class Campaign
         return $this;
     }
 
-    public function isHasCollege(): ?int
+    public function getHasCollege(): ?bool
     {
         return $this->hasCollege;
     }
 
-    public function setHasCollege(?int $hasCollege): self
+    public function setHasCollege(?bool $hasCollege): self
     {
         $this->hasCollege = $hasCollege;
 

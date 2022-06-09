@@ -9,9 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CampaignType;
 use App\Repository\CampaignRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Uid\Uuid;
 
 #[Route('/campaign', name: 'campaign_')]
-
 class CampaignController extends AbstractController
 {
     #[Route('/new', name: 'new')]
@@ -22,6 +22,8 @@ class CampaignController extends AbstractController
         $form = $this->createForm(CampaignType::class, $campaign);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $uuid = Uuid::v4();
+            $campaign->setUuid($uuid->toRfc4122());
             $campaignRepository->add($campaign, true);
             return $this->redirectToRoute('campaign_new');
         }
