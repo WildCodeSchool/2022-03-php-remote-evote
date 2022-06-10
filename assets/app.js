@@ -10,3 +10,8 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+//Sidebar
+import 'boxicons'
+
+require('bootstrap')

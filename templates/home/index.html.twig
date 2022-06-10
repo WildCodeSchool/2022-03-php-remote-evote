@@ -1,15 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    <div class="pink-stripe">
-        <h1>
-            Let's start coding&nbsp;&#129304;
-        </h1>
-    </div>
-    <div class="white-stripe">
-        <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
-             alt="">
-    </div>
-{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3">
+				<div class="card shadow">
+						<div class="card-body">
+							<div class="d-flex align-items-center mb-4">
+								<h1 class="card-title">Bienvenue sur Evote</h1>
+								<a href="#" class="btn btn-primary ms-auto">Connexion</a>
+							</div>
+							
+							
+							<p class="card-text">
+										Créez un vote en cliquant sur le bouton « Créer un vote », renseignez le nom de votre Réunion, sa description et gérer ensuite votre campagne depuis votre interface administrateur.
+										<br><br>
+										-- Ajoutez des résolutions à voter en cliquant sur le bouton « Ajouter une résolution », vos participants pourront se prononcer pour, contre ou s'abstenir.<br><br>
+										-- Ajoutez des votants en cliquant sur le bouton « Gérer votants », définissez la pondération du vote (le nombre de voix de chaque votant, son collège), renseignez l'adresse mail sur laquelle le votant recevra son lien de vote personnel.
+										Vous pouvez meme faire des import en masse à partir d'un fichier excel !
+										<br><br>
+										-- Accédez aux résultats du vote via le bouton « Résultats ». Vous ne verrez pas les résultats nominativement, mais uniquement les résultats globaux (nous seuls avons les accès au détail par votant mais cela ne servira que si besoin de constituer un dossier de preuve, afin de garantir les votes anonymes :)
+							</p>
+							<div class="text-center">
+								<a href="#" class="btn btn-primary">S'inscrire</a>
+							</div>
+							
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+	{# <div class="d-flex">
+		<div class="row">
+			<div class="d-grid gap-2 col-6 mx-auto"></div>
+			<h1>Bienvenue sur Evote</h1>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="d-grid gap-2 col-6 mx-auto"></div>
+			<button class="btn btn-primary" type="button">Connexion</button>
+		</div>
+	</div><br>
+
+
+	<section class="container">
+		<div class="h3-home">
+			<h3>Evote permet d'organiser un vote électronique facilement, meme par collège</h3><br>
+
+			<div class="h4-home">
+				<h4>Comment ça marche ?</h4>
+
+				<p class="p-home text-justify">
+				Créez un vote en cliquant sur le bouton « Créer un vote », renseignez le nom de votre Réunion, sa description et gérer ensuite votre campagne depuis votre interface administrateur.<br><br>
+					-- Ajoutez des résolutions à voter en cliquant sur le bouton « Ajouter une résolution », vos participants pourront se prononcer pour, contre ou s'abstenir.<br><br>
+					-- Ajoutez des votants en cliquant sur le bouton « Gérer votants », définissez la pondération du vote (le nombre de voix de chaque votant, son collège), renseignez l'adresse mail sur laquelle le votant recevra son lien de vote personnel.
+					Vous pouvez meme faire des import en masse à partir d'un fichier excel !
+					<br><br>
+					-- Accédez aux résultats du vote via le bouton « Résultats ». Vous ne verrez pas les résultats nominativement, mais uniquement les résultats globaux (nous seuls avons les accès au détail par votant mais cela ne servira que si besoin de constituer un dossier de preuve, afin de garantir les votes anonymes :).</p>
+			</div><br>
+
+			{# Bouton "Démarrer" #}
+			{# <div class="d-grid gap-2 col-6 mx-auto">
+				<button class="btn btn-primary" type="button">S'inscrire</button>
+			</div>
+
+			<a href=" {{path('app_home')}} "></a>
+		</section> #}
+	{% endblock %}
