@@ -25,7 +25,8 @@ class CampaignType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'NOBATEK'
                 ),
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description de votre campagne de vote',

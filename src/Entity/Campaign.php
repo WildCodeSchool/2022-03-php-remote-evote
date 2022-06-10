@@ -44,7 +44,7 @@ class Campaign
     #[Assert\NotBlank(message: 'Merci de renseigner une description de campagne')]
     private string $description;
 
-    #[ORM\ManyToOne(targetEntity: Company::class)]
+    #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
     private Company $company;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
