@@ -1,2 +1,10 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+// @import '_wcs.scss';
+@import '_var.scss';
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.google.com/specimen/Lato');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Merriweather:wght@300&family=Roboto:wght@300&display=swap');
+@import '_global.scss';
+@import '_form.scss';
+
+
+
