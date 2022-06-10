@@ -5,9 +5,12 @@
         <h1>Participant au vote "Test"</h1>
             <div class="identity">
                 <h2>Identitée</h2>
+                    {{ form_row(form.fullname) }}
             </div>
             <div class="contact">
                 <h2>Coordonnées</h2>
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.telephone) }}
             </div>
             <div class="vote">
                 <h2>Nombre de voix</h2>
@@ -15,9 +18,6 @@
             <div class="proxy">
                 <h2>Pouvoir</h2>
             </div>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Valider</button>
-    <button type="submit">Retour à la page d'admin</button>
-    {{ form_end(form) }}
+    <button type="submit" class="btn btn-primary my-5">Valider</button>
+    <button type="submit" class="btn btn-primary my-5">Retour à la page d'admin</button>
 {% endblock %}
