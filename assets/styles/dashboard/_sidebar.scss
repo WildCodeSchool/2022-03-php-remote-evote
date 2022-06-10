@@ -1,0 +1,11 @@
+.main-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding : 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $dark;
+    z-index: 1000;
+}
+
