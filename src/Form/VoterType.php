@@ -15,9 +15,24 @@ class VoterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fullname', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('telephone', TelType::class)
+            ->add('fullname', TextType::class, [
+                'label' => 'Nom du votant',
+                'attr' => array(
+                    'placeholder' => 'Test'
+                )
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Mél du votant',
+                'attr' => array(
+                    'placeholder' => 'Test'
+                )
+            ])
+            ->add('telephone', TelType::class, [
+                'label' => 'Tél du votant',
+                'attr' => array(
+                    'placeholder' => 'Test'
+                )
+            ])
         ;
     }
 
