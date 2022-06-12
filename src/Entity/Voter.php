@@ -4,8 +4,15 @@ namespace App\Entity;
 
 use App\Repository\VoterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: VoterRepository::class)]
+#[UniqueEntity(
+    fields: ['uuid'],
+    message: 'Cet uuid existe déjà'
+)]
+
 class Voter
 {
     #[ORM\Id]
@@ -14,16 +21,22 @@ class Voter
     private int $id;
 
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de renseigner le nom du participant')]
     private string $fullname;
 
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de renseigner l\'email du participant')]
     private string $email;
 
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de renseigner le téléphone du participant')]
     private int $telephone;
 
-    #[ORM\Column(type: 'uuid', nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
     private string $uuid;
+
+    #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
+    private Company $company;
 
     public function getId(): ?int
     {
@@ -74,6 +87,18 @@ class Voter
     public function setUuid(?string $uuid): self
     {
         $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }

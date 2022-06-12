@@ -3,9 +3,11 @@
 {% block body %}
     <section class="new_voter">
         <h1>Participant au vote "Test"</h1>
+            {{ form_start(form) }}
             <div class="identity">
                 <h2>Identitée</h2>
                     {{ form_row(form.fullname) }}
+                    {{ form_row(form.company) }}
             </div>
             <div class="contact">
                 <h2>Coordonnées</h2>
@@ -20,4 +22,5 @@
             </div>
     <button type="submit" class="btn btn-primary my-5">Valider</button>
     <button type="submit" class="btn btn-primary my-5">Retour à la page d'admin</button>
+    {{ form_end(form) }}
 {% endblock %}

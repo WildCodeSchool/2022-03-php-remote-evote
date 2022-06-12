@@ -21,6 +21,14 @@ class VoterType extends AbstractType
                     'placeholder' => 'Test'
                 )
             ])
+            ->add('company', TextType::class, [
+                'label' => 'Si oui, dénomination de la structure qu\'il représente',
+                'attr' => array(
+                    'placeholder' => 'Test'
+                ),
+                'required' => false,
+                'mapped' => false
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'Mél du votant',
                 'attr' => array(
