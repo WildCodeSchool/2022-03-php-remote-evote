@@ -41,7 +41,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setName($campaignName['name']);
             $campaign->setStartedAt($faker->dateTimeBetween('-1 week', '+3 days'));
             $campaign->setStatus($faker->boolean('status'));
-            $campaign->setResult($faker->randomFloat());
+            $campaign->setResult($faker->randomNumber());
             $manager->persist($campaign);
         }
         $manager->flush();

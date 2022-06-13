@@ -23,8 +23,8 @@ class Campaign
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTime $endedAt;
 
-    #[ORM\Column(type: 'integer', length: 255, nullable: true)]
-    private int $status;
+    #[ORM\Column(type: 'boolean', length: 255, nullable: true)]
+    private bool $status;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $result;
@@ -91,12 +91,12 @@ class Campaign
         return $this;
     }
 
-    public function getResult(): ?float
+    public function getResult(): ?int
     {
         return $this->result;
     }
 
-    public function setResult(float $result): self
+    public function setResult(int $result): self
     {
         $this->result = $result;
 
