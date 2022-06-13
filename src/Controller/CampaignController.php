@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Entity\Company;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
+use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/campaign', name: 'campaign_')]
