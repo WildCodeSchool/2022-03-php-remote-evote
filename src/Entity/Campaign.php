@@ -79,24 +79,24 @@ class Campaign
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): ?bool
     {
         return $this->status;
     }
 
-    public function setStatus(int $status): self
+    public function setStatus(bool $status): self
     {
         $this->status = $status;
 
         return $this;
     }
 
-    public function getResult(): ?int
+    public function getResult(): ?float
     {
         return $this->result;
     }
 
-    public function setResult(int $result): self
+    public function setResult(float $result): self
     {
         $this->result = $result;
 
