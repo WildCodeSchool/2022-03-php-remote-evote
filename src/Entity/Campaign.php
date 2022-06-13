@@ -4,9 +4,16 @@ namespace App\Entity;
 
 use App\Repository\CampaignRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Datetime;
 
 #[ORM\Entity(repositoryClass: CampaignRepository::class)]
+#[UniqueEntity(
+    fields: ['uuid'],
+    message: 'Cet uuid existe déjà'
+)]
+
 class Campaign
 {
     #[ORM\Id]
@@ -15,6 +22,7 @@ class Campaign
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de renseigner un nom de campagne')]
     private string $name;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -33,10 +41,14 @@ class Campaign
     private string $uuid;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de renseigner une description de campagne')]
     private string $description;
 
-    #[ORM\ManyToOne(targetEntity: Company::class)]
+    #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
     private Company $company;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private bool $hasCollege;
 
     public function getId(): ?int
     {
@@ -135,6 +147,18 @@ class Campaign
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getHasCollege(): ?bool
+    {
+        return $this->hasCollege;
+    }
+
+    public function setHasCollege(?bool $hasCollege): self
+    {
+        $this->hasCollege = $hasCollege;
 
         return $this;
     }
