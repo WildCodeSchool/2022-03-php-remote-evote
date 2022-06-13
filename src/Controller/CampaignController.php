@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Campaign;
 use App\Entity\Company;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Campaign;
+use App\Form\CampaignType;
+use Symfony\Component\Uid\Uuid;
+use App\Repository\CompanyRepository;
+use App\Repository\CampaignRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\CampaignType;
-use App\Repository\CampaignRepository;
-use App\Repository\CompanyRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/campaign', name: 'campaign_')]
 class CampaignController extends AbstractController
