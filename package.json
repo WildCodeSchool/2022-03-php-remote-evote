@@ -22,5 +22,8 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "bootstrap-icons": "^1.8.3",
+        "boxicons": "^2.1.2"
+    }
 }
