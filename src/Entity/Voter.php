@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VoterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -37,6 +39,23 @@ class Voter
 
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
     private Company $company;
+
+    #[ORM\ManyToOne(targetEntity: College::class)]
+    private College $college;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private float $votePercentage;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private int $numberOfVote;
+
+    #[ORM\OneToMany(mappedBy: 'voter', targetEntity: ProxyFor::class, cascade: ['persist', 'remove'])]
+    private Collection $proxyFor;
+
+    public function __construct()
+    {
+        $this->proxyFor = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -99,6 +118,72 @@ class Voter
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getCollege(): ?College
+    {
+        return $this->college;
+    }
+
+    public function setCollege(?College $college): self
+    {
+        $this->college = $college;
+
+        return $this;
+    }
+
+    public function getVotePercentage(): ?float
+    {
+        return $this->votePercentage;
+    }
+
+    public function setVotePercentage(?float $votePercentage): self
+    {
+        $this->votePercentage = $votePercentage;
+
+        return $this;
+    }
+
+    public function getNumberOfVote(): ?int
+    {
+        return $this->numberOfVote;
+    }
+
+    public function setNumberOfVote(?int $numberOfVote): self
+    {
+        $this->numberOfVote = $numberOfVote;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProxyFor>
+     */
+    public function getProxyFor(): Collection
+    {
+        return $this->proxyFor;
+    }
+
+    public function addProxyFor(ProxyFor $proxyFor): self
+    {
+        if (!$this->proxyFor->contains($proxyFor)) {
+            $this->proxyFor[] = $proxyFor;
+            $proxyFor->setVoter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProxyFor(ProxyFor $proxyFor): self
+    {
+        if ($this->proxyFor->removeElement($proxyFor)) {
+            // set the owning side to null (unless already changed)
+            if ($proxyFor->getVoter() === $this) {
+                $proxyFor->setVoter(null);
+            }
+        }
 
         return $this;
     }

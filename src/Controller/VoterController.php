@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Voter;
 use App\Entity\Company;
 use App\Form\VoterType;
+use App\Entity\ProxyFor;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\VoterRepository;
 use App\Repository\CompanyRepository;
@@ -23,7 +24,6 @@ class VoterController extends AbstractController
         CompanyRepository $companyRepository
     ): Response {
         $voter = new Voter();
-
         $form = $this->createForm(VoterType::class, $voter);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
