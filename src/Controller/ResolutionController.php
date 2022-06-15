@@ -11,16 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/campaign', name:'campaign_resolution_')]
+#[Route('/campaign', name: 'campaign_resolution_')]
 class ResolutionController extends AbstractController
-{   
-    #[Route('/{uuid}/resolution/new', name:'new')]
+{
+    #[Route('/{uuid}/resolution/new', name: 'new')]
     public function new(
-    Request $request, 
-    ResolutionRepository $resolutionRepository,
-    Campaign $campaign,
-    ): Response 
-    {
+        Request $request,
+        ResolutionRepository $resolutionRepository,
+        Campaign $campaign,
+    ): Response {
         $resolution = new Resolution();
         $form = $this->createForm(ResolutionType::class, $resolution);
         $form->handleRequest($request);

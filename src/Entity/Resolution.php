@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ResolutionRepository;
+use App\Entity\Campaign;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ResolutionRepository;
 
 #[ORM\Entity(repositoryClass: ResolutionRepository::class)]
 class Resolution
@@ -11,16 +12,16 @@ class Resolution
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $description;
+    private string $description;
 
     #[ORM\Column(type: 'string', length: 45)]
-    private $adoption_rule;
+    private string $adoptionRule;
 
     #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'resolutions')]
     private Campaign $campaign;
@@ -29,7 +30,6 @@ class Resolution
     {
         return $this->id;
     }
-
     public function getName(): ?string
     {
         return $this->name;
@@ -56,12 +56,12 @@ class Resolution
 
     public function getAdoptionRule(): ?string
     {
-        return $this->adoption_rule;
+        return $this->adoptionRule;
     }
 
-    public function setAdoptionRule(string $adoption_rule): self
+    public function setAdoptionRule(string $adoptionRule): self
     {
-        $this->adoption_rule = $adoption_rule;
+        $this->adoptionRule = $adoptionRule;
 
         return $this;
     }
