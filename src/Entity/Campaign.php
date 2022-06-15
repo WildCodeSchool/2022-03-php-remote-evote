@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CampaignRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -49,6 +51,14 @@ class Campaign
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
+
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
+    private Collection $resolutions;
+
+    public function __construct()
+    {
+        $this->resolutions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +169,36 @@ class Campaign
     public function setHasCollege(?bool $hasCollege): self
     {
         $this->hasCollege = $hasCollege;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Resolution>
+     */
+    public function getResolutions(): Collection
+    {
+        return $this->resolutions;
+    }
+
+    public function addResolution(Resolution $resolution): self
+    {
+        if (!$this->resolutions->contains($resolution)) {
+            $this->resolutions[] = $resolution;
+            $resolution->setCampaign($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolution(Resolution $resolution): self
+    {
+        if ($this->resolutions->removeElement($resolution)) {
+            // set the owning side to null (unless already changed)
+            if ($resolution->getCampaign() === $this) {
+                $resolution->setCampaign(null);
+            }
+        }
 
         return $this;
     }

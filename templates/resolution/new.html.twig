@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="new_resolution">
+    <h1>Résolution au vote "Test"</h1>
+        <div class="form">
+            {{ form_start(form) }}
+            {{form_widget(form)}}
+
+            <button type="submit" class="btn btn-primary mb-3">Valider</button>
+            <button type="submit" class="btn btn-primary mb-3">Retour à la page admin</button>
+            {{ form_end(form) }}
+        </div>
+</section>
+{% endblock %}
