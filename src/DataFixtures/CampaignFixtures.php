@@ -14,17 +14,14 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
     public const CAMPAIGNS = [
         ['company' => 'company_Nobatek',
         'name' => 'Conseil d\'administration',
-        'date' => '09/06/2022',
         'status' => 1,
         'result' => 40],
         ['company' => 'company_Ceebios',
         'name' => 'Assemblée générale',
-        'date' => '09/06/2022',
         'status' => 0,
         'result' => 50 ],
         ['company' => 'company_Cheops',
         'name' => 'Conseil d\'administration',
-        'date' => '09/06/2022',
         'status' => 1,
         'result' => 30],
     ];

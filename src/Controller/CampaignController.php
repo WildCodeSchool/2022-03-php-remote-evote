@@ -24,7 +24,7 @@ class CampaignController extends AbstractController
             'campaigns' => $campaigns,
         ]);
     }
-    #[Route('/{uuid}/participants', name: 'voters')]
+    #[Route('/{uuid}/participants', name: 'voters_index')]
     public function showVoters(Campaign $campaign): Response
     {
         return $this->render('campaign/show-voters.html.twig', [
@@ -32,7 +32,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/colleges', name: 'colleges')]
+    #[Route('/{uuid}/colleges', name: 'colleges_index')]
     public function colleges(Campaign $campaign): Response
     {
         return $this->render('campaign/colleges.html.twig', [
@@ -40,7 +40,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/resolutions', name: 'resolutions')]
+    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
     public function resolutions(Campaign $campaign): Response
     {
         return $this->render('campaign/resolutions.html.twig', [
@@ -48,7 +48,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/resultats', name: 'resultats')]
+    #[Route('/{uuid}/resultats', name: 'resultats_index')]
     public function resultats(Campaign $campaign): Response
     {
         return $this->render('campaign/resultats.html.twig', [
