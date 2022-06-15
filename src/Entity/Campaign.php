@@ -50,6 +50,9 @@ class Campaign
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private Datetime $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +162,18 @@ class Campaign
     public function setHasCollege(?bool $hasCollege): self
     {
         $this->hasCollege = $hasCollege;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
