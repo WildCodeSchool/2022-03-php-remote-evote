@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Welcome
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <h1 class="card-title">
+                Première connexion
+              </h1>
+              <a class="btn btn-primary ms-auto" href="{{ path('create_vote_index') }}">
+                Créer un vote
+              </button>
+            </a>
+
+          </div>
+          <div>
+            <p>
+              Bienvenue sur Evote
+            </p>
+            <br/>
+            <p>
+              Cet outil permet d'organiser un vote électronique facilement.
+            </p>
+            <br/>
+            <p>
+            Créez un vote en cliquant sur le bouton « Créer un vote », renseignez le nom de votre campagne, sa description et ajoutez éventuellement des
+            collèges de vote.
+            <br/>
+          </p>
+          <p>
+            Ajoutez des propositions en cliquant sur le bouton « Ajouter une proposition », vos participants pourront se prononcer pour, contre ou s'abstenir.
+            D'autres modes de vote sont actuellement à l'étude.
+            Ajoutez des votants en cliquant sur le bouton « Ajouter un votant », définissez la pondération du vote (le nombre de voix de chaque votant),
+            renseignez l'adresse mail sur laquelle le votant recevra son lien de vote personnel.
+            Accédez aux résultats du vote via le bouton « Résultats ». Vous ne verrez pas les résultats nominativement, mais uniquement les résultats globaux.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>{% endblock %}
