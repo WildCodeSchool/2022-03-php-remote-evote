@@ -36,7 +36,7 @@ class CampaignController extends AbstractController
     public function colleges(Campaign $campaign): Response
     {
         return $this->render('campaign/colleges.html.twig', [
-            'campaigns' => $campaign,
+            'campaign' => $campaign,
         ]);
     }
 
@@ -44,7 +44,7 @@ class CampaignController extends AbstractController
     public function resolutions(Campaign $campaign): Response
     {
         return $this->render('campaign/resolutions.html.twig', [
-            'campaigns' => $campaign,
+            'campaign' => $campaign,
         ]);
     }
 
@@ -52,7 +52,7 @@ class CampaignController extends AbstractController
     public function resultats(Campaign $campaign): Response
     {
         return $this->render('campaign/resultats.html.twig', [
-            'campaigns' => $campaign,
+            'campaign' => $campaign,
         ]);
     }
 
