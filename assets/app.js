@@ -15,3 +15,4 @@ import './bootstrap';
 import 'boxicons'
 
 require('bootstrap')
+
