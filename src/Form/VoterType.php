@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Voter;
 use App\Entity\College;
+use App\Entity\Company;
 use App\Entity\ProxyFor;
+use App\Repository\CollegeRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,8 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class VoterType extends AbstractType
 {
@@ -28,23 +30,38 @@ class VoterType extends AbstractType
                 )
             ])
             ->add('company', TextType::class, [
-                'label' => 'Si oui, dénomination de la structure qu\'il représente',
+                'label' => 'Dénomination de la structure qu\'il représente',
                 'attr' => array(
                     'placeholder' => 'Test'
                 ),
                 'required' => false,
                 'mapped' => false
             ])
-            ->add('college', ChoiceType::class, [
-                'choice_value' => 'name',
-                'choice_label' => function (?College $college) {
-                    return $college ? strtoupper($college->getName()) : '';
-                },
-                'label' => 'Collèges d\'appartenance (optionnel)',
-                'attr' => array(
-                    'placeholder' => 'Test'
-                )
-            ])
+
+            // ->add('college', null, ['choice_label' => 'name'])
+
+            // ->add('college', ChoiceType::class, [
+            //     'choice_value' => 'name',
+            //     'choice_label' => function (?College $college) {
+            //         return $college ? strtoupper($college->getName()) : '';
+            //     },
+            //     'label' => 'Collèges d\'appartenance (optionnel)',
+            //     'attr' => array(
+            //         'placeholder' => 'Test'
+            //     )
+            // ])
+
+            // ->add('college', EntityType::class, [
+            //     'required' => false,
+            //     'class' => College::class,
+            //     'choice_label' => 'name',
+            //     'choices' => function () {
+            //         //lister les collèges de la compagnie associée à la campagne de vote
+            //         //faire une requête personnalisée du type SELECT * FROM college WHERE campaign_id = campaign.id
+            //     },
+            //     ,
+            //     'placeholder' => 'Sélectionnez un collège',
+            // ])
             ->add('email', EmailType::class, [
                 'label' => 'Mél du votant',
                 'attr' => array(
