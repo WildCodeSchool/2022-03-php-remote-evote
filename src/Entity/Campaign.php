@@ -31,8 +31,8 @@ class Campaign
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTime $endedAt;
 
-    #[ORM\Column(type: 'integer', length: 255, nullable: true)]
-    private int $status;
+    #[ORM\Column(type: 'boolean', length: 255, nullable: true)]
+    private bool $status;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private int $result;
@@ -91,12 +91,12 @@ class Campaign
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): ?bool
     {
         return $this->status;
     }
 
-    public function setStatus(int $status): self
+    public function setStatus(bool $status): self
     {
         $this->status = $status;
 
