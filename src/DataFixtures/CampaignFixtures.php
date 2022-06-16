@@ -34,7 +34,6 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setCompany($this->getReference($campaignName['company']));
             $manager->persist($campaign);
         }
-
         $manager->flush();
     }
 

@@ -45,7 +45,7 @@ class VoterController extends AbstractController
             return $this->redirectToRoute('campaign_new');
         }
 
-        return $this->renderForm('voter/new.html.twig', [
+        return $this->renderForm('dashboard/voter/new.html.twig', [
             'form' => $form,
             'campaign' => $campaign
         ]);

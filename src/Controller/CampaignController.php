@@ -2,20 +2,60 @@
 
 namespace App\Controller;
 
-use App\Entity\Campaign;
 use App\Entity\Company;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Campaign;
+use App\Form\CampaignType;
+use Symfony\Component\Uid\Uuid;
+use App\Repository\CompanyRepository;
+use App\Repository\CampaignRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\CampaignType;
-use App\Repository\CampaignRepository;
-use App\Repository\CompanyRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/campaign', name: 'campaign_')]
 class CampaignController extends AbstractController
 {
+    #[Route('/', name: 'index')]
+    public function index(CampaignRepository $campaignRepository): Response
+    {
+        $campaigns = $campaignRepository->findAll();
+        return $this->render('campaign/index.html.twig', [
+            'campaigns' => $campaigns,
+        ]);
+    }
+    #[Route('/{uuid}/participants', name: 'voters_index')]
+    public function showVoters(Campaign $campaign): Response
+    {
+        return $this->render('campaign/show-voters.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/colleges', name: 'colleges_index')]
+    public function colleges(Campaign $campaign): Response
+    {
+        return $this->render('campaign/colleges.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
+    public function resolutions(Campaign $campaign): Response
+    {
+        return $this->render('campaign/resolutions.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/resultats', name: 'resultats_index')]
+    public function resultats(Campaign $campaign): Response
+    {
+        return $this->render('campaign/resultats.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
     #[Route('/new', name: 'new')]
     public function new(
         Request $request,
@@ -44,6 +84,7 @@ class CampaignController extends AbstractController
 
         return $this->renderForm('campaign/new.html.twig', [
             'form' => $form,
+
         ]);
     }
 }

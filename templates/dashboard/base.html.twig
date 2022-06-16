@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="h-100">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,17 +10,18 @@
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_link_tags('dashboard') }}
 		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('dashboard') }}
 		{% endblock %}
 	</head>
-	<body class="h-100 d-flex flex-column justify-content-center">
-			
-		{% block body %}
 
-		{% endblock %}
+	<body>
+		{% include "dashboard/_sidebar.html.twig" %}
+		<main class="main-container">
+			{% block body %}{% endblock %}
+		</main>
 	</body>
 </html>
