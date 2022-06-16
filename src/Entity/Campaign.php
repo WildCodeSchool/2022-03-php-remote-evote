@@ -51,7 +51,7 @@ class Campaign
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
-
+    
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
     private Collection $resolutions;
 
@@ -59,6 +59,9 @@ class Campaign
     {
         $this->resolutions = new ArrayCollection();
     }
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private Datetime $createdAt;
 
     public function getId(): ?int
     {
@@ -199,6 +202,16 @@ class Campaign
                 $resolution->setCampaign(null);
             }
         }
+    }
+    
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

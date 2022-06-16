@@ -32,12 +32,12 @@
           <td>{{campaign.company.name}}</td>
           <td>{{campaign.name}}</td>
             {# @todo add created_at field in entity Campaign #}
-          <td>{{"now"|date("d/m/Y")}}</td>
+          <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td>{{campaign.status}}</td>
-          <td><a href="{{ path('campaign_voters', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
-          <td><a href="{{ path('campaign_colleges', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
-          <td><a href="{{ path('campaign_resolutions', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
-          <td><a href="{{ path('campaign_resultats', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
+          <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
+          <td><a href="{{ path('campaign_colleges_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
+          <td><a href="{{ path('campaign_resolutions_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
+          <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
         </tr>
       </tr>
       {% endfor %} 
