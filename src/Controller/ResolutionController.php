@@ -32,4 +32,12 @@ class ResolutionController extends AbstractController
             'resolution' => $resolution,
         ]);
     }
+
+    #[Route('/{uuid}/resolution', name: 'resolution_index')]
+    public function resolutions(Campaign $campaign): Response
+    {
+        return $this->render('resolution/resolution.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
 }

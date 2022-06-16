@@ -4,3 +4,8 @@ body {
 p {
     font-family: $font-family-serif;
 }
+
+.main-container {
+    padding: 1rem;
+    margin-left: $nav-width;
+}

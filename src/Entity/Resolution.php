@@ -26,6 +26,9 @@ class Resolution
     #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'resolutions')]
     private Campaign $campaign;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private string $uuid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Resolution
     public function setCampaign(?Campaign $campaign): self
     {
         $this->campaign = $campaign;
+
+        return $this;
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(?string $uuid): self
+    {
+        $this->uuid = $uuid;
 
         return $this;
     }
