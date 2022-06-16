@@ -52,6 +52,9 @@ class Voter
     #[ORM\OneToMany(mappedBy: 'voter', targetEntity: ProxyFor::class, cascade: ['persist', 'remove'])]
     private Collection $proxyFor;
 
+    #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'voters')]
+    private Collection $campaign;
+
     public function __construct()
     {
         $this->proxyFor = new ArrayCollection();
@@ -184,6 +187,18 @@ class Voter
                 $proxyFor->setVoter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCampaign(): ?Collection
+    {
+        return $this->campaign;
+    }
+
+    public function setCampaign(?Collection $campaign): self
+    {
+        $this->campaign = $campaign;
 
         return $this;
     }

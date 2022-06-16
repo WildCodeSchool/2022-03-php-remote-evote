@@ -10,23 +10,23 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class CollegeFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COLLEGES = [
-        ['name' => 'Collège A',
+        ['name' => 'Collège A wild',
         'description' => 'Collège composé de 10 développeurs PHP',
         'company' => 'company_Wild'
         ],
-        ['name' => 'Collège B',
+        ['name' => 'Collège B wild',
         'description' => 'Collège composé de 20 développeurs JS',
         'company' => 'company_Wild'
         ],
-        ['name' => 'Collège A',
+        ['name' => 'Collège A dephants',
         'description' => 'Collège composé de 10 développeurs',
         'company' => 'company_Dephants'
         ],
-        ['name' => 'Collège A',
+        ['name' => 'Collège A 404',
         'description' => 'Collège composé de 30 développeurs',
         'company' => 'company_Erreur404'
         ],
-        ['name' => 'Collège B',
+        ['name' => 'Collège B karma',
         'description' => 'Collège composé de 20 développeurs',
         'company' => 'company_Karma'
         ],

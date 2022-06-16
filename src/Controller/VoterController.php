@@ -6,7 +6,6 @@ use App\Entity\Voter;
 use App\Entity\Company;
 use App\Form\VoterType;
 use App\Entity\Campaign;
-use App\Entity\ProxyFor;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\VoterRepository;
 use App\Repository\CompanyRepository;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/campaign', name: 'voter_')]
+#[Route('/campaign', name: 'campaign_voter_')]
 class VoterController extends AbstractController
 {
     #[Route('/{uuid}/voters/new', name: 'new')]
@@ -26,7 +25,9 @@ class VoterController extends AbstractController
         Campaign $campaign
     ): Response {
         $voter = new Voter();
-        $form = $this->createForm(VoterType::class, $voter);
+        $form = $this->createForm(VoterType::class, $voter, [
+            'company' => $campaign->getCompany()
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $companyName = $form->get('company')->getData();
@@ -41,11 +42,12 @@ class VoterController extends AbstractController
             $uuid = Uuid::v4();
             $voter->setUuid($uuid->toRfc4122());
             $voterRepository->add($voter, true);
-            return $this->redirectToRoute('voter_new');
+            return $this->redirectToRoute('campaign_new');
         }
 
         return $this->renderForm('voter/new.html.twig', [
             'form' => $form,
+            'campaign' => $campaign
         ]);
     }
 }

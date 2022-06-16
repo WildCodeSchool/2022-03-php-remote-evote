@@ -25,9 +25,10 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::CAMPAIGNS as $campaignName) {
+        foreach (self::CAMPAIGNS as $key => $campaignName) {
             $campaign = new Campaign();
             $campaign->setName($campaignName['name']);
+            $campaign->setUuid('1234' . $key);
             $campaign->setDescription($campaignName['description']);
             $campaign->setHasCollege($campaignName['has_college']);
             $campaign->setCompany($this->getReference($campaignName['company']));
