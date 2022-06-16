@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ResolutionFixtures extends Fixture implements DependentFixtureInterface 
+class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const RESOLUTION = [
         ['name' =>  'Approbation des comptes 2022',
@@ -20,17 +20,13 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
-
         foreach (self::RESOLUTION as $key => $resolutionName) {
             $resolution = new Resolution();
-            $uuid = Uuid::v4();
             $resolution->setUuid('1234' . $key);
             $resolution->setName($resolutionName['name']);
             $resolution->setDescription($resolutionName['description']);
             $resolution->setAdoptionRule($resolutionName['adoption_rule']);
             $manager->persist($resolution);
-            
         }
         $manager->flush();
     }

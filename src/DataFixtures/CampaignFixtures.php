@@ -32,14 +32,12 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
 
         foreach (self::CAMPAIGNS as $key => $campaignName) {
             $campaign = new Campaign();
-            $uuid = Uuid::v4();
-            $campaign->setUuid('1234' .$key);
+            $campaign->setUuid('1234' . $key);
             $campaign->setCompany($this->getReference($campaignName['company']));
             $campaign->setName($campaignName['name']);
             $campaign->setStartedAt($faker->dateTimeBetween('-1 week', '+3 days'));
             $campaign->setStatus($faker->boolean('status'));
             $campaign->setResult($faker->randomNumber());
-            
             $manager->persist($campaign);
         }
         $manager->flush();
