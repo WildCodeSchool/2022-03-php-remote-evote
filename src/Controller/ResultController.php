@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CampaignRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/results', name: 'results_')]
 class ResultController extends AbstractController
 {
-    #[Route('/result', name: 'app_result')]
-    public function index(): Response
+    #[Route('/', name: 'index')]
+    public function index(CampaignRepository $campaignRepository): Response
     {
-        return $this->render('result/index.html.twig', [
-            'controller_name' => 'ResultController',
+        $campaigns = $campaignRepository->findAll();
+        return $this->render('results/index.html.twig', [
+            'campaigns' => $campaigns,
         ]);
     }
 }

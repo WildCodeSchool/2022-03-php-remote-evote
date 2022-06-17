@@ -36,7 +36,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setUuid($uuid->toRfc4122());
             $campaign->setCompany($this->getReference($campaignName['company']));
             $campaign->setName($campaignName['name']);
-            $campaign->setStartedAt($faker->dateTimeBetween('-1 week', '+3 days'));
+            $campaign->setCreatedAt($faker->dateTimeThisYear());
             $campaign->setStatus($faker->boolean('status'));
             $campaign->setResult($faker->randomNumber());
             $manager->persist($campaign);

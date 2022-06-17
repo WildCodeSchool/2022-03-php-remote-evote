@@ -32,7 +32,7 @@
           <td>{{campaign.company.name}}</td>
           <td>{{campaign.name}}</td>
             {# @todo add created_at field in entity Campaign #}
-          <td>{{"now"|date("d/m/Y")}}</td>
+          <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td>{{campaign.status}}</td>
           <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_colleges_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
