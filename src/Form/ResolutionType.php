@@ -16,21 +16,15 @@ class ResolutionType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom de la résolution telle qu\'elle figure à l\'ordre du jour',
-                'attr' => array(
-                    'placeholder' => 'Approbation des comptes 2022'
-                )
+                'help' => 'Merci de rentrer le nom de la résolution'
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description (optionnel)',
-                'attr' => array(
-                    'placeholder' => 'Le résultat est positif. Le bilan progresse.'
-                )
+                'help' => 'Merci de rentrer une description, si nécessaire'
             ])
             ->add('adoption_rule', TextType::class, [
                 'label' => 'Indiquez le nombre de voix requis pour l\'adoption de cette résolution',
-                'attr' => array(
-                    'placeholder' => 'Majorité simple, majorité des 2/3, majorité des 3/4'
-                )
+                'help' => 'Merci d\'indiquer le nombre de voix requis'
             ])
         ;
     }
