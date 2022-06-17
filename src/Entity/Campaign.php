@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CampaignRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -50,8 +52,13 @@ class Campaign
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
+    private Collection $voters;
+
+    public function __construct()
+    {
+        $this->voters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,15 +173,32 @@ class Campaign
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTime
+    /**
+     * @return Collection<int, Voter>
+     */
+    public function getVoters(): Collection
     {
-        return $this->createdAt;
+        return $this->voters;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    public function addVoter(Voter $voter): self
     {
-        $this->createdAt = $createdAt;
+        if (!$this->voters->contains($voter)) {
+            $this->voters[] = $voter;
+            $voter->setCampaign(null);
+        }
 
+        return $this;
+    }
+
+    public function removeVoter(Voter $voter): self
+    {
+        if ($this->voters->removeElement($voter)) {
+            // set the owning side to null (unless already changed)
+            if ($voter->getCampaign() === $this) {
+                $voter->setCampaign(null);
+            }
+        }
         return $this;
     }
 }

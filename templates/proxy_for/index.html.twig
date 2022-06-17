@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProxyFor index{% endblock %}
+
+{% block body %}
+    <h1>ProxyFor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proxy_for in proxy_fors %}
+            <tr>
+                <td>{{ proxy_for.id }}</td>
+                <td>{{ proxy_for.name }}</td>
+                <td>
+                    <a href="{{ path('app_proxy_for_show', {'id': proxy_for.id}) }}">show</a>
+                    <a href="{{ path('app_proxy_for_edit', {'id': proxy_for.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_proxy_for_new') }}">Create new</a>
+{% endblock %}
