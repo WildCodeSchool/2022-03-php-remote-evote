@@ -49,9 +49,11 @@ class Campaign
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
     private Company $company;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private Datetime $createdAt;
+
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
-    
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
     private Collection $resolutions;
 
@@ -59,9 +61,6 @@ class Campaign
     {
         $this->resolutions = new ArrayCollection();
     }
-
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
 
     public function getId(): ?int
     {
@@ -202,8 +201,9 @@ class Campaign
                 $resolution->setCampaign(null);
             }
         }
+        return $this;
     }
-    
+
     public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
