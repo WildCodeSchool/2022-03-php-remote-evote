@@ -25,7 +25,7 @@
           {# <td>{{campaign.company.name}}</td> #}
             <td>{{campaign.name}}</td>
             <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-            <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats</td><a/>
+            <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats<a/></td>
           </tr>
           {% endfor %} 
         </tbody>
