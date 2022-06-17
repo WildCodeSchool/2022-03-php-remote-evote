@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class VoterType extends AbstractType
 {
@@ -64,11 +65,10 @@ class VoterType extends AbstractType
                     'placeholder' => '0600000000'
                 )
             ])
+            ->add('votePercentage')
             ->add('numberOfVote', IntegerType::class, [
                 'label' => 'Nombre de voix',
-                'attr' => array(
-                    'placeholder' => 1
-                )
+                'data' => 1,
             ])
             ->add('proxyFor', CollectionType::class, [
                 'entry_type' => ProxyVoterType::class,
