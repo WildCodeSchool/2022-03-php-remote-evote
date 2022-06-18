@@ -20,39 +20,8 @@ class CampaignController extends AbstractController
     public function index(CampaignRepository $campaignRepository): Response
     {
         $campaigns = $campaignRepository->findAll();
-        return $this->render('campaign/index.html.twig', [
+        return $this->render('dashboard/campaign/index.html.twig', [
             'campaigns' => $campaigns,
-        ]);
-    }
-    #[Route('/{uuid}/participants', name: 'voters_index')]
-    public function showVoters(Campaign $campaign): Response
-    {
-        return $this->render('campaign/show-voters.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/colleges', name: 'colleges_index')]
-    public function colleges(Campaign $campaign): Response
-    {
-        return $this->render('campaign/colleges.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
-    public function resolutions(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resolutions.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/resultats', name: 'resultats_index')]
-    public function resultats(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resultats.html.twig', [
-            'campaign' => $campaign,
         ]);
     }
 
@@ -82,9 +51,41 @@ class CampaignController extends AbstractController
             return $this->redirectToRoute('campaign_new');
         }
 
-        return $this->renderForm('campaign/new.html.twig', [
+        return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
 
+        ]);
+    }
+
+    #[Route('/{uuid}/participants', name: 'voters_index')]
+    public function showVoters(Campaign $campaign): Response
+    {
+        return $this->render('campaign/show-voters.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/colleges', name: 'colleges_index')]
+    public function colleges(Campaign $campaign): Response
+    {
+        return $this->render('campaign/colleges.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
+    public function resolutions(Campaign $campaign): Response
+    {
+        return $this->render('campaign/resolutions.html.twig', [
+            'campaign' => $campaign,
+        ]);
+    }
+
+    #[Route('/{uuid}/resultats', name: 'resultats_index')]
+    public function resultats(Campaign $campaign): Response
+    {
+        return $this->render('campaign/resultats.html.twig', [
+            'campaign' => $campaign,
         ]);
     }
 }

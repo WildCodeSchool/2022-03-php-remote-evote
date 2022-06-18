@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '/dashboard/base.html.twig' %}
 
 {% block title %}
   Welcome
@@ -14,7 +14,7 @@
               <h1 class="card-title">
                 Première connexion
               </h1>
-              <a class="btn btn-primary ms-auto" href="{{ path('create_vote_index') }}">
+              <a class="btn btn-primary ms-auto" href="{{ path('campaign_new') }}">
                 Créer un vote
               </button>
             </a>

@@ -11,7 +11,7 @@ class AdminVoteController extends AbstractController
     #[Route('/admin/vote', name: 'app_admin_vote')]
     public function index(): Response
     {
-        return $this->render('admin_vote/index.html.twig', [
+        return $this->render('dashboard/campaign/admin.html.twig', [
             'controller_name' => 'AdminVoteController',
         ]);
     }
