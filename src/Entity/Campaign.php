@@ -52,13 +52,9 @@ class Campaign
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
 
-    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
-    private Collection $voters;
-
-    public function __construct()
-    {
-        $this->voters = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'campaigns')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $ownedBy;
 
     public function getId(): ?int
     {
@@ -173,32 +169,15 @@ class Campaign
         return $this;
     }
 
-    /**
-     * @return Collection<int, Voter>
-     */
-    public function getVoters(): Collection
+    public function getOwnedBy(): ?User
     {
-        return $this->voters;
+        return $this->ownedBy;
     }
 
-    public function addVoter(Voter $voter): self
+    public function setOwnedBy(?User $ownedBy): self
     {
-        if (!$this->voters->contains($voter)) {
-            $this->voters[] = $voter;
-            $voter->setCampaign(null);
-        }
+        $this->ownedBy = $ownedBy;
 
-        return $this;
-    }
-
-    public function removeVoter(Voter $voter): self
-    {
-        if ($this->voters->removeElement($voter)) {
-            // set the owning side to null (unless already changed)
-            if ($voter->getCampaign() === $this) {
-                $voter->setCampaign(null);
-            }
-        }
         return $this;
     }
 }
