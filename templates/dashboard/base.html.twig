@@ -18,12 +18,10 @@
 		{% endblock %}
 	</head>
 
-	<body class="h-100 d-flex flex-column justify-content-center">
+	<body>
 		{% include "dashboard/_sidebar.html.twig" %}
-
 		<main class="main-container">
             {% block body %}{% endblock %}
         </main>
-		
 	</body>
 </html>

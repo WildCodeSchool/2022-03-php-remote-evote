@@ -1,15 +1,17 @@
 {% extends '/dashboard/base.html.twig' %}
 
 {% block body %}
-<section class="new_campaign">
-    <h1>Créer une campagne de vote</h1>
-        <div class="form">
-            {{ form_start(form) }}
-            {{form_widget(form)}}
+<body class="h-100 d-flex flex-column justify-content-center">
+    <section class="new_campaign">
+        <h1>Créer une campagne de vote</h1>
+            <div class="form">
+                {{ form_start(form) }}
+                {{form_widget(form)}}
 
-            <button type="submit" class="btn btn-primary mb-3">Valider</button>
-            {{ form_end(form) }}
-        </div>
-</section>
+                <button type="submit" class="btn btn-primary mb-3">Valider</button>
+                {{ form_end(form) }}
+            </div>
+    </section>
+</body>
 {% endblock %}
 
