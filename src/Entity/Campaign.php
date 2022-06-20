@@ -213,7 +213,6 @@ class Campaign
      */
 
     public function getVoters(): Collection
-
     {
         return $this->voters;
     }
@@ -241,7 +240,7 @@ class Campaign
 
     /**
      * Get the value of createdAt
-     */ 
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
@@ -251,11 +250,10 @@ class Campaign
      * Set the value of createdAt
      *
      * @return  self
-     */ 
+     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 }
