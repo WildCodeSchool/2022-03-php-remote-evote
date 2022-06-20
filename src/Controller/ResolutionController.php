@@ -25,7 +25,7 @@ class ResolutionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $resolution->setCampaign($campaign);
-            $resolutionRepository->add($resolution);
+            $resolutionRepository->add($resolution, true);
         }
         return $this->renderForm('resolution/new.html.twig', [
             'form' => $form,

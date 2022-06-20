@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ResolutionType extends AbstractType
 {
@@ -22,9 +23,14 @@ class ResolutionType extends AbstractType
                 'label' => 'Description (optionnel)',
                 'help' => 'Merci de rentrer une description, si nécessaire'
             ])
-            ->add('adoption_rule', TextType::class, [
+            ->add('adoption_rule', ChoiceType::class, [
+                'choices' => [
+                    'Majorité simple' => 'simple-majority',
+                    'Adoption aux 2/3' => 'adoption-2/3',
+                    'Adoption aux 2/4' => 'adoption 3/4',
+                ],
                 'label' => 'Indiquez le nombre de voix requis pour l\'adoption de cette résolution',
-                'help' => 'Merci d\'indiquer le nombre de voix requis'
+                'help' => 'Merci d\'indiquer votre choix'
             ])
         ;
     }
