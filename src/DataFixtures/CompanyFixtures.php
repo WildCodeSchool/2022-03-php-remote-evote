@@ -3,15 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\Company;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class CompanyFixtures extends Fixture
 {
     public const COMPANIES = [
-        'Nobatek',
-        'Ceebios',
-        'Cheops'
+        'Wild',
+        'Dephants',
+        'Erreur404',
+        'Karma',
     ];
 
     public function load(ObjectManager $manager): void

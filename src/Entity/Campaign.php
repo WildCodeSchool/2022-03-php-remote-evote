@@ -57,9 +57,13 @@ class Campaign
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
     private Collection $resolutions;
 
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
+    private Collection $voters;
+
     public function __construct()
     {
         $this->resolutions = new ArrayCollection();
+        $this->voters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,12 +208,51 @@ class Campaign
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTime
+    /**
+     * @return Collection<int, Voter>
+     */
+
+    public function getVoters(): Collection
+
+    {
+        return $this->voters;
+    }
+
+    public function addVoter(Voter $voter): self
+    {
+        if (!$this->voters->contains($voter)) {
+            $this->voters[] = $voter;
+            $voter->setCampaign(null);
+        }
+
+        return $this;
+    }
+
+    public function removeVoter(Voter $voter): self
+    {
+        if ($this->voters->removeElement($voter)) {
+            // set the owning side to null (unless already changed)
+            if ($voter->getCampaign() === $this) {
+                $voter->setCampaign(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     */ 
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */ 
+    public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
