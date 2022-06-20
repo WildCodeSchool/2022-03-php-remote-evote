@@ -21,11 +21,11 @@ class UserFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $user =new User();
+        $user = new User();
         $user->setEmail('user@wcs.com');
         $user->setFirstname('User');
         $user->setLastname('User');
-        $user->setPassword($this->passwordHasher->hashPassword($user,'password'));
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
         $manager->persist($user);
         $manager->flush();
     }
