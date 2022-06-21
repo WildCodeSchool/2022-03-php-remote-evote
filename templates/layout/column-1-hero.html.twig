@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="p-5 bg-light mb-4 d-flex flex-column justify-content-center align-items-center">
+		{% block hero %}{% endblock %}
+	</div>
+	<div class="container">
+		{% block main %}{% endblock %}
+	</div>
+{% endblock %}
