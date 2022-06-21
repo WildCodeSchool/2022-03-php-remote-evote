@@ -29,8 +29,14 @@
       {% for campaign in campaigns %}
         <tr>
           {# <th scope="row">1</th> #}
-          <td>{{campaign.company.name}}</td>
-          <td>{{campaign.name}}</td>
+          <td>
+              {% if campaign.company %}
+                {{campaign.company.name}}
+              {% endif %}
+          </td>
+          <td>
+              <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
+          </td>
             {# @todo add created_at field in entity Campaign #}
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td>{{campaign.status}}</td>
@@ -40,7 +46,7 @@
           <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
         </tr>
       </tr>
-      {% endfor %} 
+      {% endfor %}
       </tbody>
   </table>
   </div>

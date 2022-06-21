@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class VoterType extends AbstractType
 {
-    private Company $company;
+    private ?Company $company;
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

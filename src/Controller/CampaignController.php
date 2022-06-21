@@ -36,6 +36,7 @@ class CampaignController extends AbstractController
         $form = $this->createForm(CampaignType::class, $campaign);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setStatus(false);
             $companyName = $form->get('company')->getData();
             if (!empty($companyName)) {
                 $company = $companyRepository->findOneByName($companyName);
@@ -54,6 +55,14 @@ class CampaignController extends AbstractController
         return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
 
+        ]);
+    }
+
+    #[Route('/{uuid}/edit', name: 'edit')]
+    public function edit(Campaign $campaign): Response
+    {
+        return $this->render('dashboard/campaign/edit.html.twig', [
+            'campaign' => $campaign
         ]);
     }
 
