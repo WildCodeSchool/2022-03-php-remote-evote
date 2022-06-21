@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use DateTime;
 use App\Entity\Campaign;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,12 +14,16 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         ['name' => 'Le meilleur langage back',
         'description' => 'Campagne de vote pour élire le meilleur langage de tous les temps',
         'has_college' => true,
-        'company' => 'company_Wild'
+        'company' => 'company_Wild',
+        'created_at' => '2022-06-10',
+        'status' => false
         ],
         ['name' => 'Wilder du mois',
         'description' => 'Campagne de vote pour élire le wilder du mois',
         'has_college' => false,
-        'company' => 'company_Dephants'
+        'company' => 'company_Dephants',
+        'created_at' => '2022-06-20',
+        'status' => true
         ]
     ];
 
@@ -32,10 +37,13 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setDescription($campaignName['description']);
             $campaign->setHasCollege($campaignName['has_college']);
             $campaign->setCompany($this->getReference($campaignName['company']));
+            $campaign->setCreatedAt(new DateTime($campaignName['created_at']));
+            $campaign->setStatus($campaignName['status']);
             $manager->persist($campaign);
         }
         $manager->flush();
     }
+
 
     public function getDependencies()
     {

@@ -49,12 +49,26 @@ class Campaign
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
     private Company $company;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private Datetime $createdAt;
+
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
+    private Collection $resolutions;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'campaigns')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $ownedBy;
+
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
+    private Collection $voters;
+
+    public function __construct()
+    {
+        $this->resolutions = new ArrayCollection();
+        $this->voters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -169,15 +183,92 @@ class Campaign
         return $this;
     }
 
-    public function getOwnedBy(): ?User
+
+    /**
+     * @return Collection<int, Resolution>
+     */
+
+    public function getResolutions(): Collection
+    {
+        return $this->resolutions;
+    }
+
+    public function addResolution(Resolution $resolution): self
+    {
+        if (!$this->resolutions->contains($resolution)) {
+            $this->resolutions[] = $resolution;
+            $resolution->setCampaign($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolution(Resolution $resolution): self
+    {
+        if ($this->resolutions->removeElement($resolution)) {
+            // set the owning side to null (unless already changed)
+            if ($resolution->getCampaign() === $this) {
+                $resolution->setCampaign(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Voter>
+     */
+
+    public function getVoters(): Collection
     {
         return $this->ownedBy;
     }
 
-    public function setOwnedBy(?User $ownedBy): self
+    public function removeVoter(Voter $voter): self
+    {
+        if ($this->voters->removeElement($voter)) {
+            // set the owning side to null (unless already changed)
+            if ($voter->getCampaign() === $this) {
+                $voter->setCampaign(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     */
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */
+    public function setCreatedAt(?\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get the value of ownedBy
+     */
+    public function getOwnedBy(): User
+    {
+        return $this->ownedBy;
+    }
+
+    /**
+     * Set the value of ownedBy
+     *
+     * @return  self
+     */
+    public function setOwnedBy(?User $ownedBy)
     {
         $this->ownedBy = $ownedBy;
-
         return $this;
     }
 }
