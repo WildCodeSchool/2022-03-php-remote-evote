@@ -21,6 +21,7 @@ class ResolutionType extends AbstractType
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description (optionnel)',
+                'required' => false,
                 'help' => 'Merci de rentrer une description, si nécessaire'
             ])
             ->add('adoption_rule', ChoiceType::class, [
