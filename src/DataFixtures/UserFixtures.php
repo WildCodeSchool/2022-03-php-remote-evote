@@ -19,8 +19,15 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $admin = new User();
+        $admin->setEmail('admin@wcs.com');
+        $admin->setFirstname('Admin');
+        $admin->setLastname('Admin');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'password'));
+        $manager->persist($admin);
+        $manager->flush();
+
         $user = new User();
         $user->setEmail('user@wcs.com');
         $user->setFirstname('User');
