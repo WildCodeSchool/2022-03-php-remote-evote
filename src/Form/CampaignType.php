@@ -16,26 +16,17 @@ class CampaignType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom de votre campagne de vote',
-                'attr' => array(
-                    'placeholder' => 'Test'
-                )
             ])
             ->add('company', TextType::class, [
                 'label' => 'Structure concernée (optionnel)',
-                'attr' => array(
-                    'placeholder' => 'NOBATEK'
-                ),
                 'required' => false,
                 'mapped' => false
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description de votre campagne de vote',
-                'attr' => array(
-                    'placeholder' => 'Voici le détail de cette campagne de vote'
-                )
             ])
             ->add('hasCollege', CheckboxType::class, [
-                'label' => 'Ce vote intègre des collèges',
+                'label' => 'Cette campagne de vote intègre des collèges',
                 'required' => false
             ])
         ;
