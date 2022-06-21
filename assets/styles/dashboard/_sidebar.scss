@@ -9,3 +9,12 @@
     z-index: 1000;
 }
 
+.nav-link:hover {
+    background-color: $primary;
+    color: $dark;
+}
+
+.fs-4 {
+    color: $primary;
+}
+

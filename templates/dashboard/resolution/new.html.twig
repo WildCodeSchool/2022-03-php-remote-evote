@@ -1,0 +1,15 @@
+{% extends '/dashboard/base.html.twig' %}
+
+{% block body %}
+<section class="new_resolution">
+    <h1>Résolution au vote "Test"</h1>
+        <div class="form">
+            {{ form_start(form) }}
+            {{form_widget(form)}}
+
+            <button type="submit" class="btn btn-primary my-5">Valider</button>
+            <a class="btn btn-primary my-5" href="{{ path('campaign_admin', {'uuid': campaign.uuid}) }}" role="button">Retour à la page d'admin</a>
+            {{ form_end(form) }}
+        </div>
+</section>
+{% endblock %}

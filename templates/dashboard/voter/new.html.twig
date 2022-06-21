@@ -48,7 +48,7 @@
                 </ul> #}
             </div>
         <button type="submit" class="btn btn-primary my-5">Valider</button>
-        <button type="submit" class="btn btn-primary my-5">Retour à la page d'admin</button>
+        <a class="btn btn-primary my-5" href="{{ path('campaign_admin', {'uuid': campaign.uuid}) }}" role="button">Retour à la page d'admin</a>
     {{ form_end(form) }}
     </section>
 

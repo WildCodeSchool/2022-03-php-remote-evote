@@ -1,3 +1,4 @@
+composer install
 yarn install
 php bin/console d:d:d -f
 php bin/console d:d:c

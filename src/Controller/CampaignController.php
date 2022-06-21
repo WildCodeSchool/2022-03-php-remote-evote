@@ -73,14 +73,6 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
-    public function resolutions(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resolutions.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
     #[Route('/{uuid}/resultats', name: 'resultats_index')]
     public function resultats(Campaign $campaign): Response
     {

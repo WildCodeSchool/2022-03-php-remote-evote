@@ -44,6 +44,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+
     public function getDependencies()
     {
         // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend

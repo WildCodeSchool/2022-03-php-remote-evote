@@ -51,6 +51,8 @@ class Campaign
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
+    private Collection $resolutions;
 
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
     private Collection $voters;
@@ -60,6 +62,7 @@ class Campaign
 
     public function __construct()
     {
+        $this->resolutions = new ArrayCollection();
         $this->voters = new ArrayCollection();
     }
 
@@ -177,8 +180,38 @@ class Campaign
     }
 
     /**
+     * @return Collection<int, Resolution>
+     */
+    public function getResolutions(): Collection
+    {
+        return $this->resolutions;
+    }
+
+    public function addResolution(Resolution $resolution): self
+    {
+        if (!$this->resolutions->contains($resolution)) {
+            $this->resolutions[] = $resolution;
+            $resolution->setCampaign($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolution(Resolution $resolution): self
+    {
+        if ($this->resolutions->removeElement($resolution)) {
+            // set the owning side to null (unless already changed)
+            if ($resolution->getCampaign() === $this) {
+                $resolution->setCampaign(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Voter>
      */
+
     public function getVoters(): Collection
     {
         return $this->voters;
@@ -213,7 +246,6 @@ class Campaign
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 }

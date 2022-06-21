@@ -9,7 +9,7 @@
   </div>
 <div class="card-body">
 <div class="d-flex align-items-center mb-4">
-<p>Campagnes enregistrées sur votre compte</p>
+<h1>Campagnes enregistrées sur votre compte</h1>
 </div>
 
     <table class="table table-striped">
@@ -36,7 +36,7 @@
           <td>{{campaign.status}}</td>
           <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_colleges_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
-          <td><a href="{{ path('campaign_resolutions_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
+          <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
           <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
         </tr>
       </tr>
