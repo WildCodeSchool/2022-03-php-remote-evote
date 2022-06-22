@@ -20,10 +20,52 @@ class CampaignController extends AbstractController
     public function index(CampaignRepository $campaignRepository): Response
     {
         $campaigns = $campaignRepository->findAll();
-        return $this->render('campaign/index.html.twig', [
+        return $this->render('dashboard/campaign/index.html.twig', [
             'campaigns' => $campaigns,
         ]);
     }
+
+    #[Route('/new', name: 'new')]
+    public function new(
+        Request $request,
+        CampaignRepository $campaignRepository,
+        CompanyRepository $companyRepository
+    ): Response {
+        $campaign = new Campaign();
+
+        $form = $this->createForm(CampaignType::class, $campaign);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setStatus(false);
+            $companyName = $form->get('company')->getData();
+            if (!empty($companyName)) {
+                $company = $companyRepository->findOneByName($companyName);
+                if (!$company) {
+                    $company = new Company();
+                    $company->setName($companyName);
+                }
+                $campaign->setCompany($company);
+            }
+            $uuid = Uuid::v4();
+            $campaign->setUuid($uuid->toRfc4122());
+            $campaignRepository->add($campaign, true);
+            return $this->redirectToRoute('campaign_new');
+        }
+
+        return $this->renderForm('dashboard/campaign/new.html.twig', [
+            'form' => $form,
+
+        ]);
+    }
+
+    #[Route('/{uuid}/edit', name: 'edit')]
+    public function edit(Campaign $campaign): Response
+    {
+        return $this->render('dashboard/campaign/edit.html.twig', [
+            'campaign' => $campaign
+        ]);
+    }
+
     #[Route('/{uuid}/participants', name: 'voters_index')]
     public function showVoters(Campaign $campaign): Response
     {
@@ -45,38 +87,6 @@ class CampaignController extends AbstractController
     {
         return $this->render('campaign/resultats.html.twig', [
             'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/new', name: 'new')]
-    public function new(
-        Request $request,
-        CampaignRepository $campaignRepository,
-        CompanyRepository $companyRepository
-    ): Response {
-        $campaign = new Campaign();
-
-        $form = $this->createForm(CampaignType::class, $campaign);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $companyName = $form->get('company')->getData();
-            if (!empty($companyName)) {
-                $company = $companyRepository->findOneByName($companyName);
-                if (!$company) {
-                    $company = new Company();
-                    $company->setName($companyName);
-                }
-                $campaign->setCompany($company);
-            }
-            $uuid = Uuid::v4();
-            $campaign->setUuid($uuid->toRfc4122());
-            $campaignRepository->add($campaign, true);
-            return $this->redirectToRoute('campaign_new');
-        }
-
-        return $this->renderForm('campaign/new.html.twig', [
-            'form' => $form,
-
         ]);
     }
 }

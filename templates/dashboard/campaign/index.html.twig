@@ -1,15 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends '/dashboard/base.html.twig' %}
 
 {% block title %}A Web Page{% endblock %}
 
 {% block body %}
 <div class="container">
   <div class="d-grid gap-2 d-md-flex col-4 ms-auto justify-content-md-end ">
-    <button class="btn btn-primary me-md-2" type="button">Créer un vote</button>
+    <a href="{{ path('campaign_new') }}" class="btn btn-primary me-md-2" type="button">Créer un vote</a>
   </div>
 <div class="card-body">
 <div class="d-flex align-items-center mb-4">
-<p>Campagnes enregistrées sur votre compte</p>
+<h1>Campagnes enregistrées sur votre compte</h1>
 </div>
 
     <table class="table table-striped">
@@ -29,8 +29,14 @@
       {% for campaign in campaigns %}
         <tr>
           {# <th scope="row">1</th> #}
-          <td>{{campaign.company.name}}</td>
-          <td>{{campaign.name}}</td>
+          <td>
+            {% if campaign.company %}
+              {{campaign.company.name}}
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
+          </td>
             {# @todo add created_at field in entity Campaign #}
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td>{{campaign.status}}</td>

@@ -27,9 +27,10 @@ class ResolutionController extends AbstractController
             $resolution->setCampaign($campaign);
             $resolutionRepository->add($resolution, true);
         }
-        return $this->renderForm('resolution/new.html.twig', [
+        return $this->renderForm('dashboard/resolution/new.html.twig', [
             'form' => $form,
             'resolution' => $resolution,
+            'campaign' => $campaign,
         ]);
     }
 

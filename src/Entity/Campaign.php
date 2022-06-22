@@ -33,7 +33,7 @@ class Campaign
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTime $endedAt;
 
-    #[ORM\Column(type: 'boolean', length: 255, nullable: true)]
+    #[ORM\Column(type: 'boolean', length: 255)]
     private bool $status;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -47,10 +47,8 @@ class Campaign
     private string $description;
 
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
-    private Company $company;
-
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Company $company;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
@@ -60,8 +58,12 @@ class Campaign
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
     private Collection $voters;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private Datetime $createdAt;
+
     public function __construct()
     {
+        $this->createdAt = new Datetime();
         $this->resolutions = new ArrayCollection();
         $this->voters = new ArrayCollection();
     }
@@ -107,7 +109,7 @@ class Campaign
         return $this;
     }
 
-    public function getStatus(): ?bool
+    public function getStatus(): bool
     {
         return $this->status;
     }
@@ -238,19 +240,11 @@ class Campaign
         return $this;
     }
 
-    /**
-     * Get the value of createdAt
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * Set the value of createdAt
-     *
-     * @return  self
-     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;

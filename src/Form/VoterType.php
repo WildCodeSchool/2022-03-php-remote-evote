@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class VoterType extends AbstractType
 {
-    private Company $company;
+    private ?Company $company;
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -28,20 +28,15 @@ class VoterType extends AbstractType
         $builder
             ->add('fullname', TextType::class, [
                 'label' => 'Nom du votant',
-                'attr' => array(
-                    'placeholder' => 'Test'
-                )
             ])
             ->add('company', TextType::class, [
                 'label' => 'Dénomination de la structure qu\'il représente',
-                'attr' => array(
-                    'placeholder' => 'Test'
-                ),
                 'required' => false,
                 'mapped' => false
             ])
 
             ->add('college', EntityType::class, [
+                'label' => 'Collège d\'appartenance (optionnel)',
                 'required' => false,
                 'class' => College::class,
                 'choice_label' => 'name',
@@ -55,20 +50,19 @@ class VoterType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Mél du votant',
-                'attr' => array(
-                    'placeholder' => 'email@test.com'
-                )
+                'help' => 'Merci de rentrer une adresse email valide.'
             ])
             ->add('telephone', TelType::class, [
                 'label' => 'Tél du votant',
-                'attr' => array(
-                    'placeholder' => '0600000000'
-                )
+                'help' => 'Merci de rentrer un numéro de téléphone valide.'
             ])
-            ->add('votePercentage')
+            ->add('votePercentage', NumberType::class, [
+                'label' => 'Indiquez le nombre de voix représentées par ce votant (en %)'
+            ])
             ->add('numberOfVote', IntegerType::class, [
                 'label' => 'Nombre de voix',
                 'data' => 1,
+                'help' => 'Si plus d\'une voix, vous devrez remplir la section "Pouvoir".'
             ])
             ->add('proxyFor', CollectionType::class, [
                 'entry_type' => ProxyVoterType::class,
