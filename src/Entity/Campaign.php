@@ -208,16 +208,14 @@ class Campaign
 
     /**
      * Get the value of createdAt
-     */ 
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    
-
     /**
      * Set the value of createdAt
-     */ 
+     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;

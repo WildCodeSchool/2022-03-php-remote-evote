@@ -9,12 +9,17 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class VoterFixtures extends Fixture implements DependentFixtureInterface {
+class VoterFixtures extends Fixture implements DependentFixtureInterface
+{
     public const VOTERS = [
-        ['fullname' => 'Jean Richard', 'email' => 'jean33000@yopmail.com', 'campaign' => 'campaign_0',
-        'number_vote' => 1], 
-        ['fullname' => 'Michel Dupuis', 'email' => 'michel34000@yopmail.com', 'campaign' => 'campaign_1',
-         'number_vote' => 2],
+        [
+            'fullname' => 'Jean Richard', 'email' => 'jean33000@yopmail.com', 'campaign' => 'campaign_0',
+            'number_vote' => 1
+        ],
+        [
+            'fullname' => 'Michel Dupuis', 'email' => 'michel34000@yopmail.com', 'campaign' => 'campaign_1',
+            'number_vote' => 2
+        ],
     ];
 
 
@@ -33,10 +38,11 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface {
 
         $manager->flush();
     }
-     public function getDependencies()
+
+    public function getDependencies()
     {
-        return [(CampaignFixtures::class)];
+        return [
+            CampaignFixtures::class,
+        ];
     }
-       
-     
 }

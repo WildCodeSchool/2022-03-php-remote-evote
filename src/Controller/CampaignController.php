@@ -20,7 +20,7 @@ class CampaignController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(CampaignRepository $campaignRepository): Response
-    {   
+    {
         $campaigns = $campaignRepository->findAll();
         return $this->render('campaign/index.html.twig', [
             'campaigns' => $campaigns,
@@ -33,7 +33,6 @@ class CampaignController extends AbstractController
         return $this->render('campaign/show-voters.html.twig', [
             'voters' => $voters,
             'campaign' => $campaign
-            
         ]);
     }
 
