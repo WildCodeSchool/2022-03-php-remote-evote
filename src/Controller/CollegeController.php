@@ -30,7 +30,6 @@ class CollegeController extends AbstractController
         }
         return $this->renderForm('college/new.html.twig', [
             'form' => $form,
-            'college' => $college,
         ]);
     }
 }
