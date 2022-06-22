@@ -1,0 +1,13 @@
+{% extends '/dashboard/base.html.twig' %}
+
+{% block body %}
+    <section class="colleges_list">
+        <h1>Collèges déjà enregistrés sur la campagne : {{ campaign.name }}</h1>
+            {% for college in campaign.company.colleges %}
+                <ul>
+                    <li>{{ college.name }} - {{ college.description }} - {{ college.votePercentage }}% des voix</li>
+                </ul>
+    </section>  
+    {% endfor %}
+
+{% endblock %}
