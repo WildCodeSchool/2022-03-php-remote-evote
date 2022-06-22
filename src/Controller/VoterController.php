@@ -30,6 +30,7 @@ class VoterController extends AbstractController
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $voter->setCampaign($campaign);
             $companyName = $form->get('company')->getData();
             if (!empty($companyName)) {
                 $company = $companyRepository->findOneByName($companyName);
@@ -42,7 +43,11 @@ class VoterController extends AbstractController
             $uuid = Uuid::v4();
             $voter->setUuid($uuid->toRfc4122());
             $voterRepository->add($voter, true);
-            return $this->redirectToRoute('campaign_new');
+            $this->addFlash(
+                'success',
+                'Le votant ' . $voter->getFullname() . ' a bien été ajouté à la campagne ' . $campaign->getName()
+            );
+            return $this->redirectToRoute('campaign_edit', ['uuid' => $campaign->getUuid()]);
         }
 
         return $this->renderForm('dashboard/voter/new.html.twig', [

@@ -53,7 +53,7 @@ class Voter
     private Collection $proxyFor;
 
     #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'voters')]
-    private Collection $campaign;
+    private ?Campaign $campaign;
 
     public function __construct()
     {
@@ -191,12 +191,12 @@ class Voter
         return $this;
     }
 
-    public function getCampaign(): ?Collection
+    public function getCampaign(): ?Campaign
     {
         return $this->campaign;
     }
 
-    public function setCampaign(?Collection $campaign): self
+    public function setCampaign(?Campaign $campaign): self
     {
         $this->campaign = $campaign;
 

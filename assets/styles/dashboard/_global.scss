@@ -1,6 +1,7 @@
 body {
-    margin: 0.25 rem;
+    margin: 0.25rem;
 }
+
 p {
     font-family: $font-family-serif;
 }
@@ -8,4 +9,8 @@ p {
 .main-container {
     padding: 1rem;
     margin-left: $nav-width;
+}
+
+a {
+    font-weight: bold;
 }
