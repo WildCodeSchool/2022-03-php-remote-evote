@@ -1,3 +1,43 @@
-{% for voter in campaign.voters %}
+{% extends 'base.html.twig' %}
 
-{% endfor %}
+{% block title %}
+  A Web Page
+  
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="d-grid gap-2 d-md-flex col-4 ms-auto justify-content-md-end "></div>
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-4">
+        <h1>
+          Votants déjà enregistrés sur campagne 
+                  
+        </h1>
+      </div>
+
+      {% for voter in campaign.voters %}
+        <tr>
+          <th scope="row">-</th>
+          <tr>
+            {{ voter.fullname }}
+            {{ voter.email }}
+            {{ voter.numberOfVote }}
+          </tr>
+          <tr>
+              {# <div class="d-grid gap-2 d-md-flex justify-content-md-center"> #}
+              <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Modifier</a></td>
+              <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Supprimer</a></td>
+          </tr>
+        </tr>
+      {% endfor %}
+      <div class="d-grid gap-2 d-md-block col-6 mx-auto justify-content-md-center">
+		      <a class="btn btn-primary btn" href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Ajouter un votant</a>
+		      <a class="btn btn-primary btn" href="#">Ajouter des votants en masse</a>
+	    </div>
+      <div class="d-grid gap-2 d-md-block col-4 mx-auto justify-content-md-center">
+          <a class="btn btn-primary btn" href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Retour à la page admin </a>
+      </div>
+  </div>
+{% endblock %}
+    
