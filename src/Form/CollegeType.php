@@ -2,44 +2,38 @@
 
 namespace App\Form;
 
-use App\Entity\Campaign;
-use App\Entity\Resolution;
+use App\Entity\College;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 
-class ResolutionType extends AbstractType
+class CollegeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de la résolution telle qu\'elle figure à l\'ordre du jour',
-                'help' => 'Merci de rentrer le nom de la résolution'
+                'label' => 'Nom du collège',
+                'help' => 'Merci de rentrer le nom du collège (vous pouvez mettre une lettre ou un numéro aussi)'
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description (optionnel)',
                 'required' => false,
                 'help' => 'Merci de rentrer une description, si nécessaire'
             ])
-            ->add('adoption_rule', ChoiceType::class, [
-                'choices' => [
-                    'Majorité simple' => 'simple-majority',
-                    'Adoption aux 2/3' => 'adoption-2/3',
-                    'Adoption aux 2/4' => 'adoption 3/4',
-                ],
-                'label' => 'Indiquez le nombre de voix requis pour l\'adoption de cette résolution',
+            ->add('vote_percentage', PercentType::class, [
+                'label' => 'Indiquez le nombre de voix représentées par ce collège (%)',
+                'scale' => 2,
                 'help' => 'Merci d\'indiquer votre choix'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Resolution::class,
+            'data_class' => College::class,
         ]);
     }
 }
