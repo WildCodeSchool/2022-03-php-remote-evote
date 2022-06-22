@@ -20,25 +20,17 @@ class CollegeController extends AbstractController
         Request $request,
         CollegeRepository $collegeRepository,
         Campaign $campaign,
-        ): Response {
-    $college = new College();
-    $form = $this->createForm(CollegeType::class, $college);
-    $form->handleRequest($request);
-    if ($form->isSubmitted() && $form->isValid()) {
-        $college->setCompany($campaign->getCompany());
-        $collegeRepository->add($college, true);
+    ): Response {
+        $college = new College();
+        $form = $this->createForm(CollegeType::class, $college);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $college->setCompany($campaign->getCompany());
+            $collegeRepository->add($college, true);
+        }
+        return $this->renderForm('college/new.html.twig', [
+            'form' => $form,
+            'college' => $college,
+        ]);
     }
-    return $this->renderForm('college/new.html.twig', [
-        'form' => $form,
-        'college' => $college,
-    ]);
-}
-
-#[Route('/{uuid}/college', name: 'index')]
-public function resolutions(Campaign $campaign): Response
-{
-    return $this->render('college/college.html.twig', [
-        'campaign' => $campaign,
-    ]);
-}
 }
