@@ -2,14 +2,16 @@
 
 {% block body %}
     <section class="new_voter">
-        <h1>Participant au vote {{ campaign.name }}</h1>
+        <h1>Participant au vote : {{ campaign.name }}</h1>
             {{ form_start(form) }}
             <div class="identity">
                 <h2>Identitée</h2>
                     <hr>
                     {{ form_row(form.fullname) }}
                     {{ form_row(form.company) }}
-                    {{ form_row(form.college) }}
+                    {{ form_row(form.college, {
+                        'row_attr': {'class': campaign.hasCollege ? 'mb-3' : 'd-none'}
+                    }) }}
             </div>
             <div class="contact">
                 <h2>Coordonnées</h2>
@@ -48,7 +50,7 @@
                 </ul> #}
             </div>
         <button type="submit" class="btn btn-primary my-5">Valider</button>
-        <button type="submit" class="btn btn-primary my-5">Retour à la page d'admin</button>
+        <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
     {{ form_end(form) }}
     </section>
 

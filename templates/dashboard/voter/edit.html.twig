@@ -1,0 +1,11 @@
+{% extends "/dashboard/base.html.twig" %}
+
+{% block body %}
+
+{{ include('dashboard/voter/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+<a class="btn btn-primary mb-3" href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Retour à la liste</a>
+
+{{ include('dashboard/voter/_delete_form.html.twig') }}
+    
+{% endblock %}

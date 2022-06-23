@@ -33,7 +33,7 @@ class Campaign
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTime $endedAt;
 
-    #[ORM\Column(type: 'boolean', length: 255, nullable: true)]
+    #[ORM\Column(type: 'boolean', length: 255)]
     private bool $status;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -52,6 +52,8 @@ class Campaign
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
+    #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
+    private Collection $resolutions;
 
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
     private Collection $voters;
@@ -61,6 +63,8 @@ class Campaign
 
     public function __construct()
     {
+        $this->createdAt = new Datetime();
+        $this->resolutions = new ArrayCollection();
         $this->voters = new ArrayCollection();
     }
 
@@ -105,7 +109,7 @@ class Campaign
         return $this;
     }
 
-    public function getStatus(): ?bool
+    public function getStatus(): bool
     {
         return $this->status;
     }
@@ -178,8 +182,38 @@ class Campaign
     }
 
     /**
+     * @return Collection<int, Resolution>
+     */
+    public function getResolutions(): Collection
+    {
+        return $this->resolutions;
+    }
+
+    public function addResolution(Resolution $resolution): self
+    {
+        if (!$this->resolutions->contains($resolution)) {
+            $this->resolutions[] = $resolution;
+            $resolution->setCampaign($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolution(Resolution $resolution): self
+    {
+        if ($this->resolutions->removeElement($resolution)) {
+            // set the owning side to null (unless already changed)
+            if ($resolution->getCampaign() === $this) {
+                $resolution->setCampaign(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Voter>
      */
+
     public function getVoters(): Collection
     {
         return $this->voters;
@@ -206,20 +240,14 @@ class Campaign
         return $this;
     }
 
-    /**
-     * Get the value of createdAt
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    /**
-     * Set the value of createdAt
-     */
+
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 }

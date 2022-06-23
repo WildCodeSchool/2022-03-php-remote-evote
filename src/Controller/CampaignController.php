@@ -22,15 +22,16 @@ class CampaignController extends AbstractController
     public function index(CampaignRepository $campaignRepository): Response
     {
         $campaigns = $campaignRepository->findAll();
-        return $this->render('campaign/index.html.twig', [
+        return $this->render('dashboard/campaign/index.html.twig', [
             'campaigns' => $campaigns,
         ]);
     }
+
     #[Route('/{uuid}/participants', name: 'voters_index')]
     public function showVoters(Campaign $campaign, VoterRepository $voterRepository): Response
     {
         $voters = $voterRepository->findAll();
-        return $this->render('campaign/show-voters.html.twig', [
+        return $this->render('dashboard/voter/show-voters.html.twig', [
             'voters' => $voters,
             'campaign' => $campaign
         ]);
@@ -60,6 +61,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
+
     #[Route('/new', name: 'new')]
     public function new(
         Request $request,
@@ -71,6 +73,7 @@ class CampaignController extends AbstractController
         $form = $this->createForm(CampaignType::class, $campaign);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setStatus(false);
             $companyName = $form->get('company')->getData();
             if (!empty($companyName)) {
                 $company = $companyRepository->findOneByName($companyName);
@@ -86,9 +89,17 @@ class CampaignController extends AbstractController
             return $this->redirectToRoute('campaign_new');
         }
 
-        return $this->renderForm('campaign/new.html.twig', [
+        return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
 
+        ]);
+    }
+
+    #[Route('/{uuid}/edit', name: 'edit')]
+    public function edit(Campaign $campaign): Response
+    {
+        return $this->render('dashboard/campaign/edit.html.twig', [
+            'campaign' => $campaign
         ]);
     }
 }

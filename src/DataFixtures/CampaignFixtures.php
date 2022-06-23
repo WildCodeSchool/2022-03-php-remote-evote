@@ -22,7 +22,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         'description' => 'Campagne de vote pour élire le wilder du mois',
         'has_college' => false,
         'company' => 'company_Dephants',
-        'created_at' => '2022-06-10',
+        'created_at' => '2022-06-20',
         'status' => true
         ]
     ];
@@ -40,10 +40,12 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setCreatedAt(new DateTime($campaignName['created_at']));
             $campaign->setStatus($campaignName['status']);
             $this->addReference('campaign_' . $key, $campaign);
+
             $manager->persist($campaign);
         }
         $manager->flush();
     }
+
 
     public function getDependencies()
     {

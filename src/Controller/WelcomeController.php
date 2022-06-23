@@ -12,7 +12,7 @@ class WelcomeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('welcome/index.html.twig', [
+        return $this->render('dashboard/welcome/index.html.twig', [
             'controller_name' => 'WelcomeController',
         ]);
     }

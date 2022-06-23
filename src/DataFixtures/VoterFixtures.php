@@ -25,17 +25,15 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-
-        foreach (self::VOTERS as $voterName) {
+        foreach (self::VOTERS as $key => $voterName) {
             $voter = new Voter();
-            $voter->setUuid('1234');
+            $voter->setUuid('4321' . $key);
             $voter->setFullname($voterName['fullname']);
             $voter->setEmail($voterName['email']);
             $voter->setNumberOfVote($voterName['number_vote']);
             $voter->setCampaign($this->getReference($voterName['campaign']));
             $manager->persist($voter);
         }
-
         $manager->flush();
     }
 
