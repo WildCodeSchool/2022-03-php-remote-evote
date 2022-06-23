@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('campaign_college_delete', {'id': college.id, 'uuid': campaign.uuid}) }}" onsubmit="return confirm('Les votants attachés à ce collège ne seront plus attachés à aucun collège, cela peut fausser le vote');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ college.id) }}">
+    <button class="btn">Supprimer</button>
+</form>
