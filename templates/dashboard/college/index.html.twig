@@ -8,7 +8,7 @@
                     <ul>
                         <div class="list">
                             <div class="details">
-                                <li><span class="bold">{{ college.name }}</span> <br> {{ college.description }} | {{ college.votePercentage }}% des voix</li>
+                                <li>{{ college.name }} <br> {{ college.description }} | {{ college.votePercentage }}% des voix</li>
                             </div>
                             <div class="button">
                                 <a class="btn btn-outline-primary my-5" href="{{ path('campaign_college_edit', {'id': college.id, 'uuid': campaign.uuid}) }}">Modifier</a>
@@ -21,10 +21,7 @@
                     </ul>
     
             {% endfor %}
-        <div class="buttons">
-            <a class="btn btn-primary" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
-            <a class="btn btn-primary" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
-        </div>
-
+        <a class="btn btn-primary my-5" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
+        <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
     </section>  
 {% endblock %}

@@ -20,15 +20,9 @@ class CollegeController extends AbstractController
     #[Route('/{uuid}/colleges', name: 'index')]
     public function showColleges(
         Campaign $campaign,
-        CompanyRepository $companyRepository,
-        CollegeRepository $collegeRepository
     ): Response {
-        $company = $companyRepository->findAll();
-        $colleges = $collegeRepository->findAll();
         return $this->render('dashboard/college/index.html.twig', [
-            'campaign' => $campaign,
-            'company' => $company,
-            'colleges' => $colleges
+            'campaign' => $campaign
         ]);
     }
 

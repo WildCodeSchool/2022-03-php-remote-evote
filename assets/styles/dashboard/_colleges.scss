@@ -14,29 +14,8 @@
     text-align: left;
 }
 
-.bold {
-    font-weight: bold;
-}
-
 .details > li {
     list-style-type: none;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 5rem;
-}
-
-.buttons > .btn {
-    width: 20rem;
-}
-
-button {
-    display: flex;
-    flex-direction: row;
 }
 
 .button > form {
