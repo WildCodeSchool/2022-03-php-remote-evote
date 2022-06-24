@@ -27,28 +27,10 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/participants', name: 'voters_index')]
-    public function showVoters(Campaign $campaign, VoterRepository $voterRepository): Response
-    {
-        $voters = $voterRepository->findAll();
-        return $this->render('dashboard/voter/show-voters.html.twig', [
-            'voters' => $voters,
-            'campaign' => $campaign
-        ]);
-    }
-
     #[Route('/{uuid}/colleges', name: 'colleges_index')]
     public function colleges(Campaign $campaign): Response
     {
         return $this->render('campaign/colleges.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/resolutions', name: 'resolutions_index')]
-    public function resolutions(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resolutions.html.twig', [
             'campaign' => $campaign,
         ]);
     }
@@ -60,7 +42,6 @@ class CampaignController extends AbstractController
             'campaign' => $campaign,
         ]);
     }
-
 
     #[Route('/new', name: 'new')]
     public function new(

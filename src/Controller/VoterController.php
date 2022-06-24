@@ -18,6 +18,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/campaign', name: 'campaign_voter_')]
 class VoterController extends AbstractController
 {
+    #[Route('/{uuid}/voters', name: 'index')]
+    public function index(Campaign $campaign, VoterRepository $voterRepository): Response
+    {
+        $voters = $voterRepository->findAll();
+        return $this->render('dashboard/voter/index.html.twig', [
+            'voters' => $voters,
+            'campaign' => $campaign
+        ]);
+    }
+
     #[Route('/{uuid}/voters/new', name: 'new')]
     public function new(
         Request $request,
@@ -57,7 +67,7 @@ class VoterController extends AbstractController
         ]);
     }
 
-    #[Route('/{campaign_uuid}/voter/{voter_uuid}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/{campaign_uuid}/voters/{voter_uuid}/edit', name: 'edit', methods: ['GET', 'POST'])]
     #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
     #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
     public function edit(
@@ -72,7 +82,7 @@ class VoterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $voterRepository->add($voter, true);
 
-            return $this->redirectToRoute('campaign_voters_index', [
+            return $this->redirectToRoute('campaign_voter_index', [
                 'uuid' => $campaign->getUuid()
             ], Response::HTTP_SEE_OTHER);
         }
@@ -96,7 +106,7 @@ class VoterController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $voter->getUuId(), $request->request->get('_token'))) {
             $voterRepository->remove($voter, true);
         }
-        return $this->redirectToRoute('campaign_voters_index', [
+        return $this->redirectToRoute('campaign_voter_index', [
             'uuid' => $campaign->getUuid()
         ], Response::HTTP_SEE_OTHER);
     }

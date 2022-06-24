@@ -40,7 +40,7 @@
             {# @todo add created_at field in entity Campaign #}
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td>{{campaign.status}}</td>
-          <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
+          <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_colleges_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
           <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
           <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
