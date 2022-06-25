@@ -1,0 +1,101 @@
+{% extends "/dashboard/base.html.twig" %}
+
+{% block body %}
+    <section class="new_voter">
+        <h1>Participant au vote : {{ campaign.name }}</h1>
+            {{ form_start(form) }}
+            <div class="identity">
+                <h2>Identitée</h2>
+                    <hr>
+                    {{ form_row(form.fullname) }}
+                    {{ form_row(form.company) }}
+                    {{ form_row(form.college, {
+                        'row_attr': {'class': campaign.hasCollege ? 'mb-3' : 'd-none'}
+                    }) }}
+            </div>
+            <div class="contact">
+                <h2>Coordonnées</h2>
+                    <hr>
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.telephone) }}
+            </div>
+            <div class="percentage">
+                <h2>Pourcentage</h2>
+                    <hr>
+                    {{ form_row(form.votePercentage) }}
+            </div>
+            <div class="vote">
+                <h2>Nombre de voix</h2>
+                    <hr>
+                    {{ form_row(form.numberOfVote) }}
+            </div>
+            <div class="proxy">
+                <h2>Pouvoir</h2>
+                <p>Vous avez déclaré plus d'une voie, nom de la personne que vous representez :</p>
+                    <hr>
+                    {# {{ form_row(form.proxyFor) }} #}
+                    <ul class="proxyFor"
+                        data-index="{{ form.proxyFor|length > 0 ? form.proxyFor|last.vars.name + 1 : 0 }}"
+                        data-prototype="{{ form_widget(form.proxyFor.vars.prototype)|e('html_attr') }}"
+                    ></ul>
+                <button type="button" class="add_item_link btn btn-primary my-5" data-collection-holder-class="proxyFor">
+                Ajouter une personne à représenter
+                </button>
+                {# <ul class="proxyFor">
+                    {% for voter in form.proxyFor %}
+                        <li>
+                            {{ form_row(voter.name) }}
+                        </li>
+                    {% endfor %}
+                </ul> #}
+            </div>
+        <button type="submit" class="btn btn-primary my-5">Valider</button>
+        <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
+    {{ form_end(form) }}
+    </section>
+
+<script>
+    const addFormToCollection = (e) => {
+        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+        const item = document.createElement('li');
+
+        item.innerHTML = collectionHolder
+            .dataset
+            .prototype
+            .replace(
+            /__name__/g,
+            collectionHolder.dataset.index
+            );
+        addTagFormDeleteLink(item);
+        collectionHolder.appendChild(item);
+
+        collectionHolder.dataset.index++;
+    };
+
+    const addTagFormDeleteLink = (item) => {
+        const removeFormButton = document.createElement('button');
+        removeFormButton.innerText = 'Effacer ce participant';
+
+        item.append(removeFormButton);
+
+        removeFormButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // remove the li for the tag form
+            item.remove();
+        });
+    }
+
+    document
+    .querySelectorAll('.add_item_link')
+    .forEach(btn => {
+        btn.addEventListener("click", addFormToCollection)
+    });
+
+    document
+    .querySelectorAll('ul.proxyFor li')
+    .forEach((voter) => {
+        addTagFormDeleteLink(voter)
+    })
+</script>
+{% endblock %}

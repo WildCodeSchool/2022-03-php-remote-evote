@@ -1,0 +1,16 @@
+body {
+    margin: 0.25rem;
+}
+
+p {
+    font-family: $font-family-serif;
+}
+
+.main-container {
+    padding: 1rem;
+    margin-left: $nav-width;
+}
+
+a {
+    font-weight: bold;
+}

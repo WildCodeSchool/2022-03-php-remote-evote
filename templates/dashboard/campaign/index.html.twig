@@ -1,0 +1,55 @@
+{% extends '/dashboard/base.html.twig' %}
+
+{% block title %}A Web Page{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="d-grid gap-2 d-md-flex col-4 ms-auto justify-content-md-end ">
+    <a href="{{ path('campaign_new') }}" class="btn btn-primary me-md-2" type="button">Créer un vote</a>
+  </div>
+<div class="card-body">
+<div class="d-flex align-items-center mb-4">
+<h1>Campagnes enregistrées sur votre compte</h1>
+</div>
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Structure</th>
+        <th scope="col">Nom de la campagne</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Participants^v</th>
+        <th scope="col">Collèges^v</th>
+        <th scope="col">Résolutions</th>
+        <th scope="col">Résultats</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for campaign in campaigns %}
+        <tr>
+          {# <th scope="row">1</th> #}
+          <td>
+            {% if campaign.company %}
+              {{campaign.company.name}}
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
+          </td>
+            {# @todo add created_at field in entity Campaign #}
+          <td>{{campaign.createdAt|date('d/m/Y')}}</td>
+          <td>{{campaign.status}}</td>
+          <td><a href="{{ path('campaign_voters_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
+          <td><a href="{{ path('campaign_colleges_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
+          <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
+          <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
+        </tr>
+      </tr>
+      {% endfor %} 
+      </tbody>
+  </table>
+  </div>
+</div>
+
+{% endblock %}
