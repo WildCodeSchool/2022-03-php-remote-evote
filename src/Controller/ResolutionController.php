@@ -58,17 +58,24 @@ class ResolutionController extends AbstractController
     #[Route('/{campaign_uuid}/resolution/{resolution_uuid}/edit', name: 'edit', methods: ['GET', 'POST'])]
     #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
     #[ParamConverter('resolution', options: ['mapping' => ['resolution_uuid' => 'uuid']])]
-    public function edit(Request $request, Campaign $campaign, Resolution $resolution, ResolutionRepository $resolutionRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Campaign $campaign,
+        Resolution $resolution,
+        ResolutionRepository $resolutionRepository
+    ): Response {
         $form = $this->createForm(ResolutionType::class, $resolution);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $resolutionRepository->add($resolution, true);
-
-            return $this->redirectToRoute('campaign_resolution_index', ['uuid' => $campaign->getUuid()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'campaign_resolution_index',
+                [
+                    'uuid' => $campaign->getUuid()
+                ],
+                Response::HTTP_SEE_OTHER
+            );
         }
-
         return $this->renderForm('dashboard/resolution/edit.html.twig', [
             'form' => $form,
             'resolution' => $resolution,
@@ -77,14 +84,21 @@ class ResolutionController extends AbstractController
     }
 
     #[Route('/{campaign_uuid}/resolution/{resolution_uuid}/delete', name: 'delete', methods: ['POST'])]
-    #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
-    #[ParamConverter('resolution', options: ['mapping' => ['resolution_uuid' => 'uuid']])]
-    public function delete(Request $request, Campaign $campaign, Resolution $resolution, ResolutionRepository $resolutionRepository): Response
-    {
+    #[ParamConverter('campaign', options: ['mapping' =>
+    ['campaign_uuid' => 'uuid']])]
+    #[ParamConverter('resolution', options: ['mapping' =>
+    ['resolution_uuid' => 'uuid']])]
+    public function delete(
+        Request $request,
+        Campaign $campaign,
+        Resolution $resolution,
+        ResolutionRepository $resolutionRepository
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $resolution->getUuid(), $request->request->get('_token'))) {
             $resolutionRepository->remove($resolution, true);
         }
-
-        return $this->redirectToRoute('campaign_resolution_index', ['uuid' => $campaign->getUuid()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('campaign_resolution_index', [
+            'uuid' => $campaign->getUuid()
+        ], Response::HTTP_SEE_OTHER);
     }
 }
