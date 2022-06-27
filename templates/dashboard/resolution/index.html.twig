@@ -1,0 +1,69 @@
+{% extends "dashboard/base.html.twig" %}
+
+{% block body %}
+	<div class="container">
+		<div class="d-grid gap-2 d-md-flex col-4' ms-auto justify-content-md-end">
+			<div class="card-body">
+				<div class="d-flex align-items-center mb-4">
+					<h1>
+						Résolution déjà enregistré sur campagne "Test"
+					</h1>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Nom</th>
+							<th scope="col">Description</th>
+							<th scope="col">Régle d'adoption</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for resolution in campaign.resolutions %}
+
+							<tr>
+								<td>
+									{{ resolution.name }}
+								</td>
+
+								<td>
+									{{ resolution.description }}
+								</td>
+
+								<td>
+									{{ resolution.adoptionRule }}
+								</td>
+
+								<td>
+									<a href=" {{ path('campaign_resolution_edit', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }} ">
+										Modifier
+									</a>
+								</td>
+
+								<td>
+									{% include "dashboard/resolution/_delete_form.html.twig" %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+
+				<div class="d-grid gap-2 d-md-block col-6' mx-auto justify-content-md-center">
+					<a class=" btn btn-primary my-5" href=" {{ path('campaign_resolution_new', {'uuid': campaign.uuid}) }}">
+						Ajouter une résolution
+					</a>
+				</div>
+
+				<div class="d-grid gap-2 d-md-block col-4' mx-auto justify-content-md-center">
+					<a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

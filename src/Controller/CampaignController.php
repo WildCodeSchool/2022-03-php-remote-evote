@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Company;
 use App\Entity\Campaign;
+use App\Entity\Resolution;
 use App\Form\CampaignType;
+use App\Form\ResolutionType;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
+use App\Repository\ResolutionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,7 +57,6 @@ class CampaignController extends AbstractController
 
         return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
-
         ]);
     }
 
