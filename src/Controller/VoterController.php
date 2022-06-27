@@ -19,11 +19,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VoterController extends AbstractController
 {
     #[Route('/{uuid}/voters', name: 'index')]
-    public function index(Campaign $campaign, VoterRepository $voterRepository): Response
+    public function index(Campaign $campaign): Response
     {
-        $voters = $voterRepository->findAll();
         return $this->render('dashboard/voter/index.html.twig', [
-            'voters' => $voters,
             'campaign' => $campaign
         ]);
     }

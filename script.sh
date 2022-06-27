@@ -13,3 +13,4 @@ if  [[ $1 = "--serve" ]]; then
         yarn dev
     fi
 fi
+

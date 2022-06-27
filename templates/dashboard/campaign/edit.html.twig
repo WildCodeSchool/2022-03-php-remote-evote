@@ -9,8 +9,8 @@
 
 			<div class="mb-4">
 				<h2>Les collèges de votes</h2>
-				<a class="btn btn-primary" href="#">Ajouter un collège</a>
-				<a class="btn btn-outline-primary" href="#">Gerer les collèges</a>
+				<a class="btn btn-primary" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
+				<a class="btn btn-outline-primary" href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Gerer les collèges</a>
 
 			</div>
 

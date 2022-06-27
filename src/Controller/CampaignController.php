@@ -35,15 +35,6 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{uuid}/resultats', name: 'resultats_index')]
-    public function resultats(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resultats.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-
     #[Route('/new', name: 'new')]
     public function new(
         Request $request,
@@ -82,6 +73,14 @@ class CampaignController extends AbstractController
     {
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
+        ]);
+    }
+
+    #[Route('/{uuid}/resultats', name: 'resultats_index')]
+    public function resultats(Campaign $campaign): Response
+    {
+        return $this->render('campaign/resultats.html.twig', [
+            'campaign' => $campaign,
         ]);
     }
 }

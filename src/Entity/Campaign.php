@@ -53,10 +53,14 @@ class Campaign
     #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $hasCollege;
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Resolution::class)]
-    private Collection $resolutions;
+    private ?Collection $resolutions;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'campaigns')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $ownedBy;
 
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
-    private Collection $voters;
+    private ?Collection $voters;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private Datetime $createdAt;
@@ -181,10 +185,12 @@ class Campaign
         return $this;
     }
 
+
     /**
      * @return Collection<int, Resolution>
      */
-    public function getResolutions(): Collection
+
+    public function getResolutions(): ?Collection
     {
         return $this->resolutions;
     }
@@ -214,19 +220,9 @@ class Campaign
      * @return Collection<int, Voter>
      */
 
-    public function getVoters(): Collection
+    public function getVoters(): ?Collection
     {
         return $this->voters;
-    }
-
-    public function addVoter(Voter $voter): self
-    {
-        if (!$this->voters->contains($voter)) {
-            $this->voters[] = $voter;
-            $voter->setCampaign(null);
-        }
-
-        return $this;
     }
 
     public function removeVoter(Voter $voter): self
@@ -248,6 +244,25 @@ class Campaign
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get the value of ownedBy
+     */
+    public function getOwnedBy(): User
+    {
+        return $this->ownedBy;
+    }
+
+    /**
+     * Set the value of ownedBy
+     *
+     * @return  self
+     */
+    public function setOwnedBy(?User $ownedBy)
+    {
+        $this->ownedBy = $ownedBy;
         return $this;
     }
 }
