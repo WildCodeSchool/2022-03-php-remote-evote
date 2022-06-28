@@ -1,0 +1,23 @@
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px black solid;
+}
+
+.details > li {
+    font-size: 1.2rem;
+}
+
+.voters_list > h1 {
+    text-align: left;
+}
+
+.details > li {
+    list-style-type: none;
+}
+
+.button > form {
+    display: inline;
+}

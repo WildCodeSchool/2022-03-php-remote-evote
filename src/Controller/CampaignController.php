@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Voter;
 use App\Entity\Company;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
+use App\Repository\VoterRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,14 +65,6 @@ class CampaignController extends AbstractController
     {
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
-        ]);
-    }
-
-    #[Route('/{uuid}/participants', name: 'voters_index')]
-    public function showVoters(Campaign $campaign): Response
-    {
-        return $this->render('campaign/show-voters.html.twig', [
-            'campaign' => $campaign,
         ]);
     }
 

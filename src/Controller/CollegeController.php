@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CollegeController extends AbstractController
 {
     #[Route('/{uuid}/colleges', name: 'index')]
-    public function showColleges(
+    public function index(
         Campaign $campaign,
     ): Response {
         return $this->render('dashboard/college/index.html.twig', [
