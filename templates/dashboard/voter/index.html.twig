@@ -13,7 +13,7 @@
                   </div>
                   <div class="button">
                       <a class="btn btn-outline-primary my-5" href="{{ path('campaign_voter_edit', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}">Modifier</a>
-                      <form method="post" action="{{ path('campaign_voter_delete', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Ce vote sera définitivement effacé');">
+                      <form method="post" action="{{ path('campaign_voter_delete', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Ce votant ne sera plus rattaché à cette campagne');">
                           <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ voter.uuid) }}">
                           <button class="btn btn-outline-danger my-5">Supprimer</button>
                       </form>
@@ -24,7 +24,7 @@
       </tbody>
   </table>
       <div class="d-grid gap-2 d-md-block col-6 mx-auto justify-content-md-center">
-        <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
+        <a class="btn btn-primary my-5" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">
           Ajouter un votant
                   
         </a>
