@@ -9,7 +9,7 @@
           <ul>
               <div class="list">
                   <div class="details">
-                      <li>{{ voter.fullname }} <br> {{ voter.email }} | {{ voter.numberOfVote }}</li>
+                      <li>{{ voter.fullname }} <br> {{ voter.email }} | {{ voter.numberOfVote }} voix</li>
                   </div>
                   <div class="button">
                       <a class="btn btn-outline-primary my-5" href="{{ path('campaign_voter_edit', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}">Modifier</a>
