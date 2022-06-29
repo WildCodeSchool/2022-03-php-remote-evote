@@ -12,22 +12,27 @@ class CollegeFixtures extends Fixture implements DependentFixtureInterface
     public const COLLEGES = [
         ['name' => 'Collège A wild',
         'description' => 'Collège composé de 10 développeurs PHP',
+        'vote_percentage' => 50,
         'company' => 'company_Wild'
         ],
         ['name' => 'Collège B wild',
         'description' => 'Collège composé de 20 développeurs JS',
+        'vote_percentage' => 20,
         'company' => 'company_Wild'
         ],
         ['name' => 'Collège A dephants',
         'description' => 'Collège composé de 10 développeurs',
+        'vote_percentage' => 10,
         'company' => 'company_Dephants'
         ],
         ['name' => 'Collège A 404',
         'description' => 'Collège composé de 30 développeurs',
+        'vote_percentage' => 30,
         'company' => 'company_Erreur404'
         ],
         ['name' => 'Collège B karma',
         'description' => 'Collège composé de 20 développeurs',
+        'vote_percentage' => 40,
         'company' => 'company_Karma'
         ],
     ];
@@ -38,6 +43,7 @@ class CollegeFixtures extends Fixture implements DependentFixtureInterface
             $college = new College();
             $college->setName($collegeName['name']);
             $college->setDescription($collegeName['description']);
+            $college->setVotePercentage($collegeName['vote_percentage']);
             $college->setCompany($this->getReference($collegeName['company']));
             $manager->persist($college);
         }
