@@ -13,19 +13,37 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const RESOLUTION = [
         ['name' =>  'Approbation des comptes 2022',
-        'description' => 'Le résultat est positif. Le bilan progresse',
+        'description' => 'Le résultat est positif. Le bilan progresse.',
         'adoption_rule' => 'Majorité simple',
-        ]
+        'campaign' => 'campaign_0'
+        ],
+        ['name' =>  'Rémunération du gérant',
+        'description' => 'Le gérant sera rémunéré 10€ cette année.',
+        'adoption_rule' => 'Adoption aux 2/3',
+        'campaign' => 'campaign_0'
+        ],
+        ['name' =>  'Budget 2022',
+        'description' => 'Le budget 2022 est de 1.5 M€ avec une rémunération des actionnaires de
+        500.000 €.',
+        'adoption_rule' => 'Adoption aux 2/4',
+        'campaign' => 'campaign_1'
+        ],
+        ['name' =>  'Quitus au dirigeant pour l\'exercice écoulé',
+        'description' => 'Le niveau de gestion du dirigeant est approuvé.',
+        'adoption_rule' => 'Adoption aux 2/3',
+        'campaign' => 'campaign_1'
+        ],
     ];
 
     public function load(ObjectManager $manager): void
     {
         foreach (self::RESOLUTION as $key => $resolutionName) {
             $resolution = new Resolution();
-            $resolution->setUuid('1234' . $key);
+            $resolution->setUuid('4321' . $key);
             $resolution->setName($resolutionName['name']);
             $resolution->setDescription($resolutionName['description']);
             $resolution->setAdoptionRule($resolutionName['adoption_rule']);
+            $resolution->setCampaign($this->getReference($resolutionName['campaign']));
             $manager->persist($resolution);
         }
         $manager->flush();
