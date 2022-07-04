@@ -6,7 +6,9 @@
 			<div class="card-body">
 				<div class="d-flex align-items-center mb-4">
 					<h1>
-						Résolution déjà enregistré sur campagne "Test"
+						Résolution déjà enregistré sur campagne "
+						{{campaign.name}}
+						"
 					</h1>
 				</div>
 
@@ -16,7 +18,6 @@
 							<th scope="col">Nom</th>
 							<th scope="col">Description</th>
 							<th scope="col">Régle d'adoption</th>
-							<th scope="col"></th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -36,14 +37,14 @@
 									{{ resolution.adoptionRule }}
 								</td>
 
-								<td>
-									<a href=" {{ path('campaign_resolution_edit', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }} ">
+								<td class="d-flex justify-content-end align-items-center">
+									<a class="btn btn-outline-primary me-2" href=" {{ path('campaign_resolution_edit', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }} ">
 										Modifier
 									</a>
-								</td>
-
-								<td>
-									{% include "dashboard/resolution/_delete_form.html.twig" %}
+									<form method="post" action="{{ path('campaign_resolution_delete', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Cette résolution sera définitivement effacée');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resolution.uuid) }}">
+										<button class="btn btn-outline-danger">Supprimer</button>
+									</form>
 								</td>
 							</tr>
 						{% endfor %}
