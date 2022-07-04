@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/profile/welcome', name: 'welcome_')]
+#[Route('/welcome', name: 'welcome_')]
 class WelcomeController extends AbstractController
 {
     #[Route('/', name: 'index')]

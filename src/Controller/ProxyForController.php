@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/profile/proxy/for')]
+#[Route('/proxy/for')]
 class ProxyForController extends AbstractController
 {
     #[Route('/', name: 'app_proxy_for_index', methods: ['GET'])]
