@@ -16,6 +16,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         'has_college' => true,
         'company' => 'company_Wild',
         'created_at' => '2022-06-10',
+        'started_at' => '2022-06-13',
         'status' => false
         ],
         ['name' => 'Wilder du mois',
@@ -23,6 +24,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         'has_college' => false,
         'company' => 'company_Dephants',
         'created_at' => '2022-06-20',
+        'started_at' => '2022-06-24',
         'status' => true
         ]
     ];
@@ -38,6 +40,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setHasCollege($campaignName['has_college']);
             $campaign->setCompany($this->getReference($campaignName['company']));
             $campaign->setCreatedAt(new DateTime($campaignName['created_at']));
+            $campaign->setStartedAt(new DateTime($campaignName['started_at']));
             $campaign->setStatus($campaignName['status']);
             $manager->persist($campaign);
         }
