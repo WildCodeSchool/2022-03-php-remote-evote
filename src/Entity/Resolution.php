@@ -5,8 +5,14 @@ namespace App\Entity;
 use App\Entity\Campaign;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ResolutionRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ResolutionRepository::class)]
+#[UniqueEntity(
+    fields: ['uuid'],
+    message: 'Cet uuid existe déjà'
+)]
+
 class Resolution
 {
     #[ORM\Id]
