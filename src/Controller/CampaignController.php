@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/campaign', name: 'campaign_')]
+#[Route('/profile/campaign', name: 'campaign_')]
 class CampaignController extends AbstractController
 {
     #[Route('/', name: 'index')]
