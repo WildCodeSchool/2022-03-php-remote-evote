@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<section class="h-100">
+    <div class="logo">
+            <img src="{{ asset('build/images/logo_bgblk.png') }}" alt="Brand" class="img-fluid rounded mx-auto d-block" />
+    </div>
 
-<div class="container-fluid">
-        <img src="{{ asset('build/images/logo_bgblk.png') }}" alt="Brand" class="img-fluid rounded mx-auto d-block" />
-</div>
-
-<div class="container">
+    <div class="container">
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2">
                 <h1 class="text-center mb-4">{{ campaign.name }}</h1>
-                    <h2 class="text-center mb-5">Campagne du {{ campaign.startedAt|date('d-m-Y') }}</h2>
-                    <div class="card shadow">
+                    <h3 class="text-center mb-5">Campagne du {{ campaign.startedAt|date('d-m-Y') }}</h3>
+                    <div class="card shadow h-50">
                         <h5 class="card-header">Comment ça marche</h5>
-                            <div class="card-body">
+                            <div class="card-body overflow-auto">
                                 <p class="card-text">
                                     Bienvenue aux vote en ligne pour la campagne du {{ campaign.startedAt|date('d-m-Y') }}.
                                     <br><br>
@@ -31,6 +31,7 @@
 			</div>
 		</div>
 	</div>
+</section>
 
 
 
