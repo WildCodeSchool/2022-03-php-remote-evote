@@ -19,7 +19,7 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <input type="hidden" name="_target_path" value="{{ path('welcome_index') }}"/>
 
-        <button class="btn btn-primary btn-lg" type="submit">Se connecter</button>
+        <button class="btn btn-primary btn-lg" type="submit">Se connecter</button><br/>
         <a href="{{ path('app_register') }}">Pour créer un compte cliquer ici</a>
         <div>
             <a href="{{ path('app_forgot_password_request')}}">Mot de passe oublié</a>
