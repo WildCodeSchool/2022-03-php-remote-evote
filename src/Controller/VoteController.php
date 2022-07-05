@@ -12,7 +12,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 #[Route('/voter', name: 'voter_')]
 class VoteController extends AbstractController
 {
-    #[Route('/{uuid}/resolution', name: 'index')]
+    #[Route('/{voter_uuid}/campaign/{campaign_uuid}/resolution', name: 'index')]
+    #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
+    #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
     public function resolutions(Campaign $campaign): Response
     {
         return $this->render('vote/vote.html.twig', [
