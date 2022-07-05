@@ -14,8 +14,17 @@ class ResultController extends AbstractController
     public function index(CampaignRepository $campaignRepository): Response
     {
         $campaigns = $campaignRepository->findAll();
-        return $this->render('dashboard/campaign/results/index.html.twig', [
+        return $this->render('dashboard/campaign/result/index.html.twig', [
             'campaigns' => $campaigns,
+        ]);
+    }
+
+    #[Route('/', name: 'show')]
+    public function showResults(CampaignRepository $campaignRepository): Response
+    {
+        $results = $campaignRepository->findAll();
+        return $this->render('dashboard/campaign/result/show.html.twig', [
+        'results' => $results
         ]);
     }
 }
