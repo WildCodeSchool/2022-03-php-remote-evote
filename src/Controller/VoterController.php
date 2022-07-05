@@ -9,6 +9,7 @@ use App\Entity\Campaign;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\VoterRepository;
 use App\Repository\CompanyRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/campaign', name: 'campaign_voter_')]
 class VoterController extends AbstractController
 {
+    #[Route('/{uuid}/voters', name: 'index')]
+    public function index(Campaign $campaign): Response
+    {
+        return $this->render('dashboard/voter/index.html.twig', [
+            'campaign' => $campaign
+        ]);
+    }
+
     #[Route('/{uuid}/voters/new', name: 'new')]
     public function new(
         Request $request,
@@ -54,5 +63,49 @@ class VoterController extends AbstractController
             'form' => $form,
             'campaign' => $campaign
         ]);
+    }
+
+    #[Route('/{campaign_uuid}/voters/{voter_uuid}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
+    #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
+    public function edit(
+        Request $request,
+        Campaign $campaign,
+        Voter $voter,
+        VoterRepository $voterRepository
+    ): Response {
+        $form = $this->createForm(VoterType::class, $voter);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $voterRepository->add($voter, true);
+
+            return $this->redirectToRoute('campaign_voter_index', [
+                'uuid' => $campaign->getUuid()
+            ], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/voter/edit.html.twig', [
+            'campaign' => $campaign,
+            'voter' => $voter,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{campaign_uuid}/voters/{voter_uuid}/delete', name: 'delete', methods: ['GET', 'POST'])]
+    #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
+    #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
+    public function delete(
+        Request $request,
+        Campaign $campaign,
+        Voter $voter,
+        VoterRepository $voterRepository
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $voter->getUuId(), $request->request->get('_token'))) {
+            $voterRepository->remove($voter, true);
+        }
+        return $this->redirectToRoute('campaign_voter_index', [
+            'uuid' => $campaign->getUuid()
+        ], Response::HTTP_SEE_OTHER);
     }
 }
