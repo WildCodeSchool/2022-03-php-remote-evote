@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 #[Route('/voter', name: 'voter_')]
 class VoteController extends AbstractController
 {
-    #[Route('/{voter_uuid}/campaign/{campaign_uuid}/resolution', name: 'index')]
+    #[Route('/{voter_uuid}/campaign/{campaign_uuid}/resolution', name: 'resolution_index')]
     #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
     #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
     public function resolutions(Campaign $campaign): Response
@@ -21,17 +21,4 @@ class VoteController extends AbstractController
             'campaign' => $campaign,
         ]);
     }
-
-    // #[Route('/{voter_uuid}/campaign/{campaign_uuid}/resolution/{resolution_uuid}/vote',
-    // name: 'vote', methods: ['GET', 'POST'])]
-    // #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
-    // #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
-    // #[ParamConverter('resolution', options: ['mapping' => ['resolution_uuid' => 'uuid']])]
-    // public function vote(Campaign $campaign, Resolution $resolution): Response
-    // {
-    //     return $this->render('vote/show.html.twig', [
-    //         'campaign' => $campaign,
-    //         'resolution' => $resolution,
-    //     ]);
-    // }
 }
