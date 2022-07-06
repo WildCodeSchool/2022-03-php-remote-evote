@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Campaign;
+use App\Entity\Voter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VoteController extends AbstractController
 {
     #[Route('/{uuid}', name: 'welcome')]
-    public function index(Campaign $campaign): Response
+    public function index(Voter $voter): Response
     {
         return $this->render('vote/index.html.twig', [
-            'campaign' => $campaign,
+            'voter' => $voter
         ]);
     }
 }

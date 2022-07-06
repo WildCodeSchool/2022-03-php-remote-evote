@@ -9,13 +9,13 @@
     <div class="container">
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2">
-                <h1 class="text-center mb-4">{{ campaign.name }}</h1>
-                    <h3 class="text-center mb-5">Campagne du {{ campaign.startedAt|date('d-m-Y') }}</h3>
+                <h1 class="text-center mb-4">{{ voter.campaign.name }}</h1>
+                    <h3 class="text-center mb-5">Campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}</h3>
                     <div class="card shadow h-50">
                         <h5 class="card-header">Comment ça marche</h5>
                             <div class="card-body overflow-auto">
                                 <p class="card-text">
-                                    Bienvenue aux vote en ligne pour la campagne du {{ campaign.startedAt|date('d-m-Y') }}.
+                                    Bienvenue aux vote en ligne pour la campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}.
                                     <br><br>
                                     Pour voter c'est très simple, il faut sélectionner chaque résolution et une fois votre choix définitif validé, cliquer sur cloturer mon vote en bas.
                                     <br><br>
