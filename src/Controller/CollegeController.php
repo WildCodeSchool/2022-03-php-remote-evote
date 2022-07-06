@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/profile/campaign', name: 'campaign_college_')]
+#[Route('/campaign', name: 'campaign_college_')]
 class CollegeController extends AbstractController
 {
     #[Route('/{uuid}/colleges', name: 'index')]
