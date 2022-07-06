@@ -40,7 +40,6 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setCreatedAt(new DateTime($campaignName['created_at']));
             $campaign->setStatus($campaignName['status']);
             $this->addReference('campaign_' . $key, $campaign);
-
             $manager->persist($campaign);
         }
         $manager->flush();
