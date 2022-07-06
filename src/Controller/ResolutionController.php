@@ -109,7 +109,8 @@ class ResolutionController extends AbstractController
             $resolutionRepository->remove($resolution, true);
             $this->addFlash(
                 'success',
-                'La résolution ' . $resolution->getName() . ' a bien été supprimée de la campagne ' . $campaign->getName()
+                'La résolution ' . $resolution->getName() . ' a bien été supprimée de la campagne '
+                . $campaign->getName()
             );
         }
         return $this->redirectToRoute('campaign_resolution_index', [

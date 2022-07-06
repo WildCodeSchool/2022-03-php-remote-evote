@@ -77,7 +77,6 @@ class CollegeController extends AbstractController
                 'uuid' => $campaign->getUuid()
             ], Response::HTTP_SEE_OTHER);
         }
-        
         return $this->renderForm('dashboard/college/new.html.twig', [
             'form' => $form,
             'campaign' => $campaign
