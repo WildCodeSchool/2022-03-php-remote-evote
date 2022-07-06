@@ -75,6 +75,10 @@ class ResolutionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $resolutionRepository->add($resolution, true);
+            $this->addFlash(
+                'success',
+                'La résolution ' . $resolution->getName() . ' a bien été modifiée'
+            );
             return $this->redirectToRoute(
                 'campaign_resolution_index',
                 [
@@ -103,6 +107,10 @@ class ResolutionController extends AbstractController
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $resolution->getUuid(), $request->request->get('_token'))) {
             $resolutionRepository->remove($resolution, true);
+            $this->addFlash(
+                'success',
+                'La résolution ' . $resolution->getName() . ' a bien été supprimée de la campagne ' . $campaign->getName()
+            );
         }
         return $this->redirectToRoute('campaign_resolution_index', [
             'uuid' => $campaign->getUuid()

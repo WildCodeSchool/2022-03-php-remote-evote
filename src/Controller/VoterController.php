@@ -56,7 +56,9 @@ class VoterController extends AbstractController
                 'success',
                 'Le votant ' . $voter->getFullname() . ' a bien été ajouté à la campagne ' . $campaign->getName()
             );
-            return $this->redirectToRoute('campaign_edit', ['uuid' => $campaign->getUuid()]);
+            return $this->redirectToRoute('campaign_voter_index', [
+                'uuid' => $campaign->getUuid()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dashboard/voter/new.html.twig', [
@@ -79,6 +81,10 @@ class VoterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $voterRepository->add($voter, true);
+            $this->addFlash(
+                'success',
+                'Le votant ' . $voter->getFullname() . ' a bien été modifié' . $campaign->getName()
+            );
 
             return $this->redirectToRoute('campaign_voter_index', [
                 'uuid' => $campaign->getUuid()
@@ -103,6 +109,10 @@ class VoterController extends AbstractController
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $voter->getUuId(), $request->request->get('_token'))) {
             $voterRepository->remove($voter, true);
+            $this->addFlash(
+                'success',
+                'Le votant ' . $voter->getFullname() . ' a bien été supprimé de la campagne ' . $campaign->getName()
+            );
         }
         return $this->redirectToRoute('campaign_voter_index', [
             'uuid' => $campaign->getUuid()

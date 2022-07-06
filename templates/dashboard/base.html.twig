@@ -19,17 +19,17 @@
 	</head>
 
 	<body>
-		{% include "dashboard/_sidebar.html.twig" %}
-		{# Message Flash #}
-		{% for resolution, messages in app.flashes %}
-			{% for message in messages %}
-				<div class="flash-{{ resolution }}">
-					{{ message }}
-				</div>
-			{% endfor %}
-		{% endfor %}
-		<main class="main-container"> {% block body %}{% endblock %}
-			</main>
-		</body>
-	</html>
-</body></html>
+	{% include "dashboard/_sidebar.html.twig" %}
+		<main class="main-container">{# Message Flash #}
+				{% for category, messages in app.flashes %}
+					{% for message in messages %}
+						<div class="alert-success {{ category }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endfor %}
+			{% block body %}
+			{% endblock %}
+		</main>
+	</body>
+</html></body></html>

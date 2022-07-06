@@ -49,6 +49,10 @@ class CampaignController extends AbstractController
             $uuid = Uuid::v4();
             $campaign->setUuid($uuid->toRfc4122());
             $campaignRepository->add($campaign, true);
+            $this->addFlash(
+                'success',
+                'La campagne ' . $campaign->getName() . ' a bien été créée '
+            );
             return $this->redirectToRoute('campaign_new');
         }
 
