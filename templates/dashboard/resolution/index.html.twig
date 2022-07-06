@@ -41,7 +41,7 @@
 									<a class="btn btn-outline-primary me-2" href=" {{ path('campaign_resolution_edit', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }} ">
 										Modifier
 									</a>
-									<form method="post" action="{{ path('campaign_resolution_delete', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Cette résolution sera définitivement effacée');">
+									<form method="post" action="{{ path('campaign_resolution_delete', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Cette résolution sera définitivement effacée, confirmer ?');">
 										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resolution.uuid) }}">
 										<button class="btn btn-outline-danger">Supprimer</button>
 									</form>

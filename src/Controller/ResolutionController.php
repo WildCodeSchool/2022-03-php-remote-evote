@@ -45,7 +45,14 @@ class ResolutionController extends AbstractController
             $resolutionRepository->add($resolution, true);
             $this->addFlash(
                 'success',
-                'Le votant ' . $resolution->getName() . ' a bien été ajouté à la campagne ' . $campaign->getName()
+                'La résolution ' . $resolution->getName() . ' a bien été ajoutée à la campagne ' . $campaign->getName()
+            );
+            return $this->redirectToRoute(
+                'campaign_resolution_index',
+                [
+                    'uuid' => $campaign->getUuid()
+                ],
+                Response::HTTP_SEE_OTHER
             );
         }
 
