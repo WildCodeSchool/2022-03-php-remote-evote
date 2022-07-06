@@ -23,7 +23,7 @@
 		<main class="main-container">{# Message Flash #}
 				{% for category, messages in app.flashes %}
 					{% for message in messages %}
-						<div class="alert-success {{ category }}">
+						<div class="alert alert-{{ category }}">
 							{{ message }}
 						</div>
 					{% endfor %}
