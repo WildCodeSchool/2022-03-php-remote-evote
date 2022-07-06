@@ -1,0 +1,11 @@
+{% extends "dashboard/base.html.twig" %}
+
+{% block body %}
+<h1>Résolution de la campagne : {{ campaign.name }}</h1>
+	{{ form_start(form) }}
+            {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary my-5">Valider</button>
+                <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
+            {{ form_end(form) }}
+
+{% endblock %}

@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     fields: ['uuid'],
     message: 'Cet uuid existe déjà'
 )]
-
 class Resolution
 {
     #[ORM\Id]
@@ -26,7 +25,7 @@ class Resolution
     #[ORM\Column(type: 'text', nullable: true)]
     private string $description;
 
-    #[ORM\Column(type: 'string', length: 45)]
+    #[ORM\Column(type: 'string', length: 45, nullable: true)]
     private string $adoptionRule;
 
     #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'resolutions')]
