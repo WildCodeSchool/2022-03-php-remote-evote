@@ -6,9 +6,7 @@
 			<div class="card-body">
 				<div class="d-flex align-items-center mb-4">
 					<h1>
-						Résolution déjà enregistré sur campagne "
-						{{campaign.name}}
-						"
+						Résolutions déjà enregistrées sur campagne "{{campaign.name}}"
 					</h1>
 				</div>
 
@@ -50,11 +48,9 @@
 						{% endfor %}
 					</tbody>
 				</table>
-
 					<a class=" btn btn-primary my-5" href=" {{ path('campaign_resolution_new', {'uuid': campaign.uuid}) }}">
 						Ajouter une résolution
 					</a>
-				
 					<a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
 			</div>
 		</div>
