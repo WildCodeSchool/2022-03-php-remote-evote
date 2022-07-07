@@ -37,9 +37,10 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::RESOLUTION as $key => $resolutionName) {
+        foreach (self::RESOLUTION as $resolutionName) {
+            $uuid = Uuid::v4();
             $resolution = new Resolution();
-            $resolution->setUuid('4321' . $key);
+            $resolution->setUuid($uuid->toRfc4122());
             $resolution->setName($resolutionName['name']);
             $resolution->setDescription($resolutionName['description']);
             $resolution->setAdoptionRule($resolutionName['adoption_rule']);

@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Voter;
 use App\Entity\Company;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
-use App\Repository\VoterRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,12 +49,15 @@ class CampaignController extends AbstractController
             $uuid = Uuid::v4();
             $campaign->setUuid($uuid->toRfc4122());
             $campaignRepository->add($campaign, true);
+            $this->addFlash(
+                'success',
+                'La campagne ' . $campaign->getName() . ' a bien été créée '
+            );
             return $this->redirectToRoute('campaign_new');
         }
 
         return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
-
         ]);
     }
 
