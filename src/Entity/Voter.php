@@ -55,9 +55,13 @@ class Voter
     #[ORM\ManyToOne(targetEntity: Campaign::class, inversedBy: 'voters')]
     private ?Campaign $campaign;
 
+    #[ORM\OneToMany(mappedBy: 'voter', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->proxyFor = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,6 +203,36 @@ class Voter
     public function setCampaign(?Campaign $campaign): self
     {
         $this->campaign = $campaign;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): self
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes[] = $vote;
+            $vote->setVoter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): self
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getVoter() === $this) {
+                $vote->setVoter(null);
+            }
+        }
 
         return $this;
     }
