@@ -13,10 +13,26 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const RESOLUTION = [
         ['name' =>  'Approbation des comptes 2022',
-        'description' => 'Le résultat est positif. Le bilan progresse',
-        'adoption_rule' => 'Majorité simple',
+        'description' => 'Le résultat est positif. Le bilan progresse.',
+        'adoption_rule' => 'simple-majority',
+        'campaign' => 'campaign_0'
+        ],
+        ['name' =>  'Rémunération du gérant',
+        'description' => 'Le gérant sera rémunéré 10€ cette année.',
+        'adoption_rule' => 'adoption-2/3',
+        'campaign' => 'campaign_0'
+        ],
+        ['name' =>  'Budget 2022',
+        'description' => 'Le budget 2022 est de 1.5 M€ avec une rémunération des actionnaires de
+        500.000 €.',
+        'adoption_rule' => 'adoption-3/4',
         'campaign' => 'campaign_1'
-        ]
+        ],
+        ['name' =>  'Quitus au dirigeant pour l\'exercice écoulé',
+        'description' => 'Le niveau de gestion du dirigeant est approuvé.',
+        'adoption_rule' => 'adoption-2/3',
+        'campaign' => 'campaign_1'
+        ],
     ];
 
     public function load(ObjectManager $manager): void

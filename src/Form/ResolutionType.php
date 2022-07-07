@@ -28,7 +28,7 @@ class ResolutionType extends AbstractType
                 'choices' => [
                     'Majorité simple' => 'simple-majority',
                     'Adoption aux 2/3' => 'adoption-2/3',
-                    'Adoption aux 3/4' => 'adoption 3/4',
+                    'Adoption aux 3/4' => 'adoption-3/4',
                 ],
                 'label' => 'Indiquez le nombre de voix requis pour l\'adoption de cette résolution',
                 'help' => 'Merci d\'indiquer votre choix'
