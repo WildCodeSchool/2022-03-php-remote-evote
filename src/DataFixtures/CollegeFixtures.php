@@ -68,7 +68,6 @@ class CollegeFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference('college_' . $key, $college);
             $manager->persist($college);
         }
-
         $manager->flush();
     }
 

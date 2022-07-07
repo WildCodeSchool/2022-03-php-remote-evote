@@ -30,8 +30,8 @@ class ResultController extends AbstractController
         ChartBuilderInterface $chartBuilder
     ): Response {
         $charts = [];
-        if ($campaign->getHasCollege(true)) {
-        foreach ($campaign->getCompany()->getColleges() as $college) {
+        if ($campaign->getHasCollege()) {
+            foreach ($campaign->getCompany()->getColleges() as $college) {
                 $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
                 $chart->setData([
                     'labels' => ['Pour', 'Contre', 'Abstention'],
@@ -50,7 +50,6 @@ class ResultController extends AbstractController
                 $charts[] = $chart;
             }
         } else {
-            
             foreach ($campaign->getVoters() as $voter) {
                 $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
                 $chart->setData([

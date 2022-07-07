@@ -76,7 +76,9 @@ class VoterController extends AbstractController
         Voter $voter,
         VoterRepository $voterRepository
     ): Response {
-        $form = $this->createForm(VoterType::class, $voter);
+        $form = $this->createForm(VoterType::class, $voter, [
+            'company' => $campaign->getCompany()
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
