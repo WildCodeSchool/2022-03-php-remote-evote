@@ -39,12 +39,13 @@ class CollegeFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::COLLEGES as $collegeName) {
+        foreach (self::COLLEGES as $key => $collegeName) {
             $college = new College();
             $college->setName($collegeName['name']);
             $college->setDescription($collegeName['description']);
             $college->setVotePercentage($collegeName['vote_percentage']);
             $college->setCompany($this->getReference($collegeName['company']));
+            $this->addReference('college_' . $key, $college);
             $manager->persist($college);
         }
 
