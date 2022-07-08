@@ -13,29 +13,28 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const RESOLUTION = [
         [
-            'name' =>  'Approbation des comptes 2022',
-            'description' => 'Le résultat est positif. Le bilan progresse.',
+            'name' =>  'Choix des langages back',
+            'description' => 'PHP est adoptée.',
             'adoption_rule' => 'simple-majority',
             'campaign' => 'campaign_0'
         ],
         [
-            'name' =>  'Rémunération du gérant',
-            'description' => 'Le gérant sera rémunéré 10€ cette année.',
+            'name' =>  'Choix du meilleur wilder du mois d\'Avril',
+            'description' => 'Le meilleur wilder du mois a été choisi au 2/3.',
             'adoption_rule' => 'adoption-2/3',
-            'campaign' => 'campaign_0'
+            'campaign' => 'campaign_1'
         ],
         [
-            'name' =>  'Budget 2022',
-            'description' => 'Le budget 2022 est de 1.5 M€ avec une rémunération des actionnaires de
-        500.000 €.',
+            'name' =>  'Choix du meilleur MasterCode',
+            'description' => 'Le meilleur MasterCode a été choisi au 3/4.',
             'adoption_rule' => 'adoption-3/4',
-            'campaign' => 'campaign_1'
+            'campaign' => 'campaign_2'
         ],
         [
-            'name' =>  'Quitus au dirigeant pour l\'exercice écoulé',
-            'description' => 'Le niveau de gestion du dirigeant est approuvé.',
-            'adoption_rule' => 'adoption-2/3',
-            'campaign' => 'campaign_1'
+            'name' =>  'Choix de la meilleure équipe du Hackaton Apside',
+            'description' => 'Le meilleure équipe a été choisie aux 3/4.',
+            'adoption_rule' => 'adoption-3/4',
+            'campaign' => 'campaign_3'
         ],
     ];
 

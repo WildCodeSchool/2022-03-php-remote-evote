@@ -18,18 +18,58 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'answer' => 'rejected',
-            'resolution' => 'resolution_1',
+            'resolution' => 'resolution_0',
             'voter' => 'voter_1',
         ],
         [
             'answer' => 'abstention',
-            'resolution' => 'resolution_2',
+            'resolution' => 'resolution_0',
             'voter' => 'voter_2',
         ],
         [
-            'answer' => 'approved',
-            'resolution' => 'resolution_3',
+            'answer' => 'abstention',
+            'resolution' => 'resolution_0',
             'voter' => 'voter_3',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_4',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_5',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_6',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_7',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_2',
+            'voter' => 'voter_8',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_2',
+            'voter' => 'voter_9',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_2',
+            'voter' => 'voter_10',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_2',
+            'voter' => 'voter_11',
         ],
 
     ];

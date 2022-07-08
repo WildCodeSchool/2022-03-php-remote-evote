@@ -44,7 +44,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         [
             'name' => 'Hackaton',
             'description' => 'Campagne de vote pour élire les wilders du Hackaton',
-            'has_college' => false,
+            'has_college' => true,
             'company' => 'company_Karma',
             'created_at' => '2022-06-20',
             'started_at' => '0937',
