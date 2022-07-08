@@ -49,12 +49,15 @@ class CampaignController extends AbstractController
             $uuid = Uuid::v4();
             $campaign->setUuid($uuid->toRfc4122());
             $campaignRepository->add($campaign, true);
+            $this->addFlash(
+                'success',
+                'La campagne ' . $campaign->getName() . ' a bien été créée '
+            );
             return $this->redirectToRoute('campaign_new');
         }
 
         return $this->renderForm('dashboard/campaign/new.html.twig', [
             'form' => $form,
-
         ]);
     }
 
@@ -63,30 +66,6 @@ class CampaignController extends AbstractController
     {
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
-        ]);
-    }
-
-    #[Route('/{uuid}/participants', name: 'voters_index')]
-    public function showVoters(Campaign $campaign): Response
-    {
-        return $this->render('campaign/show-voters.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/colleges', name: 'colleges_index')]
-    public function colleges(Campaign $campaign): Response
-    {
-        return $this->render('campaign/colleges.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
-
-    #[Route('/{uuid}/resultats', name: 'resultats_index')]
-    public function resultats(Campaign $campaign): Response
-    {
-        return $this->render('campaign/resultats.html.twig', [
-            'campaign' => $campaign,
         ]);
     }
 }

@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html.twig" %}
+
+{% block body %}
+	<div class="container">
+		<div class="d-grid gap-2 d-md-flex col-4' ms-auto justify-content-md-end">
+			<div class="card-body">
+				<div class="d-flex align-items-center mb-4">
+					<h1>
+						Résolutions déjà enregistrées sur campagne "{{campaign.name}}"
+					</h1>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Nom</th>
+							<th scope="col">Description</th>
+							<th scope="col">Régle d'adoption</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for resolution in campaign.resolutions %}
+
+							<tr>
+								<td>
+									{{ resolution.name }}
+								</td>
+
+								<td>
+									{{ resolution.description }}
+								</td>
+
+								<td>
+									{{ resolution.adoptionRule }}
+								</td>
+
+								<td class="d-flex justify-content-end align-items-center">
+									<a class="btn btn-outline-primary me-2" href=" {{ path('campaign_resolution_edit', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }} ">
+										Modifier
+									</a>
+									<form method="post" action="{{ path('campaign_resolution_delete', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Cette résolution sera définitivement effacée, confirmer ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resolution.uuid) }}">
+										<button class="btn btn-outline-danger">Supprimer</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+					<a class=" btn btn-primary my-5" href=" {{ path('campaign_resolution_new', {'uuid': campaign.uuid}) }}">
+						Ajouter une résolution
+					</a>
+					<a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

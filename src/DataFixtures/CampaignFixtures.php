@@ -11,22 +11,47 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class CampaignFixtures extends Fixture implements DependentFixtureInterface
 {
     public const CAMPAIGNS = [
-        ['name' => 'Le meilleur langage back',
-        'description' => 'Campagne de vote pour élire le meilleur langage de tous les temps',
-        'has_college' => true,
-        'company' => 'company_Wild',
-        'created_at' => '2022-06-10',
-        'status' => false
+        [
+            'name' => 'Le meilleur langage back',
+            'description' => 'Campagne de vote pour élire le meilleur langage de tous les temps',
+            'has_college' => true,
+            'company' => 'company_Wild',
+            'created_at' => '2022-06-10',
+            'started_at' => '0937',
+            'ended_at' => '2022-06-13',
+            'status' => true
         ],
-        ['name' => 'Wilder du mois',
-        'description' => 'Campagne de vote pour élire le wilder du mois',
-        'has_college' => false,
-        'company' => 'company_Dephants',
-        'created_at' => '2022-06-20',
-        'status' => true
-        ]
+        [
+            'name' => 'Wilder du mois',
+            'description' => 'Campagne de vote pour élire le wilder du mois',
+            'has_college' => true,
+            'company' => 'company_Dephants',
+            'created_at' => '2022-06-20',
+            'started_at' => '0937',
+            'ended_at' => '2022-06-13',
+            'status' => true
+        ],
+        [
+            'name' => 'MasterCode',
+            'description' => 'Campagne de vote pour élire le wilder qui a le meilleur CleanCode',
+            'has_college' => true,
+            'company' => 'company_Erreur404',
+            'created_at' => '2022-06-20',
+            'started_at' => '0937',
+            'ended_at' => '2022-06-13',
+            'status' => true
+        ],
+        [
+            'name' => 'Hackaton',
+            'description' => 'Campagne de vote pour élire les wilders du Hackaton',
+            'has_college' => false,
+            'company' => 'company_Karma',
+            'created_at' => '2022-06-20',
+            'started_at' => '0937',
+            'ended_at' => '2022-06-13',
+            'status' => true
+        ],
     ];
-
 
     public function load(ObjectManager $manager): void
     {
@@ -38,7 +63,10 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setHasCollege($campaignName['has_college']);
             $campaign->setCompany($this->getReference($campaignName['company']));
             $campaign->setCreatedAt(new DateTime($campaignName['created_at']));
+            $campaign->setStartedAt(new DateTime($campaignName['started_at']));
+            $campaign->setEndedAt(new DateTime($campaignName['ended_at']));
             $campaign->setStatus($campaignName['status']);
+            $this->addReference('campaign_' . $key, $campaign);
             $manager->persist($campaign);
         }
         $manager->flush();
@@ -49,7 +77,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
     {
         // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
-        CompanyFixtures::class,
+            CompanyFixtures::class,
         ];
     }
 }
