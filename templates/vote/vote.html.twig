@@ -12,19 +12,10 @@
                 <h1 class="text-center mb-4">{{ campaign.name }}</h1>
                     <h3 class="text-center mb-5">Campagne du {{ campaign.startedAt|date('d-m-Y') }}</h3>
                     {% for resolution in campaign.resolutions %}
-                    <div class="card shadow h-50">
-                        <h5 class="card-header">Résolution : {{ resolution.name }}</h5>
-                            <div class="card-body overflow-auto">
-                                <p class="card-text">
-                                {{ resolution.description }}
-                                </p>
-                            </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="#" class="btn btn-primary mt-4 mb-5">Pour</a>
-                        <a href="#" class="btn btn-danger mt-4 mb-5">Contre</a>
-                        <a href="#" class="btn btn-secondary mt-4 mb-5">Absention</a>
-                    </div>
+                        {{component('vote', {
+                            'resolution': resolution,
+                            'voter': voter
+                        })}}
                     {% endfor %}
                 <div class="text-center">
                     <a href="#" class="btn btn-primary mt-4 mb-5">Je cloture mon vote</a>
@@ -33,6 +24,5 @@
         </div>
     </div>
 </section>
-
 
 {% endblock %}

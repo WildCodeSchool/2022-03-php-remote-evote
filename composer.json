@@ -43,6 +43,7 @@
         "symfony/twig-bundle": "6.0.*",
         "symfony/uid": "6.0.*",
         "symfony/ux-chartjs": "^2.2",
+        "symfony/ux-live-component": "^2.2",
         "symfony/validator": "6.0.*",
         "symfony/web-link": "6.0.*",
         "symfony/webapp-meta": "^1.0",
