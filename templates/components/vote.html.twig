@@ -1,4 +1,4 @@
-<div class="card shadow mb-4" {{ attributes }}>
+<div class="card shadow mb-5" {{ attributes }}>
     <h5 class="card-header">Résolution : {{ this.resolution.name }}</h5>
     <div class="card-body overflow-auto">
         <p class="card-text">
@@ -7,9 +7,10 @@
     </div>
     <div class="card-footer">
         <div class="text-center">
-            {{ this.voter.fullName }}
             {% if this.hasVoted %}
-            vous avez déjà voté
+            <div class="alert alert-success">
+        Merci d'avoir voté {{ this.voter.fullName }} <i class="fa fa-check-circle-o"></i>
+            </div>
             {% else %}
             <button class="btn btn-primary " 
             data-action="live#action"
