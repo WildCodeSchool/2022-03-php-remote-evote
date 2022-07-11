@@ -2,15 +2,21 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<div class="row">
-			<div class="col-lg-6 offset-lg-3">
+		<div>
+			<div class=" col-lg-6 offset-lg-3">
 				<div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-					<img src="{{ asset('build/images/LogoLjmTransparentRectangle.png') }}" alt="Brand" class="img-responsive"/>
-				</div>
+                    <div class="p-3 col-lg-12 ">
+					    <img src="{{ asset('build/images/LogoTransparent.png') }}" alt="Brand" class="img-responsive col-4"/>
+					    <img src="{{ asset('build/images/logo_evote2.png') }}" alt="Brand" class="img-responsive col-4 offset-lg-2"/>
+                    </div>
+                </div>
+
 				<div class="p-3 shadow">
 					{% block main %}{% endblock %}
 				</div>
 			</div>
 		</div>
 	</div>
+
 {% endblock %}
+
