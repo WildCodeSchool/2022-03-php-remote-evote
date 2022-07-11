@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="h-100">
+<section class="mb-auto">
     <div class="logo">
             <img src="{{ asset('build/images/logo_bgblk.png') }}" alt="Brand" class="img-fluid rounded mx-auto d-block" />
     </div>
@@ -15,18 +15,17 @@
                         <h5 class="card-header">Comment ça marche</h5>
                             <div class="card-body overflow-auto">
                                 <p class="card-text">
-                                    Bienvenue aux vote en ligne pour la campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}.
+                                    Bienvenue au vote en ligne pour la campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}.
                                     <br><br>
-                                    Pour voter c'est très simple, il faut sélectionner chaque résolution et une fois votre choix définitif validé, cliquer sur cloturer mon vote en bas.
+                                    Pour voter c'est très simple, il faut sélectionner votre choix pour chaque résolution : Pour, Contre ou Abstention.  
                                     <br><br>
-                                    Une fois le vote cloturer vous ne pourrez plus revenir en arriere.
+                                    Une fois le choix de vote sélectionné, vous ne pourrez plus revenir en arriere.
                                     <br><br>
-                                    Si vous disposez de pouvoir vous pourrez switcher sur les autres personnes représentées en haut et voter conformément à leurs instructions.
                                 </p>
                             </div>
                     </div>
                     <div class="text-center">
-                         <a href="#" class="btn btn-primary mt-5">Démarrer</a>
+                         <a href="{{ path('voter_resolution_index', {'voter_uuid': voter.uuid, 'campaign_uuid': voter.campaign.uuid}) }}" class="btn btn-primary mt-5">Démarrer</a>
                     </div>
 			</div>
 		</div>
