@@ -6,6 +6,7 @@ use App\Entity\Campaign;
 use App\Entity\Resolution;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\CampaignRepository;
+use App\Services\ChartResults;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
@@ -27,52 +28,20 @@ class ResultController extends AbstractController
     #[Route('/{uuid}/show', name: 'show')]
     public function showResults(
         Campaign $campaign,
-        ChartBuilderInterface $chartBuilder
+        ChartResults $chartResults,
     ): Response {
-        $charts = [];
-        if ($campaign->getHasCollege()) {
-            foreach ($campaign->getCompany()->getColleges() as $college) {
-                $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
-                $chart->setData([
-                    'labels' => ['Pour', 'Contre', 'Abstention'],
-                    'datasets' => [
-                        [
-                            'label' => $college->getName(),
-                            'backgroundColor' => [
-                                'rgb(75, 181, 67)',
-                                'rgb(255, 14, 14)',
-                                'rgb(255, 153, 102)'
-                            ],
-                            'data' => [300, 25, 75]
-                        ],
-                    ],
-                ]);
-                $charts[] = $chart;
-            }
-        } else {
-            foreach ($campaign->getVoters() as $voter) {
-                $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
-                $chart->setData([
-                    'labels' => ['Pour', 'Contre', 'Abstention'],
-                    'datasets' => [
-                        [
-                            'label' => $voter->getFullname(),
-                            'backgroundColor' => [
-                                'rgb(75, 181, 67)',
-                                'rgb(255, 14, 14)',
-                                'rgb(255, 153, 102)'
-                            ],
-                            'data' => [300, 25, 75]
-                        ],
-                    ],
-                ]);
-                $charts[] = $chart;
-            }
-        }
+        // if ($campaign->getHasCollege()) {
+        //     $resolutionsCharts = $chartResults->getResultByCollege(
+        //         $campaign->getResolutions()
+        //     );
+        // }
+        $resolutionsCharts = $chartResults->getResultByCollege(
+            $campaign->getResolutions()
+        );
 
         return $this->render('dashboard/campaign/results/show.html.twig', [
-            'charts' => $charts,
-            'campaign' => $campaign
+            'campaign' => $campaign,
+            'resolutions' => $resolutionsCharts
         ]);
     }
 }

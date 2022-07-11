@@ -15,7 +15,7 @@
 			le
 			{{ campaign.endedAt|date('d-m-Y H:i:s') }}</p>
 
-		{% for resolution in campaign.resolutions %}
+		{% for resolution in resolutions %}
 			<section>
 				<h3>Résolution : {{resolution.id}} :
 					{{ resolution.name }}</h3>
@@ -23,7 +23,7 @@
 
 					<h4>Résultats par collèges</h4>
 					<div class="row">
-						{% for chart in charts %}
+						{% for chart in resolution.charts %}
 							<div class="col-lg-3">
 								{{ render_chart(chart) }}
 							</div>
