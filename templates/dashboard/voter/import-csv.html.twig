@@ -4,6 +4,7 @@
     <section class="voters_list">
         <h1>
             Participants au vote :&ensp; 
+                                    
                         
             {{ campaign.name }}
         </h1>
@@ -13,14 +14,16 @@
             <i class="bi bi-upload"></i>
         </button>
         <hr>
-            Exemple de fichier à remplir
+            Exemple de fichier à remplir :
+                    
         </hr>
         <div>
-            <img src="{{ asset('build/images/screencsv.jpeg') }}" alt="brand" class="figure-img img-fluid rounded" />
+            <img src="{{ asset('build/images/screen.png') }}" alt="brand" class="figure-img img-fluid rounded" />
         </div>
         <div>
             <a class="btn btn-primary my-5 d-md-block col-4 mx-auto justify-content-md-center" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
                 Retour à la page d'admin
+                                            
                             
             </a>
         </div>

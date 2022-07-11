@@ -8,7 +8,7 @@
   </div>
     <div class="card-body">
       <div class="d-flex align-items-center mb-4">
-        <h1>Voir les résultats de mes campagnes de vote clôturés</h1>
+        <h1>Voir les résultats de mes campagnes de votes clôturés</h1>
       </div>
 
       <table class="table table-striped">
@@ -22,10 +22,9 @@
         <tbody>
           {% for campaign in campaigns %}
           <tr>
-          {# <td>{{campaign.company.name}}</td> #}
             <td>{{campaign.name}}</td>
             <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-            <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats<a/></td>
+            <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir les résultats<a/></td>
           </tr>
           {% endfor %} 
         </tbody>

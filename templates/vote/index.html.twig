@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="h-100">
+    <div class="logo">
+            <img src="{{ asset('build/images/logo_bgblk.png') }}" alt="Brand" class="img-fluid rounded mx-auto d-block" />
+    </div>
+
+    <div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2">
+                <h1 class="text-center mb-4">{{ voter.campaign.name }}</h1>
+                    <h3 class="text-center mb-5">Campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}</h3>
+                    <div class="card shadow h-50">
+                        <h5 class="card-header">Comment ça marche</h5>
+                            <div class="card-body overflow-auto">
+                                <p class="card-text">
+                                    Bienvenue aux vote en ligne pour la campagne du {{ voter.campaign.startedAt|date('d-m-Y') }}.
+                                    <br><br>
+                                    Pour voter c'est très simple, il faut sélectionner chaque résolution et une fois votre choix définitif validé, cliquer sur cloturer mon vote en bas.
+                                    <br><br>
+                                    Une fois le vote cloturer vous ne pourrez plus revenir en arriere.
+                                    <br><br>
+                                    Si vous disposez de pouvoir vous pourrez switcher sur les autres personnes représentées en haut et voter conformément à leurs instructions.
+                                </p>
+                            </div>
+                    </div>
+                    <div class="text-center">
+                         <a href="#" class="btn btn-primary mt-5">Démarrer</a>
+                    </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}

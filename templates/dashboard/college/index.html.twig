@@ -3,24 +3,42 @@
 {% block body %}
     <section class="colleges_list">
         <h1>Collèges déjà enregistrés sur la campagne :&ensp; {{ campaign.name }}</h1>
-            {% for college in campaign.company.colleges %}
 
-                    <ul>
-                        <div class="list">
-                            <div class="details">
-                                <li>{{ college.name }} <br> {{ college.description }} | {{ college.votePercentage }}% des voix</li>
-                            </div>
-                            <div class="button">
-                                <a class="btn btn-outline-primary my-5" href="{{ path('campaign_college_edit', {'id': college.id, 'uuid': campaign.uuid}) }}">Modifier</a>
-                                <form method="post" action="{{ path('campaign_college_delete', {'id': college.id, 'uuid': campaign.uuid}) }}" onsubmit="return confirm('Les votants attachés à ce collège ne seront plus attachés à aucun collège, cela peut fausser le vote');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ college.id) }}">
-                                    <button class="btn btn-outline-danger my-5">Supprimer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </ul>
-    
-            {% endfor %}
+            <table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Nom du collège</th>
+							<th scope="col">Description</th>
+							<th scope="col">Pourcentage de voix</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+                    <tbody>
+                        {% for college in campaign.company.colleges %}
+                            <tr>
+                                <td>
+                                    {{ college.name }}
+                                </td>
+
+                                <td>
+                                    {{ college.description }}
+                                </td>
+
+                                <td>
+                                    {{ college.votePercentage }}
+                                </td>
+
+                                <td class="d-flex justify-content-end align-items-center">
+									<a class="btn btn-outline-primary me-2" href="{{ path('campaign_college_edit', {'id': college.id, 'uuid': campaign.uuid}) }}">Modifier</a>
+									<form method="post" action="{{ path('campaign_college_delete', {'id': college.id, 'uuid': campaign.uuid}) }}" onsubmit="return confirm('Les votants attachés à ce collège ne seront plus attachés à aucun collège, cela peut fausser le vote');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ college.id) }}">
+                                        <button class="btn btn-outline-danger">Supprimer</button>
+                                    </form>
+								</td>
+							</tr>
+                        {% endfor %}
+                    </tbody>
+			</table>
         <a class="btn btn-primary my-5" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
         <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
     </section>  

@@ -28,7 +28,6 @@
     <tbody>
       {% for campaign in campaigns %}
         <tr>
-          {# <th scope="row">1</th> #}
           <td>
             {% if campaign.company %}
               {{campaign.company.name}}
@@ -43,7 +42,7 @@
           <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
           <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
-          <td><a href="{{ path('campaign_resultats_index', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
+          <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
         </tr>
       </tr>
       {% endfor %}

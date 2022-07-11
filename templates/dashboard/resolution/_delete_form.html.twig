@@ -1,0 +1,5 @@
+
+<form method="post" action="{{ path('campaign_resolution_delete', {'resolution_uuid': resolution.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette résolution ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resolution.uuid) }}">
+    <button class="btn">Supprimer</button>
+</form>

@@ -40,6 +40,10 @@ class CollegeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $collegeRepository->add($college, true);
+            $this->addFlash(
+                'success',
+                'Le collège ' . $college->getName() . ' a bien été modifié.'
+            );
 
             return $this->redirectToRoute('campaign_college_index', [
                 'uuid' => $campaign->getUuid()
@@ -65,6 +69,13 @@ class CollegeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $college->setCompany($campaign->getCompany());
             $collegeRepository->add($college, true);
+            $this->addFlash(
+                'success',
+                'Le collège ' . $college->getName() . ' a bien été ajouté à la campagne ' . $campaign->getName()
+            );
+            return $this->redirectToRoute('campaign_college_index', [
+                'uuid' => $campaign->getUuid()
+            ], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('dashboard/college/new.html.twig', [
             'form' => $form,
@@ -84,6 +95,10 @@ class CollegeController extends AbstractController
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $college->getId(), $request->request->get('_token'))) {
             $collegeRepository->remove($college, true);
+            $this->addFlash(
+                'success',
+                'Le collège ' . $college->getName() . ' a bien été supprimé de la campagne ' . $campaign->getName()
+            );
         }
 
         return $this->redirectToRoute('campaign_college_index', [
