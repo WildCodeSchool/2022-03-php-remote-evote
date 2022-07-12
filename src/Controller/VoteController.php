@@ -23,10 +23,11 @@ class VoteController extends AbstractController
     #[Route('/{voter_uuid}/campaign/{campaign_uuid}/resolution', name: 'resolution_index')]
     #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
     #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
-    public function resolutions(Campaign $campaign): Response
+    public function resolutions(Campaign $campaign, Voter $voter): Response
     {
         return $this->render('vote/vote.html.twig', [
             'campaign' => $campaign,
+            'voter' => $voter
         ]);
     }
 }
