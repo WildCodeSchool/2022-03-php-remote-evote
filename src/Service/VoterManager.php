@@ -40,36 +40,54 @@ class VoterManager
         //appeler le decoderInterface pour decoder CSV contents
         $csv = $this->decoderInterface->decode(file_get_contents($filePath), 'csv', $context);
         //parcours-moi le tableau $csv et considère que chaque ligne s'appellera $data dt l'index s'appelera $key
-        foreach ($csv as $key => $data) {
+        foreach ($csv as $data) {
+            if (empty($data['FullName']) || empty($data['Email']) || empty($data['Telephone'])) {
+                continue;
+            }
             $voter = new Voter();
             $uuid = Uuid::v4();
 
-            if (!empty($data['StructureRepresentée'])) {
-                $company = $this->companyRepository->findOneByName($data['StructureRepresentée']);
-                if (!$company) {
-                    $company = new Company();
-                    $company->setName($data['StructureRepresentée']);
-                    $this->entityManager->persist($company);
-                }
-                $voter->setCompany($company);
-            }
-            if (!empty($data['College'])) {
-                $college = $this->collegeRepository->findOneByName($data['College']);
-                if (!$college) {
-                    $college = new College();
-                    $college->setName($data['College']);
-                    $this->entityManager->persist($college);
-                }
-                $voter->setCollege($college);
-            }
-            $voter->setUuid($uuid->toRfc4122() . $key);
+            $this->setCompany($voter, $data);
+            $this->setCollege($voter, $data, $campaign);
+
+            $voter->setUuid($uuid->toRfc4122());
             $voter->setFullname($data['FullName']);
             $voter->setCampaign($campaign);
             $voter->setTelephone($data['Telephone']);
             $voter->setEmail($data['Email']);
-            $voter->setNumberOfVote($data['NombreDeVoix']);
+            $voter->setNumberOfVote(intval($data['NombreDeVoix']));
             $this->entityManager->persist($voter);
         }
         $this->entityManager->flush();
+    }
+
+    private function setCompany(Voter $voter, array $data): void
+    {
+        if (!empty($data['StructureRepresentee'])) {
+            $company = $this->companyRepository->findOneByName($data['StructureRepresentee']);
+            if (!$company) {
+                $company = new Company();
+                $company->setName($data['StructureRepresentee']);
+                $this->entityManager->persist($company);
+                $this->entityManager->flush();
+            }
+            $voter->setCompany($company);
+        }
+    }
+
+    private function setCollege(Voter $voter, array $data, Campaign $campaign): void
+    {
+        if (!empty($data['College'])) {
+            $college = $this->collegeRepository->findOneByName($data['College']);
+            if (!$college) {
+                //  @todo implement vote percentage by csv
+                $college = new College();
+                $college->setCompany($campaign->getCompany());
+                $college->setName($data['College']);
+                $this->entityManager->persist($college);
+                $this->entityManager->flush();
+            }
+            $voter->setCollege($college);
+        }
     }
 }

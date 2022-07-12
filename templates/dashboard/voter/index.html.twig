@@ -7,6 +7,7 @@
         <div class="d-flex align-items-center mb-4">
           <h1>
             Votants déjà enregistrés sur la campagne :&ensp; 
+                        
             {{ campaign.name }}
           </h1>
         </div>
@@ -15,21 +16,27 @@
             <tr>
               <th scope="col">
                 Nom
+                              
               </th>
               <th scope="col">
                 Mél
+                              
               </th>
               <th scope="col">
                 Structure
+                              
               </th>
               <th scope="col">
                 Collège
+                              
               </th>
               <th scope="col">
                 Télephone
+                              
               </th>
               <th scope="col">
                 Nombre de voix
+                              
               </th>
               <th scope="col"></th>
             </tr>
@@ -46,11 +53,11 @@
                 </td>
 
                 <td>
-                  {{ voter.company.name }}
+                  {{ voter.company is not null ? voter.company.name }}
                 </td>
 
                 <td>
-                  {{ voter.college.name }}
+                  {{ voter.college is not null ? voter.college.name }}
                 </td>
 
                 <td>
@@ -64,11 +71,13 @@
                 <td class="d-flex justify-content-end align-items-center">
                   <a class="btn btn-outline-primary me-2" href="{{ path('campaign_voter_edit', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}">
                     Modifier
+                                      
                   </a>
                   <form method="post" action="{{ path('campaign_voter_delete', {'voter_uuid': voter.uuid, 'campaign_uuid': campaign.uuid}) }}" onsubmit="return confirm('Ce votant ne sera plus rattaché à cette campagne');">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ voter.uuid) }}">
                       <button class="btn btn-outline-danger">
                         Supprimer
+                                              
                       </button>
                     </form>
                   </td>
@@ -78,12 +87,15 @@
           </table>
           <a class="btn btn-primary my-5" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">
             Ajouter un votant
+                      
           </a>
           <a class="btn btn-primary btn" href="{{ path('campaign_voter_import_csv', {'uuid': campaign.uuid}) }}">
             Ajouter des votants en masse
+                      
           </a>
           <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
             Retour à la page d'admin
+                      
           </a>
         </div>
       </div>

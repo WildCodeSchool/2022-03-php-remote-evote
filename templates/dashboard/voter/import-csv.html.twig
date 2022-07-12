@@ -18,7 +18,9 @@
                     
         </hr>
         <div>
-            <img src="{{ asset('build/images/screen.png') }}" alt="brand" class="figure-img img-fluid rounded" />
+            <a href="{{ asset('build/data/Evote.csv') }}" download="">
+                <img src="{{ asset('build/images/screen.png') }}" alt="brand" class="figure-img img-fluid rounded"/>
+            </a>
         </div>
         <div>
             <a class="btn btn-primary my-5 d-md-block col-4 mx-auto justify-content-md-center" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
