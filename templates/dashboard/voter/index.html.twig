@@ -6,7 +6,7 @@
       <div class="card-body">
         <div class="d-flex align-items-center mb-4">
           <h1>
-            Votants déjà enregistrés sur la campagne :&ensp; 
+            Votants déjà enregistrés sur la campagne :&ensp;
             {{ campaign.name }}
           </h1>
         </div>
@@ -46,11 +46,11 @@
                 </td>
 
                 <td>
-                  {{ voter.company.name }}
+                  {{ voter.company is not null ? voter.company.name }}
                 </td>
 
                 <td>
-                  {{ voter.college.name }}
+                  {{ voter.college is not null ? voter.college.name }}
                 </td>
 
                 <td>
@@ -89,4 +89,3 @@
       </div>
     </div>
   {% endblock %}
-  

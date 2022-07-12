@@ -14,13 +14,13 @@ class College
     private int $id;
 
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
-    private string $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private string $description;
+    private ?string $description;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private float $votePercentage;
+    private ?float $votePercentage;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'colleges')]
     private Company $company;

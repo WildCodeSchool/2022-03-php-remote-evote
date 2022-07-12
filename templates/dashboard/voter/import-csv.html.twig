@@ -3,9 +3,9 @@
 {% block body %}
     <section class="voters_list">
         <h1>
-            Participants au vote :&ensp; 
-                                    
-                        
+            Participants au vote :&ensp;
+
+
             {{ campaign.name }}
         </h1>
         {{ form_start(form) }}
@@ -15,18 +15,18 @@
         </button>
         <hr>
             Exemple de fichier à remplir :
-                    
         </hr>
         <div>
-            <img src="{{ asset('build/images/screen.png') }}" alt="brand" class="figure-img img-fluid rounded" />
+            <a href="{{ asset('build/data/Evote.csv') }}" download="">
+                <img src="{{ asset('build/images/screen.png') }}" alt="brand" class="figure-img img-fluid rounded"/>
+            </a>
         </div>
         <div>
             <a class="btn btn-primary my-5 d-md-block col-4 mx-auto justify-content-md-center" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
                 Retour à la page d'admin
-                                            
-                            
+
+
             </a>
         </div>
         {{ form_end(form) }}
     {% endblock %}
-    

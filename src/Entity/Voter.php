@@ -38,10 +38,10 @@ class Voter
     private string $uuid;
 
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
-    private Company $company;
+    private ?Company $company;
 
     #[ORM\ManyToOne(targetEntity: College::class)]
-    private College $college;
+    private ?College $college;
 
     #[ORM\Column(type: 'float', nullable: true)]
     private float $votePercentage;
