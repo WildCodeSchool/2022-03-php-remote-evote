@@ -13,24 +13,29 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-             ->add('lastname'
-             , TextType::class, [
-                'constraints' => [
-                    new NotBlank([]),
-                ],
-            ])
-            ->add('firstname'
-            , TextType::class, [
-                'constraints' => [
-                    new NotBlank([]),
-                ],
-            ])
+            ->add(
+                'lastname',
+                TextType::class,
+                [
+                    'constraints' => [
+                        new NotBlank([]),
+                    ],
+                ]
+            )
+            ->add(
+                'firstname',
+                TextType::class,
+                [
+                    'constraints' => [
+                        new NotBlank([]),
+                    ],
+                ]
+            )
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'help' => 'Lien vers les <a href="/cgu">CGU</a>',
