@@ -17,7 +17,7 @@
 			<div class="mb-4">
 				<h2>Les votants</h2>
 				<a class="btn btn-primary" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">Ajouter un votant</a>
-				<a class="btn btn-outline-primary" href="#">Ajouter des votants</a>
+				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_import_csv', {'uuid': campaign.uuid}) }}">Ajouter des votants</a>
 				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Gerer les votants</a>
 			</div>
 

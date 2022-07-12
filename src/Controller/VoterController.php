@@ -6,14 +6,17 @@ use App\Entity\Voter;
 use App\Entity\Company;
 use App\Form\VoterType;
 use App\Entity\Campaign;
+use App\Service\VoterManager;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\VoterRepository;
 use App\Repository\CompanyRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\form;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/campaign', name: 'campaign_voter_')]
 class VoterController extends AbstractController
@@ -119,5 +122,31 @@ class VoterController extends AbstractController
         return $this->redirectToRoute('campaign_voter_index', [
             'uuid' => $campaign->getUuid()
         ], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{uuid}/voters/import-csv', name: 'import_csv')]
+    public function importCsv(
+        VoterManager $voterManager,
+        Campaign $campaign,
+        Request $request
+    ): Response {
+        $form = $this->createFormBuilder()
+            ->add('file', FileType::class, [
+                'label' => 'Fichier csv',
+                'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider 
+            pour la synchronisation automatique des participants au vote'
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //appel du service ImportVoter qui relie les votants du fichier télécharger à la campagne
+            $voterManager->importVoter($campaign, $form->get('file')->getData());
+
+            return $this->redirectToRoute('campaign_voter_index', ['uuid' => $campaign->getUuid()]);
+        }
+        return $this->renderForm('dashboard/voter/import-csv.html.twig', [
+            'form' => $form,
+            'campaign' => $campaign
+        ]);
     }
 }

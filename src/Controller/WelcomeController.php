@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Campaign;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +15,7 @@ class WelcomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('dashboard/welcome/index.html.twig', [
-            'controller_name' => 'WelcomeController',
+            'controllername' => 'WelcomeController',
         ]);
     }
 }

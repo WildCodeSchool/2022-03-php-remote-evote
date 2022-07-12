@@ -19,6 +19,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 50,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Michael Dupont',
@@ -27,6 +29,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 15,
+            'telephone' => '0123456789',
+            'company' => 'company_Dephants'
         ],
         [
             'fullname' => 'Michel Dupuis',
@@ -35,6 +39,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_2',
             'votePercentage' => 25,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Fred Shortman',
@@ -43,6 +49,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_3',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
     ];
 
@@ -52,10 +60,12 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             $voter = new Voter();
             $voter->setUuid('4321' . $key);
             $voter->setFullname($voterName['fullname']);
+            $voter->setTelephone($voterName['telephone']);
             $voter->setEmail($voterName['email']);
             $voter->setNumberOfVote($voterName['number_vote']);
             $voter->setVotePercentage($voterName['votePercentage']);
             $voter->setCampaign($this->getReference($voterName['campaign']));
+            $voter->setCompany($this->getReference($voterName['company']));
             $voter->setCollege($this->getReference($voterName['college']));
             $this->addReference('voter_' . $key, $voter);
             $manager->persist($voter);
@@ -68,6 +78,7 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
         return [
             CampaignFixtures::class,
             CollegeFixtures::class,
+            CompanyFixtures::class,
         ];
     }
 }

@@ -30,18 +30,18 @@ class Voter
     #[Assert\NotBlank(message: 'Merci de renseigner l\'email du participant')]
     private string $email;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
     #[Assert\NotBlank(message: 'Merci de renseigner le téléphone du participant')]
-    private int $telephone;
+    private string $telephone;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private string $uuid;
 
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'])]
-    private Company $company;
+    private ?Company $company;
 
     #[ORM\ManyToOne(targetEntity: College::class)]
-    private College $college;
+    private ?College $college;
 
     #[ORM\Column(type: 'float', nullable: true)]
     private float $votePercentage;
@@ -93,12 +93,12 @@ class Voter
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(?int $telephone): self
+    public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
 
