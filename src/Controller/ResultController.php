@@ -30,14 +30,17 @@ class ResultController extends AbstractController
         Campaign $campaign,
         ChartResults $chartResults,
     ): Response {
-        // if ($campaign->getHasCollege()) {
-        //     $resolutionsCharts = $chartResults->getResultByCollege(
-        //         $campaign->getResolutions()
-        //     );
-        // }
-        $resolutionsCharts = $chartResults->getResultByCollege(
-            $campaign->getResolutions()
-        );
+         if ($campaign->getHasCollege()) {
+             $resolutionsCharts = $chartResults->getResultByCollege(
+                 $campaign->getResolutions()
+             );
+         } else {
+             //créer le service pour afficher les votes des utilisateurs qui ne sont pas associés à un collège
+//             $resolutionsCharts = $chartResults->getResultByVoter(
+//                 $campaign->getResolutions()
+//             );
+         }
+
 
         return $this->render('dashboard/campaign/results/show.html.twig', [
             'campaign' => $campaign,

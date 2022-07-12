@@ -17,15 +17,20 @@ class ChartResults
     public function __construct(
         private ChartBuilderInterface $chartBuilder,
         private VoteRepository $voteRepository
-    ) {
+    )
+    {
     }
 
     public function getResultByCollege(
         Collection $resolutions
-    ): Collection {
+    ): Collection
+    {
         foreach ($resolutions as $resolution) {
-            $resolution->charts = [];
+            $resolution->voteResults = [];
             foreach ($resolution->getCampaign()->getCompany()->getColleges() as $college) {
+                if (!$this->voteRepository->findByResolution($resolution)) {
+                    continue;
+                }
                 $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
                 $chart->setData([
                     'labels' => ['Pour', 'Contre', 'Abstention'],
@@ -45,7 +50,10 @@ class ChartResults
                         ],
                     ],
                 ]);
-                $resolution->charts[] = $chart;
+                $resolution->voteResults[] = [
+                    'college' => $college,
+                    'chart' => $chart
+                ];
             }
         }
         return $resolutions;
