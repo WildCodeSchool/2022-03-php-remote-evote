@@ -4,36 +4,32 @@
 
 {% block body %}
 	<section class="admin_vote">
-		<div>
 			<h1>Administration de la campagne : {{ campaign.name }}</h1>
 
-			<div class="mb-4">
+			<div class="mb-4 mt-5">
 				<h2>Les collèges de votes</h2>
-				<a class="btn btn-primary" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
-				<a class="btn btn-outline-primary" href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Gerer les collèges</a>
-
+				<a class="btn btn-primary mt-3" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
+				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Gerer les collèges</a>
 			</div>
-
+			<hr>
 			<div class="mb-4">
 				<h2>Les votants</h2>
-				<a class="btn btn-primary" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">Ajouter un votant</a>
-				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_import_csv', {'uuid': campaign.uuid}) }}">Ajouter des votants</a>
-				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Gerer les votants</a>
+				<a class="btn btn-primary mt-3" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">Ajouter un votant</a>
+				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_voter_import_csv', {'uuid': campaign.uuid}) }}">Ajouter des votants</a>
+				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Gerer les votants</a>
 			</div>
-
+			<hr>
 			<div class="mb-4">
 				<h2>Les résolutions à voter</h2>
-				<a class="btn btn-primary" href="{{ path('campaign_resolution_new', {'uuid': campaign.uuid}) }}">Ajouter une résolution</a>
-				<a class="btn btn-outline-primary" href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Gerer les résolutions</a>
-
+				<a class="btn btn-primary mt-3" href="{{ path('campaign_resolution_new', {'uuid': campaign.uuid}) }}">Ajouter une résolution</a>
+				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Gerer les résolutions</a>
 			</div>
-
+			<hr>
 			<div class="mb-4">
 				<h2>Le vote</h2>
-				<a class="btn btn-primary" href="#">Ajouter le vote</a>
-				<a class="btn btn-outline-primary" href="#">Désactiver le vote</a>
-				<a class="btn btn-outline-primary" href="#">Consulter les Résultats</a>
+				<a class="btn btn-primary mt-3" href="#">Ajouter le vote</a>
+				<a class="btn btn-outline-primary mt-3" href="#">Désactiver le vote</a>
+				<a class="btn btn-outline-primary mt-3" href="#">Consulter les Résultats</a>
 			</div>
-		</div>
 	</section>
 {% endblock %}
