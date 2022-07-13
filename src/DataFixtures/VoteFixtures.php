@@ -19,7 +19,17 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
         [
             'answer' => 'approved',
             'resolution' => 'resolution_0',
-            'voter' => 'voter_4',
+            'voter' => 'voter_1',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_2',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_3',
         ],
         [
             'answer' => 'approved',
@@ -27,14 +37,9 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'voter' => 'voter_4',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_0',
             'voter' => 'voter_5',
-        ],
-        [
-            'answer' => 'approved',
-            'resolution' => 'resolution_0',
-            'voter' => 'voter_8',
         ],
         [
             'answer' => 'rejected',
@@ -42,27 +47,17 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'voter' => 'voter_6',
         ],
         [
-            'answer' => 'rejected',
-            'resolution' => 'resolution_0',
-            'voter' => 'voter_1',
-        ],
-        [
-            'answer' => 'abstention',
-            'resolution' => 'resolution_0',
-            'voter' => 'voter_2',
-        ],
-        [
-            'answer' => 'abstention',
-            'resolution' => 'resolution_0',
-            'voter' => 'voter_3',
-        ],
-        [
             'answer' => 'abstention',
             'resolution' => 'resolution_0',
             'voter' => 'voter_7',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_8',
+        ],
+        [
+            'answer' => 'abstention',
             'resolution' => 'resolution_0',
             'voter' => 'voter_9',
         ],
@@ -72,9 +67,104 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'voter' => 'voter_10',
         ],
         [
-            'answer' => 'abstention',
+            'answer' => 'rejected',
             'resolution' => 'resolution_0',
             'voter' => 'voter_11',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_12',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_13',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_0',
+            'voter' => 'voter_14',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_15',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_16',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_17',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_18',
+        ],
+        [
+            'answer' => 'abstention',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_19',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_20',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_21',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_22',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_23',
+        ],
+        [
+            'answer' => 'rejected',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_24',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_25',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_26',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_27',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_28',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_29',
+        ],
+        [
+            'answer' => 'approved',
+            'resolution' => 'resolution_1',
+            'voter' => 'voter_30',
         ],
     ];
 

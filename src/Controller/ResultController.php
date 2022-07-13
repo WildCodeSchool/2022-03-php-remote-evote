@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Campaign;
 use App\Entity\Resolution;
+use App\Services\ChartResults;
+use App\Repository\VoteRepository;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\CampaignRepository;
-use App\Services\ChartResults;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
@@ -30,18 +32,20 @@ class ResultController extends AbstractController
         Campaign $campaign,
         ChartResults $chartResults,
     ): Response {
-        // if ($campaign->getHasCollege()) {
-        //     $resolutionsCharts = $chartResults->getResultByCollege(
-        //         $campaign->getResolutions()
-        //     );
-        // }
-        $resolutionsCharts = $chartResults->getResultByCollege(
-            $campaign->getResolutions()
-        );
+        if ($campaign->getHasCollege()) {
+            $resolutionsCharts = $chartResults->getResultByCollege(
+                $campaign->getResolutions()
+            );
+        } else {
+            //créer le service pour afficher les votes des utilisateurs qui ne sont pas associés à un collège
+            $resolutionsCharts = $chartResults->getResultByVoter(
+                $campaign->getResolutions()
+            );
+        }
 
         return $this->render('dashboard/campaign/results/show.html.twig', [
             'campaign' => $campaign,
-            'resolutions' => $resolutionsCharts
+            'resolutions' => $resolutionsCharts,
         ]);
     }
 }

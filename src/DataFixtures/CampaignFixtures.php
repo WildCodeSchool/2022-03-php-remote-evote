@@ -24,7 +24,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         [
             'name' => 'Wilder du mois',
             'description' => 'Campagne de vote pour élire le wilder du mois',
-            'has_college' => true,
+            'has_college' => false,
             'company' => 'company_Dephants',
             'created_at' => '2022-06-20',
             'started_at' => '0937',

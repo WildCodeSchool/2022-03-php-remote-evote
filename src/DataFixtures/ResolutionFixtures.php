@@ -13,8 +13,8 @@ class ResolutionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const RESOLUTION = [
         [
-            'name' =>  'Choix des langages back',
-            'description' => 'PHP est adoptée.',
+            'name' =>  'Choix du langage back',
+            'description' => 'PHP est adopté.',
             'adoption_rule' => 'simple-majority',
             'campaign' => 'campaign_0'
         ],
