@@ -1,70 +1,56 @@
-# Project 3 - Starter Kit - Symfony
+# EVOTE - Kit de démarrage - Symfony
 
-## Presentation
+## Présentation
 
-This starter kit is here to easily start a repository for Wild Code School students.
+Bienvenue sur Evote
+Cet outil permet d'organiser un vote électronique facilement.
+Créez une campagne de votes en cliquant sur le bouton « Créer une campagne de votes », renseignez le nom de votre campagne, sa description et ajoutez éventuellement des collèges de vote.
+Ajoutez des propositions en cliquant sur le bouton « Ajouter une proposition », vos participants pourront se prononcer pour, contre ou s'abstenir. D'autres modes de vote sont actuellement à l'étude. Ajoutez des votants en cliquant sur le bouton « Ajouter un votant », définissez la pondération du vote (le nombre de voix de chaque votant), renseignez l'adresse mail sur laquelle le votant recevra son lien de vote personnel. Accédez aux résultats du vote via le bouton « Résultats ». Vous ne verrez pas les résultats nominativement, mais uniquement les résultats globaux.
 
-It's symfony website-skeleton project with some additional library (webpack, fixtures) and tools to validate code standards.
 
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
+## Démarrer 
 
-    * PHP_CodeSniffer to check PSR12
-    * PHPStan focuses on finding errors in your code (without actually running it)
-    * PHPmd will check if you follow PHP best practices
+### Prérequis
 
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
+1. Vérifier que composer est installé
+2. Vérifier que yarn & node sont installés
 
-* Github Action as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
+### Installation
 
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer, PHPStan and PHPmd with same configuration as GrumPHP.
+1. Cloner le projet
+2. Lancer `composer install`
+3. Lancer `yarn install`
+4. Lancer `yarn encore dev` pour construire les assets
+5. Lancer `symfony server:start` pour démarrer votre serveur web php local 
+6. Lancer `yarn run dev --watch` pour démarrer votre serveur web php local pour les assets (ou `yarn dev-server` qui fait la même chose avec l'activation du Hot Module Reload)
 
-## Getting Started for Students
+### Test
 
-### Prerequisites
+1. Lancer `php ./vendor/bin/phpcs` pour démarrer PHP code sniffer
+2. Lancer `php ./vendor/bin/phpstan analyse src --level max` pour démarrer PHPStan
+3. Lancer `php ./vendor/bin/phpmd src text phpmd.xml` pour démarrer PHP Mess Detector
+4. Lancer `./node_modules/.bin/eslint assets/js` pour démarrer ESLint JS linter
 
-1. Check composer is installed
-2. Check yarn & node are installed
+### Utilisateurs de Windows
 
-### Install
-
-1. Clone this project
-2. Run `composer install`
-3. Run `yarn install`
-4. Run `yarn encore dev` to build assets
-
-### Working
-
-1. Run `symfony server:start` to launch your local php web server
-2. Run `yarn run dev --watch` to launch your local server for assets (or `yarn dev-server` do the same with Hot Module Reload activated)
-
-### Testing
-
-1. Run `php ./vendor/bin/phpcs` to launch PHP code sniffer
-2. Run `php ./vendor/bin/phpstan analyse src --level max` to launch PHPStan
-3. Run `php ./vendor/bin/phpmd src text phpmd.xml` to launch PHP Mess Detector
-4. Run `./node_modules/.bin/eslint assets/js` to launch ESLint JS linter
-
-### Windows Users
-
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command:
+Si vous développez sous Windows, vous devez modifier votre configuration git pour changer les régles de fin de ligne avec cette commande : 
 
 `git config --global core.autocrlf true`
 
-The `.editorconfig` file in root directory do this for you. You probably need `EditorConfig` extension if your IDE is VSCode.
+Le fichier `.editorconfig` le fait pour vous. Si votre IDE est VSCode, vous aurez probablement besoin de l'extension `EditorConfig`.
 
-### Run locally with Docker
+### Démarrer en local avec Docker
 
-1. Fill DATABASE_URL variable in .env.local file with
+1. Mettre à jour la variable DATABASE_URL dans le fichier .env.local avec
 `DATABASE_URL="mysql://root:password@database:3306/<choose_a_db_name>"`
-2. Install Docker Desktop an run the command:
+2. Installer Docker Desktop et lancer la commande :
 ```bash
 docker-compose up -d
 ```
-3. Wait a moment and visit http://localhost:8000
+3. Attendre un instant et se rendre sur http://localhost:8000
 
 
-## Deployment
+## Déploiment
 
 Some files are used to manage automatic deployments (using tools as Caprover, Docker and Github Action). Please do not modify them.
 
@@ -75,7 +61,7 @@ Some files are used to manage automatic deployments (using tools as Caprover, Do
 * [php.ini](/php.ini) Php configuration
 
 
-## Built With
+## Construit avec
 
 * [Symfony](https://github.com/symfony/symfony)
 * [GrumPHP](https://github.com/phpro/grumphp)
@@ -86,19 +72,17 @@ Some files are used to manage automatic deployments (using tools as Caprover, Do
 * [Sass-Lint](https://github.com/sasstools/sass-lint)
 
 
-
-## Contributing
+## Contribution
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
 
-
-## Authors
+## Auteurs
 
 Wild Code School trainers team
 
-## License
+
+## Licence
 
 MIT License
 
@@ -122,5 +106,107 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Acknowledgments
+
+## Prise en main de l'application Evote
+
+### Connexion
+
+Renseigner l'un des identifiants de connexion pré-enregistrés : 
+
+- Mél : admin@wcs.com / Mot de passe : password 
+ou
+- Mél : user@wcs.com / Mot de passe : password
+
+### Créer une campagne de vote 
+
+1. Cliquer sur "Créer une campagne de vote"
+2. Renseigner les champs du formulaire
+3. Cocher la case "Collège" si la campagne intègre des collèges
+4. Valider et se rendre sur le tableau de bord pour accéder à la campagne créée
+
+### Tableau de bord
+
+Il permet de visualiser l'ensemble des campagnes de vote enregistrées et d'accéder aux détails de chacune des campagnes : 
+- Administration de la campagne 
+- Liste des participants 
+- Liste des collèges
+- Liste des résolutions
+- Les résultats
+
+### Résultats
+
+Il permet de visualiser l'ensemble des campagnes de vote enregistrées et d'accéder aux résultats de chaque campagne. 
+
+### Administration de la campagne
+
+Accessible depuis le tableau de bord, il permet de paramétrer la campagne de vote : 
+- Ajouter/Gérer des collèges
+- Ajouter/Gérer des votants
+- Ajouter/Gérer des résolutions
+- Activer/Désactiver la campagne de vote
+- Consulter les résultats
+
+### Ajouter, modifier ou supprimer un collège
+
+1. Cliquer sur "Ajouter un collège" (accessible depuis la page Administration de la campagne)
+2. Renseigner les champs du formulaire
+3. Valider => redirection sur la page "Gérer les collèges" affichant les collèges enregistrés sur la campagne
+4. Modifier ou supprimer => Depuis la page "Gérer les collèges"
+
+### Ajouter, modifier ou supprimer un votant
+
+1. Cliquer sur "Ajouter un votant" (accessible depuis la page Administration de la campagne)
+2. Renseigner les champs du formulaire
+3. Valider => redirection sur la page "Gérer les votants" affichant les votants enregistrés sur la campagne
+4. Modifier ou supprimer => Depuis la page "Gérer les votants"
+
+### Ajouter, modifier ou supprimer une résolution
+
+1. Cliquer sur "Ajouter une résolution" (accessible depuis la page Administration de la campagne)
+2. Renseigner les champs du formulaire
+3. Valider => redirection sur la page "Gérer les résolutions" affichant les résolutions enregistrées sur la campagne
+4. Modifier ou supprimer => Depuis la page "Gérer les résolutions"
+
+### Ajouter des votants en masse
+
+1. Cliquer sur "Ajouter des votants en masse" (accessible depuis la page Administration de la campagne)
+2. Télécharger la trame csv
+3. Remplir le fichier csv
+4. Uploader le fichier csv
+3. Valider => redirection sur la page "Gérer les votants" affichant les votants enregistrées sur la campagne
+4. Modifier ou supprimer => Depuis la page "Gérer les votants"
+
+### Accéder à l'interface de vote 
+
+1. Se rendre à l'adresse : voter/43210
+2. Cliquer sur "Démarrer"
+3. Voter
+
+
+## Issues connues
+
+Page de connexion 
+- [] Réduire la taille des logos 
+
+Page Tableau de bord
+- [] Manque les boutons de tri des colonnes
+- [] Colonne "Statut" indique integer au lieu de "actif" ou "cloturé"
+
+Page Administration de la campagne
+- [] Mise en forme pour donner de l'espace entre les lignes
+- [] Erreur de texte sur un bouton de la section vote = remplacer "Ajouter le vote" par "Activer le vote"
+- [] Activer / Désactiver la campagne n'est pas activé
+- [] Lien pour accéder aux résultats non actif
+
+Page Ajouter un collège
+- [] Mise en forme pour ajouter de l'espace sur les bords
+- [] Mise en forme pour donner de l'espace entre les lignes
+- [] Section "Pouvoir" non active (bonus)
+
+Page Résultats des votes
+- [] Mise en forme pour ajouter de l'espace entre les lignes
+
+ Ensemble du site
+- [] Corriger les fautes d'orthographe
+
 

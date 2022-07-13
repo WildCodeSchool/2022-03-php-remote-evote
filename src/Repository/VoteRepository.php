@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Vote;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\College;
+use App\Entity\Resolution;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Vote>
@@ -37,6 +39,20 @@ class VoteRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getVotesByCollege(Resolution $resolution, College $college, string $answer): array
+    {
+        return $this->createQueryBuilder('v')
+        ->join('v.resolution', 'r', 'WITH', 'v.resolution=:resolution')
+        ->setParameter('resolution', $resolution)
+        ->join('v.voter', 'voter')
+        ->join('voter.college', 'c', 'WITH', 'voter.college=:college')
+        ->setParameter('college', $college)
+        ->where('v.answer=:answer')
+        ->setParameter('answer', $answer)
+        ->getQuery()
+        ->getResult();
     }
 
 //    /**

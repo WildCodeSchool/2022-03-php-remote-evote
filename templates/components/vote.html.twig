@@ -1,0 +1,38 @@
+<div class="card shadow mb-5" {{ attributes }}>
+    <h5 class="card-header">Résolution : {{ this.resolution.name }}</h5>
+    <div class="card-body overflow-auto">
+        <p class="card-text">
+        {{ this.resolution.description }}
+        </p>
+    </div>
+    <div class="card-footer">
+        <div class="text-center">
+            {% if this.hasVoted %}
+            <div class="alert alert-success">
+        Merci d'avoir voté {{ this.voter.fullName }} <i class="fa fa-check-circle-o"></i>
+            </div>
+            {% else %}
+            <button class="btn btn-primary " 
+            data-action="live#action"
+            data-action-name="vote(answer=approved)"
+                >
+                Pour
+            </button>
+            <button class="btn btn-danger " 
+                data-action="live#action"
+                data-action-name="vote(answer=rejected)"
+                >
+                Contre
+            </button>
+            <button class="btn btn-secondary " 
+                data-action="live#action"
+                data-action-name="vote(answer=abstention)"
+                >
+                Abstention
+            </button>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+

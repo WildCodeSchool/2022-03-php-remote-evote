@@ -18,7 +18,10 @@
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <input type="hidden" name="_target_path" value="{{ path('welcome_index') }}"/>
-
+        <label>
+        <input type="checkbox" name="_remember_me" checked/>
+        Garder ma session ouverte sur cet ordinateur
+        </label><br/>
         <button class="btn btn-primary btn-lg" type="submit">Se connecter</button><br/>
         <a href="{{ path('app_register') }}">Pour créer un compte cliquer ici</a>
         <div>

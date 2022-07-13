@@ -17,7 +17,7 @@
 			<div class="mb-4">
 				<h2>Les votants</h2>
 				<a class="btn btn-primary" href="{{ path('campaign_voter_new', {'uuid': campaign.uuid}) }}">Ajouter un votant</a>
-				<a class="btn btn-outline-primary" href="#">Ajouter des votants</a>
+				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_import_csv', {'uuid': campaign.uuid}) }}">Ajouter des votants</a>
 				<a class="btn btn-outline-primary" href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Gerer les votants</a>
 			</div>
 
@@ -30,9 +30,14 @@
 
 			<div class="mb-4">
 				<h2>Le vote</h2>
-				<a class="btn btn-primary" href="#">Ajouter le vote</a>
-				<a class="btn btn-outline-primary" href="#">Désactiver le vote</a>
-				<a class="btn btn-outline-primary" href="#">Consulter les Résultats</a>
+					{% if campaign.status == true %}
+						<a class="btn btn-danger" href="{{ path('campaign_desactivate', {'uuid': campaign.uuid}) }}">Désactiver le vote</a>
+						<a class="btn btn-outline-primary" href="#">Consulter les Résultats</a>
+					{% endif %}
+					{% if campaign.status == false %}
+						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Activer le vote</a>
+						<a class="btn btn-outline-primary" href="#">Consulter les Résultats</a>
+					{% endif %}
 			</div>
 		</div>
 	</section>

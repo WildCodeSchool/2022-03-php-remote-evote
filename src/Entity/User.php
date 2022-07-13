@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse est déjà rattachée à un compte utilisateur')]
@@ -20,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private int $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\Email]
     private string $email;
 
     #[ORM\Column(type: 'json')]
@@ -29,9 +31,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $lastName;
 
     #[ORM\OneToMany(mappedBy: 'ownedBy', targetEntity: Campaign::class, orphanRemoval: true)]
