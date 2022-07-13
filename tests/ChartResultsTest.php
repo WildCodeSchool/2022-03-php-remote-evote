@@ -38,8 +38,7 @@ class ChartResultsTest extends KernelTestCase
         ]);
         $finalResult = [
             'isAdopted' => false,
-            'approvedPercentage' => 30,
-            'rejectedPercentage' => 37.5,
+            'result' => 37.5,
             'message' => 'La résolution est rejetée'
         ];
         $this->assertSame($finalResult, $chartResults->calculateFinalResult($resolution));
