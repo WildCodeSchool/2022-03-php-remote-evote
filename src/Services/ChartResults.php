@@ -3,12 +3,12 @@
 namespace App\Services;
 
 use App\Entity\Vote;
-use App\Entity\College;
 use App\Entity\Campaign;
+use App\Entity\College;
 use App\Entity\Resolution;
-use App\Repository\VoteRepository;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\ResolutionRepository;
+use App\Repository\VoteRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 
@@ -24,7 +24,7 @@ class ChartResults
         Collection $resolutions
     ): Collection {
         foreach ($resolutions as $resolution) {
-            $resolution->voteResults = [];
+            $voteResults = [];
             foreach ($resolution->getCampaign()->getCompany()->getColleges() as $college) {
                 if (!$this->voteRepository->findByResolution($resolution)) {
                     continue;
@@ -34,29 +34,20 @@ class ChartResults
                 $numAbstention = count($this->voteRepository->getVotesByCollege($resolution, $college, 'abstention'));
                 $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
                 $chart->setData([
-                    'labels' =>
-                    [
-                        'Pour',
-                        'Contre',
-                        'Abstention'
-                    ],
-                    'datasets' =>
-                    [
+                    'labels' => ['Pour', 'Contre', 'Abstention'],
+                    'datasets' => [
                         [
-                            'label' => $resolution->getVotes(),
-
-                            'backgroundColor' =>
-                            [
+                            'label' => 'test',
+                            'backgroundColor' => [
                                 'rgb(75, 181, 67)',
                                 'rgb(255, 14, 14)',
                                 'rgb(255, 153, 102)'
                             ],
-
-                            'data' => [$numApproved, $numRejected, $numAbstention],
-                        ]
-                    ]
+                            'data' => [$numApproved, $numRejected, $numAbstention]
+                        ],
+                    ],
                 ]);
-                $resolution->voteResults[] = [
+                $voteResults[] = [
                     'numApproved' => $numApproved,
                     'numRejected' => $numRejected,
                     'numAbstention' => $numAbstention,
@@ -64,7 +55,8 @@ class ChartResults
                     'chart' => $chart
                 ];
             }
-            $resolution->finalResult = $this->calculateFinalResult($resolution);
+            $resolution->setVoteResults($voteResults);
+            $resolution->setFinalResult($this->calculateFinalResult($resolution));
         }
         return $resolutions;
     }
@@ -84,25 +76,25 @@ class ChartResults
             $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
             $chart->setData([
                 'labels' =>
-                [
-                    'Pour',
-                    'Contre',
-                    'Abstention'
-                ],
-                'datasets' =>
-                [
                     [
-                        'label' => $resolution->getVotes(),
-
-                        'backgroundColor' =>
+                        'Pour',
+                        'Contre',
+                        'Abstention'
+                    ],
+                'datasets' =>
+                    [
                         [
-                            'rgb(75, 181, 67)',
-                            'rgb(255, 14, 14)',
-                            'rgb(255, 153, 102)'
-                        ],
-                        'data' => [$numApproved, $numRejected, $numAbstention],
+                            'label' => '',
+
+                            'backgroundColor' =>
+                                [
+                                    'rgb(75, 181, 67)',
+                                    'rgb(255, 14, 14)',
+                                    'rgb(255, 153, 102)'
+                                ],
+                            'data' => [$numApproved, $numRejected, $numAbstention],
+                        ]
                     ]
-                ]
             ]);
             $resolution->voteResult = [
                 'numApproved' => $numApproved,
@@ -110,19 +102,24 @@ class ChartResults
                 'numAbstention' => $numAbstention,
                 'chart' => $chart
             ];
-            $resolution->finalResult = $this->calculateFinalResult($resolution);
+            $resolution->setFinalResult($this->calculateFinalResult($resolution));
         }
         return $resolutions;
     }
 
     public function calculateFinalResult(Resolution $resolution): array
     {
-        $finalResult = [
-            'isAdopted' => false,
-            'approvedPercentage' => 30,
-            'rejectedPercentage' => 37.5,
-            'message' => 'La résolution est rejetée'
-        ];
+        //write code here
+        $finalResult = [];
+//        if ($resolution->getAdoptionRule() === 'simple-majority') {
+//
+//        }
+//        $finalResult = [
+//            'isAdopted' => false,
+//            'approvedPercentage' => 30,
+//            'rejectedPercentage' => 37.5,
+//            'message' => 'La résolution est rejetée'
+//        ];
         return $finalResult;
     }
 }
