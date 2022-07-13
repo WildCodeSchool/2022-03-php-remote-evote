@@ -7,5 +7,6 @@
     </head>
     <body>
         <p>Pour participer à la campagne {{ campaign.name }} :</p>
-        <a href="{{ url('voter_welcome', {'voter_uuid': voter.uuid}) }}">Cliquez sur ce lien</a>
+        <a href="{{ url('voter_welcome', {'uuid': voter.uuid}) }}">Cliquez sur ce lien</a>
     </body>
+</html>

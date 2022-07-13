@@ -72,23 +72,50 @@ class CampaignController extends AbstractController
     }
 
     #[Route('/{uuid}/activate', name: 'activate')]
-    public function activate(Campaign $campaign, MailerInterface $mailer): Response
+    public function activate(
+        Campaign $campaign,
+        MailerInterface $mailer,
+        CampaignRepository $campaignRepository
+    ): Response {
+        if (!$campaign->getStatus()) {
+            $voters = $campaign->getVoters();
+
+            foreach ($voters as $voter) {
+                $email = (new TemplatedEmail())
+                ->from($this->getParameter('mailer_from'))
+                ->to($voter->getEmail())
+                ->subject($campaign->getName())
+                ->htmlTemplate('dashboard/campaign/email.html.twig')
+                ->context([
+                    'voter' => $voter,
+                    'campaign' => $campaign
+                ]);
+
+                $mailer->send($email);
+            }
+            $campaign->setStatus(true);
+            $campaignRepository->add($campaign, true);
+            $this->addFlash(
+                'success',
+                'La campagne ' . $campaign->getName() . ' a bien été activée '
+            );
+        }
+
+        return $this->redirectToRoute('campaign_edit', ['uuid' => $campaign->getUuid()]);
+    }
+
+    #[Route('/{uuid}/desactivate', name: 'desactivate')]
+    public function desactivate(Campaign $campaign, CampaignRepository $campaignRepository): Response
     {
-        $voters = $campaign->getVoters();
-        // $voter->setUuid($uuid);
+        if ($campaign->getStatus()) {
+            $campaign->setStatus(false);
+            $campaignRepository->add($campaign, true);
+            $this->addFlash(
+                'success',
+                'La campagne ' . $campaign->getName() . ' a bien été désactivée '
+            );
+        }
 
-        $email = (new TemplatedEmail())
-            ->from($this->getParameter('mailer_from'))
-            ->to($this->getParameter('mailer_to'))
-            ->subject($campaign->getName())
-            ->htmlTemplate('dashboard/campaign/email.html.twig')
-            ->context([
-                // 'uuid' => $uuid,
-                'voters' => $voters
-            ]);
-
-        $mailer->send($email);
-
-        return $this->redirectToRoute('dashboard/campaign/edit.html.twig');
+        return $this->redirectToRoute('campaign_edit', ['uuid' => $campaign->getUuid()]);
     }
 }
