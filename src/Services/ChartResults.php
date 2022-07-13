@@ -109,40 +109,42 @@ class ChartResults
 
     public function calculateFinalResult(Resolution $resolution): array
     {
-        //write code here
-
-
-
         $finalResult = [];
         $result = [];
         if ($resolution->getAdoptionRule() === 'simple-majority') {
             foreach ($resolution->getVoteResults() as $vote) {
                 $numApproved = $vote['numApproved'];
                 $numRejected = $vote['numRejected'];
-                $totalOfVoters = $numApproved  + $numRejected;
-                $numApprovedPercent = $numApproved * 100 / $totalOfVoters;
-                $numRejectedPercent = $numRejected * 100 / $totalOfVoters;
-                if ($numApprovedPercent > $numRejectedPercent) {
-                    $isAdopted = true;
-                    $resultPercentage = $numApprovedPercent*$vote['college']->getVotePercentage();
+                $totalOfVoters = intval($numApproved + $numRejected);
+                if ($totalOfVoters > 0) {
+                    $numApprovedPercent = $numApproved * 100 / $totalOfVoters;
+                    $numRejectedPercent = $numRejected * 100 / $totalOfVoters;
+                    if ($numApprovedPercent > $numRejectedPercent) {
+                        $isAdopted = true;
+                        $resultPercentage = round($numApprovedPercent * $vote['college']->getVotePercentage(), 1);
+                    } else {
+                        $isAdopted = false;
+                        $resultPercentage = round($numRejectedPercent * $vote['college']->getVotePercentage(), 1);
+                    }
+                    $result[] = [
+                        'isAdopted' => $isAdopted,
+                        'result' => $resultPercentage
+                    ];
                 } else {
-                    $isAdopted = false;
-                    $resultPercentage = $numRejectedPercent*$vote['college']->getVotePercentage();
+                    $result[] = [
+                        'isAdopted' => false,
+                        'result' => 0
+                    ];
                 }
-                $result[] = [
-                    'isApproved' => $isAdopted,
-                    'result' => $resultPercentage
-                ];
             }
-            usort($result, function($a, $b){
-                return $a['result'] <=> $b['result'];
+            usort($result, function ($result1, $result2) {
+                return  $result2['result'] <=> $result1['result'];
             });
-            $finalResult = $result[1];
-            $finalResult['message'] = $finalResult['isApproved'] ? 'La résolution est adoptée' : 'La résolution est rejetée';
+            $finalResult = $result[0];
+            $finalResult['message'] = $finalResult['isAdopted']
+                ? 'La résolution est adoptée'
+                : 'La résolution est rejetée';
         }
-
-//
-
         return $finalResult;
     }
 }

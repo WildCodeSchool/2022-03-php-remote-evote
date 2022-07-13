@@ -31,14 +31,14 @@ class ChartResultsTest extends KernelTestCase
             ],
             [
                 'numApproved' => 40,
-                'numRejected' => 50,//62,5%
+                'numRejected' => 50,//55,6%
                 'numAbstention' => 10,
-                'college' => $college2,//37,5%
+                'college' => $college2,//33,3%
             ]
         ]);
         $finalResult = [
             'isAdopted' => false,
-            'result' => 37.5,
+            'result' => 33.3,
             'message' => 'La résolution est rejetée'
         ];
         $this->assertSame($finalResult, $chartResults->calculateFinalResult($resolution));
