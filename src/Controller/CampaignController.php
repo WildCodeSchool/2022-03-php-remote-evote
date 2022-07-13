@@ -8,7 +8,9 @@ use App\Form\CampaignType;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -67,5 +69,26 @@ class CampaignController extends AbstractController
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
         ]);
+    }
+
+    #[Route('/{uuid}/activate', name: 'activate')]
+    public function activate(Campaign $campaign, MailerInterface $mailer): Response
+    {
+        $voters = $campaign->getVoters();
+        // $voter->setUuid($uuid);
+
+        $email = (new TemplatedEmail())
+            ->from($this->getParameter('mailer_from'))
+            ->to($this->getParameter('mailer_to'))
+            ->subject($campaign->getName())
+            ->htmlTemplate('dashboard/campaign/email.html.twig')
+            ->context([
+                // 'uuid' => $uuid,
+                'voters' => $voters
+            ]);
+
+        $mailer->send($email);
+
+        return $this->redirectToRoute('dashboard/campaign/edit.html.twig');
     }
 }
