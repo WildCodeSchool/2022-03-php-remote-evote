@@ -12,47 +12,47 @@ class CollegeFixtures extends Fixture implements DependentFixtureInterface
     public const COLLEGES = [
         ['name' => 'Collège A wild',
         'description' => 'Collège composé de 10 développeurs PHP',
-        'vote_percentage' => 50,
+        'vote_percentage' => 0.5,
         'company' => 'company_Wild'
         ],
         ['name' => 'Collège B wild',
         'description' => 'Collège composé de 20 développeurs JS',
-        'vote_percentage' => 20,
+        'vote_percentage' => 0.2,
         'company' => 'company_Wild'
         ],
         ['name' => 'Collège A dephants',
         'description' => 'Collège composé de 10 développeurs',
-        'vote_percentage' => 10,
+        'vote_percentage' => 0.1,
         'company' => 'company_Dephants'
         ],
         ['name' => 'Collège B dephants',
         'description' => 'Collège composé de 21 développeurs',
-        'vote_percentage' => 10,
+        'vote_percentage' => 0.1,
         'company' => 'company_Dephants'
         ],
         ['name' => 'Collège A 404',
         'description' => 'Collège composé de 30 développeurs',
-        'vote_percentage' => 30,
+        'vote_percentage' => 0.3,
         'company' => 'company_Erreur404'
         ],
         ['name' => 'Collège B 404',
         'description' => 'Collège composé de 15 développeurs',
-        'vote_percentage' => 30,
+        'vote_percentage' => 0.3,
         'company' => 'company_Erreur404'
         ],
         ['name' => 'Collège A karma',
         'description' => 'Collège composé de 10 développeurs',
-        'vote_percentage' => 40,
+        'vote_percentage' => 0.4,
         'company' => 'company_Karma'
         ],
         ['name' => 'Collège B karma',
         'description' => 'Collège composé de 20 développeurs',
-        'vote_percentage' => 40,
+        'vote_percentage' => 0.4,
         'company' => 'company_Karma'
         ],
         ['name' => 'Collège C karma',
         'description' => 'Collège composé de 20 développeurs',
-        'vote_percentage' => 20,
+        'vote_percentage' => 0.2,
         'company' => 'company_Karma'
         ],
     ];

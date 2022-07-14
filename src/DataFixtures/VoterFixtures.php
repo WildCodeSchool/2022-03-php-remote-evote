@@ -18,8 +18,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 50,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.5,
+            'telephone' => '01230.456789',
             'company' => 'company_Wild'
         ],
         [
@@ -28,8 +28,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 15,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.15,
+            'telephone' => '01230.456789',
             'company' => 'company_Dephants'
         ],
         [
@@ -38,8 +38,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 25,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.25,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -48,8 +48,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -58,8 +58,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -68,8 +68,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -78,8 +78,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -88,8 +88,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -98,8 +98,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -108,8 +108,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
         ],
         [
@@ -118,9 +118,9 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'telephone' => '0123456789',
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404',
-            'votePercentage' => 45,
+            'votePercentage' => 0.45,
         ],
         [
             'fullname' => 'Amy Wang',
@@ -128,8 +128,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -138,8 +138,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -148,8 +148,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -158,8 +158,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -168,8 +168,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -178,8 +178,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -188,8 +188,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -198,8 +198,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -208,8 +208,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -218,8 +218,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -228,8 +228,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -238,8 +238,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -248,8 +248,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -258,8 +258,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -268,8 +268,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -278,8 +278,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -288,8 +288,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -298,8 +298,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -308,8 +308,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Erreur404'
         ],
         [
@@ -318,8 +318,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_1',
-            'votePercentage' => 45,
-            'telephone' => '0123456789',
+            'votePercentage' => 0.45,
+            'telephone' => '01230.456789',
             'company' => 'company_Karma'
         ],
     ];

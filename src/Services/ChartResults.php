@@ -6,6 +6,7 @@ use App\Entity\Vote;
 use App\Entity\Campaign;
 use App\Entity\College;
 use App\Entity\Resolution;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\ResolutionRepository;
 use App\Repository\VoteRepository;
@@ -47,22 +48,23 @@ class ChartResults
                         ],
                     ],
                 ]);
-                $voteResults[] = [
-                    'numApproved' => $numApproved,
-                    'numRejected' => $numRejected,
-                    'numAbstention' => $numAbstention,
-                    'college' => $college,
-                    'chart' => $chart
-                ];
+                $voteResults[] = $this->formatCollegeVoteResult(
+                    $numApproved,
+                    $numRejected,
+                    $numAbstention,
+                    $college,
+                    $chart
+                );
             }
             $resolution->setVoteResults($voteResults);
-            $resolution->setFinalResult($this->calculateFinalResult($resolution));
+            $resolution->setFinalResult($this->calculateFinalResultWithCollege($resolution));
         }
         return $resolutions;
     }
 
     public function getResultByVoter(Collection $resolutions): Collection
     {
+        $voteResults = [];
         foreach ($resolutions as $resolution) {
             $numApproved = count($this->voteRepository->findBy([
                 'resolution' => $resolution, 'answer' => 'approved'
@@ -73,6 +75,11 @@ class ChartResults
             $numAbstention = count($this->voteRepository->findBy([
                 'resolution' => $resolution, 'answer' => 'abstention'
             ]));
+            $totalOfVoters = $numApproved + $numRejected + $numAbstention;
+            if ($totalOfVoters === 0) {
+                $resolution->setFinalResult($this->formatResult(false, 0));
+                continue;
+            }
             $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
             $chart->setData([
                 'labels' =>
@@ -96,55 +103,75 @@ class ChartResults
                         ]
                     ]
             ]);
-            $resolution->voteResult = [
+            $voteResults[] = [
                 'numApproved' => $numApproved,
                 'numRejected' => $numRejected,
                 'numAbstention' => $numAbstention,
                 'chart' => $chart
             ];
-            $resolution->setFinalResult($this->calculateFinalResult($resolution));
+            $resolution->setVoteResults($voteResults);
+            $resolution->setFinalResult($this->calculateFinalResultByVoter($resolution));
         }
         return $resolutions;
     }
 
-    public function calculateFinalResult(Resolution $resolution): array
+    public function calculateFinalResultWithCollege(Resolution $resolution): array
     {
-        $finalResult = [];
         $result = [];
-        if ($resolution->getAdoptionRule() === 'simple-majority') {
-            foreach ($resolution->getVoteResults() as $vote) {
-                $numApproved = $vote['numApproved'];
-                $numRejected = $vote['numRejected'];
-                $totalOfVoters = intval($numApproved + $numRejected);
-                if ($totalOfVoters > 0) {
-                    $numApprovedPercent = $numApproved * 100 / $totalOfVoters;
-                    $numRejectedPercent = $numRejected * 100 / $totalOfVoters;
-                    if ($numApprovedPercent > $numRejectedPercent) {
-                        $isAdopted = true;
-                        $resultPercentage = round($numApprovedPercent * $vote['college']->getVotePercentage(), 1);
-                    } else {
-                        $isAdopted = false;
-                        $resultPercentage = round($numRejectedPercent * $vote['college']->getVotePercentage(), 1);
-                    }
-                    $result[] = [
-                        'isAdopted' => $isAdopted,
-                        'result' => $resultPercentage
-                    ];
-                } else {
-                    $result[] = [
-                        'isAdopted' => false,
-                        'result' => 0
-                    ];
-                }
+        $rule = $resolution->getAdoptionRule();
+        foreach ($resolution->getVoteResults() as $vote) {
+            $totalOfVoters = $vote['numApproved'] + $vote['numRejected'];
+            if (
+                ($rule === 'simple-majority' && $vote['numApproved'] > $totalOfVoters / 2) ||
+                ($rule === 'adoption-2/3' && $vote['numApproved'] > $totalOfVoters * 2 / 3 ) ||
+                ($rule === 'adoption-3/4' && $vote['numApproved'] > $totalOfVoters * 3 / 4 )
+            ) {
+                $isAdopted = true;
+                $numApprovedPercent = $vote['numApproved'] * 100 / $totalOfVoters;
+                $resultPercentage = round($numApprovedPercent * $vote['college']->getVotePercentage(), 2);
+            } else {
+                $isAdopted = false;
+                $numRejectedPercent = $totalOfVoters ? $vote['numRejected'] * 100 / $totalOfVoters : 0;
+                $resultPercentage = round($numRejectedPercent * $vote['college']->getVotePercentage(), 2);
             }
-            usort($result, function ($result1, $result2) {
-                return  $result2['result'] <=> $result1['result'];
-            });
-            $finalResult = $result[0];
-            $finalResult['message'] = $finalResult['isAdopted']
-                ? 'La résolution est adoptée'
-                : 'La résolution est rejetée';
+            $result[] = $this->formatResult($isAdopted, $resultPercentage);
         }
-        return $finalResult;
+        usort($result, function ($result1, $result2) {
+            return $result2['result'] <=> $result1['result'];
+        });
+        return $result[0] ?? $this->formatResult(false, 0);
+    }
+
+    private function formatCollegeVoteResult(
+        int $numApproved,
+        int $numRejected,
+        int $numAbstention,
+        College $college,
+        Chart|null $chart
+    ): array {
+        return [
+            'numApproved' => $numApproved,
+            'numRejected' => $numRejected,
+            'numAbstention' => $numAbstention,
+            'college' => $college,
+            'chart' => $chart
+        ];
+    }
+
+
+    private function formatResult(bool $isAdopted, int|float $resultPercentage): array
+    {
+        return [
+            'isAdopted' => $isAdopted,
+            'result' => $resultPercentage,
+            'message' => $isAdopted ? 'La résolution est adoptée' : 'La résolution est rejetée'
+        ];
+    }
+
+    public function calculateFinalResultByVoter(Resolution $resolution): array
+    {
+        return [
+            'isAdopted' => true, 'result' => 36.67, 'message' => 'La résolution est adoptée'
+        ];
     }
 }

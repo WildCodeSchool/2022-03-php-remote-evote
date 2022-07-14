@@ -5,18 +5,22 @@ namespace App\Tests;
 use App\Entity\College;
 use App\Entity\Resolution;
 use App\Services\ChartResults;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ChartResultsTest extends KernelTestCase
 {
-    public function testSimpleMajority(): void
+    /**
+     * @dataProvider provideRule
+     */
+    public function testCalculateFinalResultWithCollege(array $finalResult, string $rule): void
     {
         $kernel = self::bootKernel();
 
         $this->assertSame('test', $kernel->getEnvironment());
         $chartResults = static::getContainer()->get(ChartResults::class);
         $resolution = new Resolution();
-        $resolution->setAdoptionRule('simple-majority');
+        $resolution->setAdoptionRule($rule);
 
         $college1 = new College();
         $college1->setVotePercentage(.40);
@@ -24,23 +28,28 @@ class ChartResultsTest extends KernelTestCase
         $college2->setVotePercentage(.60);
         $resolution->setVoteResults([
             [
-                'numApproved' => 60,//75%
-                'numRejected' => 20,
+                'numApproved' => 20,//25%
+                'numRejected' => 60,//75%
                 'numAbstention' => 20,
-                'college' => $college1,//30%
+                'college' => $college1,//resultat : non. poids 30%
             ],
             [
-                'numApproved' => 40,
-                'numRejected' => 50,//55,6%
+                'numApproved' => 55,//61.11%
+                'numRejected' => 35,//38.89%
                 'numAbstention' => 10,
-                'college' => $college2,//33,3%
+                'college' => $college2,//resultat : oui. poids 36.67%
             ]
         ]);
-        $finalResult = [
-            'isAdopted' => false,
-            'result' => 33.3,
-            'message' => 'La résolution est rejetée'
+
+        $this->assertSame($finalResult, $chartResults->calculateFinalResultWithCollege($resolution));
+    }
+
+    public function provideRule(): array
+    {
+        return [
+            [['isAdopted' => true, 'result' => 36.67, 'message' => 'La résolution est adoptée'], 'simple-majority'],
+            [['isAdopted' => false, 'result' => 30.0, 'message' => 'La résolution est rejetée'], 'adoption-2/3'],
+            [['isAdopted' => false, 'result' => 30.0, 'message' => 'La résolution est rejetée'], 'adoption-3/4'],
         ];
-        $this->assertSame($finalResult, $chartResults->calculateFinalResult($resolution));
     }
 }
