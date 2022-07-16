@@ -27,9 +27,14 @@
 			<hr>
 			<div class="mb-4">
 				<h2>Le vote</h2>
-				<a class="btn btn-primary mt-3" href="#">Ajouter le vote</a>
-				<a class="btn btn-outline-primary mt-3" href="#">Désactiver le vote</a>
-				<a class="btn btn-outline-primary mt-3" href="#">Consulter les Résultats</a>
+					{% if campaign.status == true %}
+						<a class="btn btn-danger" href="{{ path('campaign_desactivate', {'uuid': campaign.uuid}) }}">Désactiver le vote</a>
+						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
+					{% endif %}
+					{% if campaign.status == false %}
+						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Activer le vote</a>
+						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
+					{% endif %}
 			</div>
 	</section>
 {% endblock %}
