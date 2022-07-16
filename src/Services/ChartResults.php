@@ -2,21 +2,14 @@
 
 namespace App\Services;
 
-use App\Entity\Vote;
-use App\Entity\Campaign;
 use App\Entity\College;
 use App\Entity\Resolution;
-use JetBrains\PhpStorm\ArrayShape;
-use Symfony\UX\Chartjs\Model\Chart;
-use App\Repository\ResolutionRepository;
 use App\Repository\VoteRepository;
 use Doctrine\Common\Collections\Collection;
-use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 
 class ChartResults
 {
     public function __construct(
-        private ChartBuilderInterface $chartBuilder,
         private VoteRepository $voteRepository
     ) {
     }
@@ -27,33 +20,17 @@ class ChartResults
         foreach ($resolutions as $resolution) {
             $voteResults = [];
             foreach ($resolution->getCampaign()->getCompany()->getColleges() as $college) {
-                if (!$this->voteRepository->findByResolution($resolution)) {
-                    continue;
-                }
                 $numApproved = count($this->voteRepository->getVotesByCollege($resolution, $college, 'approved'));
                 $numRejected = count($this->voteRepository->getVotesByCollege($resolution, $college, 'rejected'));
-                $numAbstention = count($this->voteRepository->getVotesByCollege($resolution, $college, 'abstention'));
-                $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
-                $chart->setData([
-                    'labels' => ['Pour', 'Contre', 'Abstention'],
-                    'datasets' => [
-                        [
-                            'label' => 'test',
-                            'backgroundColor' => [
-                                'rgb(75, 181, 67)',
-                                'rgb(255, 14, 14)',
-                                'rgb(255, 153, 102)'
-                            ],
-                            'data' => [$numApproved, $numRejected, $numAbstention]
-                        ],
-                    ],
-                ]);
-                $voteResults[] = $this->formatCollegeVoteResult(
+                $totalVoters = $numApproved + $numRejected;
+                $votersRegistered = count($resolution->getCampaign()->getVoters());
+                $numAbstention = $votersRegistered - $totalVoters +
+                    count($this->voteRepository->getVotesByCollege($resolution, $college, 'abstention'));
+                $voteResults[] = $this->formatVoteResult(
                     $numApproved,
                     $numRejected,
                     $numAbstention,
-                    $college,
-                    $chart
+                    $college
                 );
             }
             $resolution->setVoteResults($voteResults);
@@ -80,34 +57,10 @@ class ChartResults
                 $resolution->setFinalResult($this->formatResult(false, 0));
                 continue;
             }
-            $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
-            $chart->setData([
-                'labels' =>
-                    [
-                        'Pour',
-                        'Contre',
-                        'Abstention'
-                    ],
-                'datasets' =>
-                    [
-                        [
-                            'label' => '',
-
-                            'backgroundColor' =>
-                                [
-                                    'rgb(75, 181, 67)',
-                                    'rgb(255, 14, 14)',
-                                    'rgb(255, 153, 102)'
-                                ],
-                            'data' => [$numApproved, $numRejected, $numAbstention],
-                        ]
-                    ]
-            ]);
             $voteResults[] = [
                 'numApproved' => $numApproved,
                 'numRejected' => $numRejected,
-                'numAbstention' => $numAbstention,
-                'chart' => $chart
+                'numAbstention' => $numAbstention
             ];
             $resolution->setVoteResults($voteResults);
             $resolution->setFinalResult($this->calculateFinalResultByVoter($resolution));
@@ -142,19 +95,17 @@ class ChartResults
         return $result[0] ?? $this->formatResult(false, 0);
     }
 
-    private function formatCollegeVoteResult(
+    private function formatVoteResult(
         int $numApproved,
         int $numRejected,
         int $numAbstention,
-        College $college,
-        Chart|null $chart
+        College|null $college = null,
     ): array {
         return [
             'numApproved' => $numApproved,
             'numRejected' => $numRejected,
             'numAbstention' => $numAbstention,
-            'college' => $college,
-            'chart' => $chart
+            'college' => $college
         ];
     }
 
