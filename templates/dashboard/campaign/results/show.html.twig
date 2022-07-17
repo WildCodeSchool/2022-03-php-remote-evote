@@ -1,35 +1,62 @@
 {% extends '/dashboard/base.html.twig' %}
 
 {% block body %}
-	<div class="container">
+	<div
+		class="container-result">
+		{# <div class="align-items-center mb-4">
+					<a class="btn btn-primary ms-auto" href="#">
+						Télécharger au format xls
+					</button>
+					<a class="btn btn-primary ms-auto" href="#">
+						Envoyer les résultats aux votants
+					</button>
+					</div> #}
+		<div class="mb-4">
+			{% if campaign.company is not null %}
+				<h1>Résultats des votes de
+					{{ campaign.company.name }}</h1>
+				<h2>
+					<span class="badge bg-primary">{{ campaign.name }}</span>
+				</h2>
+			{% endif %}
+		</div>
 
-		<h1 class="mb-4">Résultats des votes de 'AG NOBATEK' du 22 mars 2021</h1>
-		<h2>8 réponses reçues sur 12 votants sollicités</h2>
+		<div class="mb-4">
+			<p>Ouverture le
+				<strong>{{ campaign.createdAt|date('l d F à H:i:s') }}</strong>
+			</p>
+			<p>Fermeture le
+				<strong>{{ campaign.endedAt|date('l d F à H:i:s') }}</strong>
+			</p>
 
-		<p>Ouverture de la campagne
-			{{ campaign.name }}
-			le
-			{{ campaign.createdAt|date('d-m-Y H:i:s') }}</p>
-		<p>Fermeture de la campagne
-			{{ campaign.name }}
-			le
-			{{ campaign.endedAt|date('d-m-Y H:i:s') }}</p>
-
-		{% for resolution in campaign.resolutions %}
-			<section>
-				<h3>Résolution 1 :
-					{{ resolution.name }}</h3>
-				<p>{{ resolution.description }}</p>
-
-					<h4>Résultats par collèges</h4>
-					<div class="row">
-						{% for chart in charts %}
+			{% for resolution in resolutions %}
+				<div class="mb-4">
+					<h3 class="bg-secondary text-white p-2">{{ resolution.name }}</h3>
+					<p>{{ resolution.description }}</p>
+					{% if campaign.hasCollege %}
+						<div class="row">
+							<h4>Résultats par collèges</h4>
+							{% for vote in resolution.voteResults %}
+								<div class="col-lg-3">
+									{{ render_chart(vote.chart) }}
+									<h5 class="text-center mt-3">{{ vote.college.name }}</h5>
+								</div>
+							{% else %}
+								<div class="col">
+									Aucun vote effectué pour le moment
+								</div>
+							{% endfor %}
+						</div>
+					{% else %}
+						<div class="row">
+							<h4>Résultats par votants</h4>
 							<div class="col-lg-3">
-								{{ render_chart(chart) }}
+								{{ render_chart(resolution.voteResult.chart)}}
 							</div>
-						{% endfor %}
-					</div>
-			</section>
-		{% endfor %}
-	</div>
-{% endblock %}
+						</div>
+					{% endif %}
+					{{resolution.finalResult.message}}
+				</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
