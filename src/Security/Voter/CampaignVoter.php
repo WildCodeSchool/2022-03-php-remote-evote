@@ -37,9 +37,11 @@ class CampaignVoter extends Voter
         if (!$user instanceof UserInterface) {
             return false;
         }
-        // if($this->security->isGranted('ROLE_USER')) return true;
 
-        if(null === $subject->getOwnedBy()) return false;
+        if (null === $subject->getOwnedBy()) {
+            return false;
+        }
+
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
@@ -63,8 +65,9 @@ class CampaignVoter extends Voter
         return false;
     }
 
-    private function canEdit(Campaign $subject, User $user){
-        return $user === $subject->getOwnedBy();
+    private function canEdit(Campaign $campaign, User $user): bool
+    {
+        return $user === $campaign->getOwnedBy();
     }
 
     // private function canView(Campaign $campaign, User $user){
