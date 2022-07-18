@@ -50,11 +50,11 @@ class VoterType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Mél du votant',
-                'help' => 'Merci de rentrer une adresse email valide.'
+                'help' => 'Merci de rentrer une adresse email valide (exemple@mail.com).'
             ])
             ->add('telephone', TelType::class, [
                 'label' => 'Tél du votant',
-                'help' => 'Merci de rentrer un numéro de téléphone valide.'
+                'help' => 'Merci de rentrer un numéro de téléphone valide (0600000000).'
             ])
             ->add('votePercentage', NumberType::class, [
                 'label' => 'Indiquez le nombre de voix représentées par ce votant (en %)'

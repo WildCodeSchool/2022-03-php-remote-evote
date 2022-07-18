@@ -1,0 +1,67 @@
+{% extends "dashboard/base.html.twig" %}
+
+{% block body %}
+	<section class="h-100">
+		<div class="logo">
+			<img src=" {{asset('build/images/logo_bgblk.png')}} " alt="Brand" class="img-fluid rounded mx-auto d-block">
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="mb-4">
+						{% if campaign.company is not null %}
+							<h1 class="text-center">
+								Résultat des votes de :
+								{{ campaign.company.name }}</h1>
+							<h2>
+								<span class="badge mb-5 bg-primary">{{campaign.name}}</span>
+							</h2>
+							<p class="text-center mb-5">Ouverture le :
+								<strong>
+									{{campaign.createdAt | date('l d F à H:i:s')}}
+								</strong>
+							</p>
+							<p class="text-center mb-5">Fermeture le :
+								<strong>
+									{{campaign.endedAt | date('l d F à H:i:s')}}
+								</strong>
+							</p>
+						{% endif %}
+					</div>
+					{% for resolution in resolutions %}
+						<div class="card-shadow h-50">
+							<h5 class="card-header bg-secondary text-write">{{resolution.name}}</h5>
+							<div class="card-body overflow-auto">
+								<p class="card-text">{{resolution.description}}</p>
+							</div>
+						</div>
+						{% if campaign.hasCollege %}
+							<div class="row">
+								<h4>Résultats par collèges</h4>
+								<div class="col-lg-8 offset-lg-2">
+									<div class="mb-4">
+										{{render_chart(vote.chart)}}
+										<h5 class="text-center mb-5">{{vote.college.name}}</h5>
+									</div>
+								{% else %}
+									<div class="">
+										Aucun vote effectué pour le moment
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<h4>Résultats par votants</h4>
+								<div class="col-lg-8 offset-lg-2">
+									<div class="mb-4">
+										{{render_chart(resolution.voteResult.chart)}}
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
