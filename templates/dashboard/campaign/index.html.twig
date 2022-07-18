@@ -15,18 +15,21 @@
     <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Structure</th>
-        <th scope="col">Nom de la campagne</th>
-        <th scope="col">Date de création</th>
+        <th{% if pagination.isSorted('company.name') %} class="sorted"{% endif %}>
+      {{ knp_pagination_sortable(pagination, 'Structure', 'company.name') }}</th>
+        <th{% if pagination.isSorted('c.name') %} class="sorted"{% endif %}>
+      {{ knp_pagination_sortable(pagination, 'Nom de la campagne', 'c.name') }}</th>
+        <th{% if pagination.isSorted('c.createdAt') %} class="sorted"{% endif %}>
+      {{ knp_pagination_sortable(pagination, 'Date de création', 'c.createdAt') }}</th>
         <th scope="col">Etat</th>
-        <th scope="col">Participants^v</th>
-        <th scope="col">Collèges^v</th>
+        <th scope="col">Participants</th>
+        <th scope="col">Collèges</th>
         <th scope="col">Résolutions</th>
         <th scope="col">Résultats</th>
       </tr>
     </thead>
     <tbody>
-      {% for campaign in campaigns %}
+      {% for campaign in pagination %}
         <tr>
           <td>
             {% if campaign.company %}
@@ -36,9 +39,8 @@
           <td>
             <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
           </td>
-            {# @todo add created_at field in entity Campaign #}
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-          <td>{{campaign.status}}</td>
+          <td class="{{campaign.status ? 'text-success' : 'text-danger'}}"">{{campaign.status ? 'activé' : 'clôturé'}}</td>
           <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
           <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
@@ -48,6 +50,8 @@
       {% endfor %}
       </tbody>
   </table>
+
+  {{ knp_pagination_render(pagination) }}
   </div>
 </div>
 
