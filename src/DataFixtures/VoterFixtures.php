@@ -101,7 +101,7 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'college' => 'college_0',
             'votePercentage' => 45,
             'telephone' => '0123456789',
-            'company' => 'company_Dephants',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Aloe Vera',
@@ -111,7 +111,7 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'college' => 'college_0',
             'votePercentage' => 45,
             'telephone' => '0123456789',
-            'company' => 'company_Dephants',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Verny Sage',
