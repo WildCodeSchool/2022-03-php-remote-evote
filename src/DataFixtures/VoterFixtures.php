@@ -119,8 +119,6 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
-            'telephone' => '0123456789',
-            'company' => 'company_Dephants',
             'votePercentage' => 45,
             'telephone' => '0123456789',
             'company' => 'company_Erreur404'
