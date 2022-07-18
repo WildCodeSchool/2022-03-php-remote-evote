@@ -16,7 +16,7 @@
 				<h1>Résultats des votes de
 					{{ campaign.company.name }}</h1>
 				<h2>
-					<span class="badge bg-primary mt-3">{{ campaign.name }}</span>
+					<span class="badge bg-primary mb-3 mt-3">{{ campaign.name }}</span>
 				</h2>
 			{% endif %}
 		</div>
@@ -30,7 +30,7 @@
 			</p>
 
 			{% for resolution in resolutions %}
-				<div class="">
+				<div class="mt-4">
 					<h3 class="bg-primary text-white p-2 mt-4 mb-4">{{ resolution.name }}</h3>
 					<p class="mb-5">{{ resolution.description }}</p>
 					{% if campaign.hasCollege %}
