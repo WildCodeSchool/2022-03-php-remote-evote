@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Voter;
 use App\Entity\Campaign;
+use App\Services\ChartResults;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +29,29 @@ class VoteController extends AbstractController
         return $this->render('vote/vote.html.twig', [
             'campaign' => $campaign,
             'voter' => $voter
+        ]);
+    }
+
+    #[Route('/{voter_uuid}/campaign/{campaign_uuid}/results', name: 'results', methods: ['GET'])]
+    #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
+    #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
+    public function resultVoters(
+        Campaign $campaign,
+        ChartResults $chartResults
+    ): Response {
+        if ($campaign->getHasCollege()) {
+            $resolutionsCharts = $chartResults->getResultByCollege(
+                $campaign->getResolutions()
+            );
+        } else {
+            $resolutionsCharts = $chartResults->getResultByVoter(
+                $campaign->getResolutions()
+            );
+        }
+
+        return $this->render('vote/results.html.twig', [
+            'campaign' => $campaign,
+            'resolutions' => $resolutionsCharts,
         ]);
     }
 }

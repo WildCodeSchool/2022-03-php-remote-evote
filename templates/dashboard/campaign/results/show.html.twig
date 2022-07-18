@@ -11,7 +11,7 @@
 						Envoyer les résultats aux votants
 					</button>
 					</div> #}
-		<div class="mb-4">
+		<div class="text-center mb-4">
 			{% if campaign.company is not null %}
 				<h1>Résultats des votes de
 					{{ campaign.company.name }}</h1>
@@ -21,7 +21,7 @@
 			{% endif %}
 		</div>
 
-		<div class="mb-4">
+		<div class="mb-5">
 			<p>Ouverture le
 				<strong>{{ campaign.createdAt|date('l d F à H:i:s') }}</strong>
 			</p>
@@ -30,12 +30,12 @@
 			</p>
 
 			{% for resolution in resolutions %}
-				<div class="mb-4">
-					<h3 class="bg-secondary text-white p-2">{{ resolution.name }}</h3>
-					<p>{{ resolution.description }}</p>
+				<div class="">
+					<h3 class="bg-primary text-white p-2 mt-5 mb-4">{{ resolution.name }}</h3>
+					<p class="mb-5">{{ resolution.description }}</p>
 					{% if campaign.hasCollege %}
 						<div class="row">
-							<h4>Résultats par collèges</h4>
+							<h4 class="mb-3"><strong>Résultats par collèges</strong></h4>
 							{% for vote in resolution.voteResults %}
 								<div class="col-lg-3">
 									{{ render_chart(vote.chart) }}
@@ -49,14 +49,15 @@
 						</div>
 					{% else %}
 						<div class="row">
-							<h4>Résultats par votants</h4>
-							<div class="col-lg-3">
+							<h4 class="mb-3"><strong>Résultats par votants</strong></h4>
+							<div class="col-lg-3 justify-content-center">
 								{{ render_chart(resolution.voteResult.chart)}}
 							</div>
 						</div>
 					{% endif %}
-					{{resolution.finalResult.message}}
+					{# {{resolution.finalResult.message}} #}
 				</div>
 			{% endfor %}
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
