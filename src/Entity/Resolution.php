@@ -39,6 +39,10 @@ class Resolution
     #[ORM\OneToMany(mappedBy: 'resolution', targetEntity: Vote::class)]
     private Collection $votes;
 
+    private array $voteResults;
+
+    private array $finalResult;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -136,5 +140,25 @@ class Resolution
         }
 
         return $this;
+    }
+
+    public function getVoteResults(): array
+    {
+        return $this->voteResults;
+    }
+
+    public function setVoteResults(array $voteResults): void
+    {
+        $this->voteResults = $voteResults;
+    }
+
+    public function getFinalResult(): array
+    {
+        return $this->finalResult;
+    }
+
+    public function setFinalResult(array $finalResult): void
+    {
+        $this->finalResult = $finalResult;
     }
 }

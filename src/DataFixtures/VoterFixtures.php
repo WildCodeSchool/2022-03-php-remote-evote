@@ -12,6 +12,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class VoterFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VOTERS = [
+        //campaign_0(langage back)->byColleges
         [
             'fullname' => 'Jean Richard',
             'email' => 'jean33000@yopmail.com',
@@ -30,7 +31,7 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'college' => 'college_0',
             'votePercentage' => 15,
             'telephone' => '0123456789',
-            'company' => 'company_Dephants'
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Michel Dupuis',
@@ -40,7 +41,7 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'college' => 'college_0',
             'votePercentage' => 25,
             'telephone' => '0123456789',
-            'company' => 'company_Erreur404'
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Fred Shortman',
@@ -49,6 +50,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Amelia Melyss',
@@ -57,6 +60,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Archess Ney',
@@ -65,6 +70,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Mikasa Hackermann',
@@ -73,6 +80,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Tanjiro Kamado',
@@ -81,6 +90,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Asyra Chan',
@@ -89,6 +100,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Aloe Vera',
@@ -97,6 +110,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild',
         ],
         [
             'fullname' => 'Verny Sage',
@@ -104,6 +119,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'campaign' => 'campaign_0',
             'number_vote' => 1,
             'college' => 'college_0',
+            'telephone' => '0123456789',
+            'company' => 'company_Dephants',
             'votePercentage' => 45,
         ],
         [
@@ -113,6 +130,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Dephants'
         ],
         [
             'fullname' => 'Solomon Burke',
@@ -121,6 +140,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Dephants'
         ],
         [
             'fullname' => 'Otis Redding',
@@ -129,139 +150,174 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Dephants'
         ],
+        //campaign_1(wilders du mois)->byVoters
         [
             'fullname' => 'Aretha Franklin',
             'email' => 'franklin@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Ella Fitzgerald',
             'email' => 'fitzgerald@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Diana Ross',
             'email' => 'ross@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Wilson Pickett',
             'email' => 'pickett@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Sam Cooks',
             'email' => 'cooks@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Etta James',
             'email' => 'james@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'The Staples Singers',
             'email' => 'staples@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Jimi Hendrix',
             'email' => 'hendrix@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Erreur404'
         ],
         [
             'fullname' => 'Janis Joplin',
             'email' => 'joplin@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'Jim Morrison',
             'email' => 'morrison@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'The Doors',
             'email' => 'the_doors@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'Syd Barrett',
             'email' => 'barrett@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'Cream',
             'email' => 'cream@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'Canned Heat',
             'email' => 'heat@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'John Lennon',
             'email' => 'lennon@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'The Beatles',
             'email' => 'the_beatles@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Karma'
         ],
         [
             'fullname' => 'Paul McCartney',
             'email' => 'cartney@yopmail.com',
-            'campaign' => 'campaign_0',
+            'campaign' => 'campaign_1',
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,

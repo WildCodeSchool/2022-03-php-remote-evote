@@ -1,15 +1,15 @@
 {% extends '/dashboard/base.html.twig' %}
 
 {% block body %}
-<section class="new_college">
-    <h1>Collège au vote :&ensp; {{ campaign.name }}</h1>
-        <div class="form">
-            {{ form_start(form) }}
-            {{form_widget(form)}}
+    <section class="new_college">
+        <h1>Collège au vote :&ensp; {{ campaign.name }}</h1>
+            <div class="form mt-5">
+                {{ form_start(form) }}
+                {{form_widget(form)}}
 
-            <button type="submit" class="btn btn-primary">Valider</button>
-            <a class="btn btn-primary" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
-            {{ form_end(form) }}
-        </div>
-</section>
+                <button type="submit" class="btn btn-primary mt-5">Valider</button>
+                <a class="btn btn-primary mt-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">Retour à la page d'admin</a>
+                {{ form_end(form) }}
+            </div>
+    </section>
 {% endblock %}
