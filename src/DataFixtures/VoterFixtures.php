@@ -49,6 +49,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Amelia Melyss',
@@ -57,6 +59,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Archess Ney',
@@ -65,6 +69,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Mikasa Hackermann',
@@ -73,6 +79,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Tanjiro Kamado',
@@ -81,6 +89,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Asyra Chan',
@@ -89,6 +99,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Aloe Vera',
@@ -97,6 +109,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Verny Sage',
@@ -105,6 +119,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Amy Wang',
@@ -113,6 +129,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Solomon Burke',
@@ -121,6 +139,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Otis Redding',
@@ -129,6 +149,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Aretha Franklin',
@@ -137,6 +159,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_0',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Ella Fitzgerald',
@@ -145,6 +169,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Diana Ross',
@@ -153,6 +179,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Wilson Pickett',
@@ -161,6 +189,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Sam Cooks',
@@ -169,6 +199,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Etta James',
@@ -177,6 +209,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'The Staples Singers',
@@ -185,6 +219,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Jimi Hendrix',
@@ -193,6 +229,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Janis Joplin',
@@ -201,6 +239,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Jim Morrison',
@@ -209,6 +249,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'The Doors',
@@ -217,6 +259,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Syd Barrett',
@@ -225,6 +269,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Cream',
@@ -233,6 +279,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Canned Heat',
@@ -241,6 +289,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'John Lennon',
@@ -249,6 +299,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'The Beatles',
@@ -257,6 +309,8 @@ class VoterFixtures extends Fixture implements DependentFixtureInterface
             'number_vote' => 1,
             'college' => 'college_1',
             'votePercentage' => 45,
+            'telephone' => '0123456789',
+            'company' => 'company_Wild'
         ],
         [
             'fullname' => 'Paul McCartney',
