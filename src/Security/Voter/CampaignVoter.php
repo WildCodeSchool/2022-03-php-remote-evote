@@ -2,17 +2,25 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Campaign;
 use App\Entity\User;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use App\Entity\Campaign;
+// use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class CampaignVoter extends Voter
 {
     public const EDIT = 'edit';
     public const VIEW = 'view';
     public const DELETE = 'delete';
+
+    // private $security;
+
+    // public function __construct(Security $security)
+    // {
+    //     $this->security = $security;
+    // }
 
     protected function supports(string $attribute, $subject): bool
     {
@@ -29,8 +37,9 @@ class CampaignVoter extends Voter
         if (!$user instanceof UserInterface) {
             return false;
         }
+        // if($this->security->isGranted('ROLE_USER')) return true;
 
-        if(null === $subject->getUser()) return false;
+        if(null === $subject->getOwnedBy()) return false;
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
@@ -39,30 +48,30 @@ class CampaignVoter extends Voter
                 return $this->canEdit($subject, $user);
                 // return true or false
                 break;
-            case self::VIEW:
-                // logic to determine if the user can VIEW
-                return $this->canView($subject, $user);
-                // return true or false
-            case self::DELETE:
-                // logic to determine if the user can DELETE
-                return $this->canDelete($subject, $user);
-                // return true or false
+            // case self::VIEW:
+            //     // logic to determine if the user can VIEW
+            //     return $this->canView($subject, $user);
+            //     // return true or false
+            // case self::DELETE:
+            //     // logic to determine if the user can DELETE
+            //     return $this->canDelete($subject, $user);
+            //     // return true or false
 
-                break;
+            //     break;
         }
 
         return false;
     }
 
-    private function canEdit(Campaign $campaign, User $user){
-        return $user === $campaign->getOwnedBy();
+    private function canEdit(Campaign $subject, User $user){
+        return $user === $subject->getOwnedBy();
     }
 
-    private function canView(Campaign $campaign, User $user){
-        return $user === $campaign->getOwnedBy();
-    }
+    // private function canView(Campaign $campaign, User $user){
+    //     return $user === $campaign->getOwnedBy();
+    // }
 
-    private function canDelete(Campaign $campaign, User $user){
-        return $user === $campaign->getOwnedBy();
-    }
+    // private function canDelete(Campaign $campaign, User $user){
+    //     return $user === $campaign->getOwnedBy();
+    // }
 }

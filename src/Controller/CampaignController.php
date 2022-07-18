@@ -21,7 +21,8 @@ class CampaignController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CampaignRepository $campaignRepository): Response
     {
-        $campaigns = $campaignRepository->findBy(['ownedBy' => $this->getUser()]);
+        // $campaigns = $campaignRepository->findBy(['ownedBy' => $this->getUser()]);
+        $campaigns = $campaignRepository->findAll();
         return $this->render('dashboard/campaign/index.html.twig', [
             'campaigns' => $campaigns,
         ]);
