@@ -32,7 +32,7 @@ class VoteController extends AbstractController
         ]);
     }
 
-    #[Route('/{campaign_uuid}/voters/{voter_uuid}/results', name: 'results', methods: ['GET'])]
+    #[Route('/{voter_uuid}/campaign/{campaign_uuid}/results', name: 'results', methods: ['GET'])]
     #[ParamConverter('campaign', options: ['mapping' => ['campaign_uuid' => 'uuid']])]
     #[ParamConverter('voter', options: ['mapping' => ['voter_uuid' => 'uuid']])]
     public function resultVoters(
@@ -49,7 +49,7 @@ class VoteController extends AbstractController
             );
         }
 
-        return $this->render('dashboard/campaign/results/show.html.twig', [
+        return $this->render('vote/results.html.twig', [
             'campaign' => $campaign,
             'resolutions' => $resolutionsCharts,
         ]);

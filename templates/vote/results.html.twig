@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div
+		class="container-result">
+		{# <div class="align-items-center mb-4">
+					<a class="btn btn-primary ms-auto" href="#">
+						Télécharger au format xls
+					</button>
+					<a class="btn btn-primary ms-auto" href="#">
+						Envoyer les résultats aux votants
+					</button>
+					</div> #}
+		<div class="text-center mb-4">
+			{% if campaign.company is not null %}
+				<h1>Résultats des votes de
+					{{ campaign.company.name }}</h1>
+				<h2>
+					<span class="badge bg-primary">{{ campaign.name }}</span>
+				</h2>
+			{% endif %}
+		</div>
+
+		<div class="mb-3">
+			<p>Ouverture le
+				<strong>{{ campaign.createdAt|date('l d F à H:i:s') }}</strong>
+			</p>
+			<p>Fermeture le
+				<strong>{{ campaign.endedAt|date('l d F à H:i:s') }}</strong>
+			</p>
+
+			{% for resolution in resolutions %}
+				<div class="">
+					<h3 class="bg-primary text-white p-2 mt-4 mb-4">{{ resolution.name }}</h3>
+					<p class="mb-5">{{ resolution.description }}</p>
+					{% if campaign.hasCollege %}
+						<div class="row">
+							<h4 class="mb-2"><strong>Résultats par collèges</strong></h4>
+							{% for vote in resolution.voteResults %}
+								<div class="col-lg-3">
+									{{ render_chart(vote.chart) }}
+									<h5 class="text-center mt-3">{{ vote.college.name }}</h5>
+								</div>
+							{% else %}
+								<div class="col">
+									Aucun vote effectué pour le moment
+								</div>
+							{% endfor %}
+						</div>
+					{% else %}
+						<div class="row">
+							<h4 class="mb-3"><strong>Résultats par votants</strong></h4>
+							<div class="col-lg-3 justify-content-center">
+								{{ render_chart(resolution.voteResult.chart)}}
+							</div>
+						</div>
+					{% endif %}
+					{# {{resolution.finalResult.message}} #}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
