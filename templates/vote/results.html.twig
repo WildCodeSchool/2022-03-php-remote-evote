@@ -2,7 +2,7 @@
 
 {% block body %}
 	<div
-		class="container-result">
+		class="container-result mt-4">
 		{# <div class="align-items-center mb-4">
 					<a class="btn btn-primary ms-auto" href="#">
 						Télécharger au format xls
@@ -11,12 +11,12 @@
 						Envoyer les résultats aux votants
 					</button>
 					</div> #}
-		<div class="text-center mb-4">
+		<div class="text-center mt-5 mb-4">
 			{% if campaign.company is not null %}
 				<h1>Résultats des votes de
 					{{ campaign.company.name }}</h1>
 				<h2>
-					<span class="badge bg-primary">{{ campaign.name }}</span>
+					<span class="badge bg-primary mt-3">{{ campaign.name }}</span>
 				</h2>
 			{% endif %}
 		</div>
