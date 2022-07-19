@@ -32,6 +32,7 @@ class ResultController extends AbstractController
         Campaign $campaign,
         ChartResults $chartResults,
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($campaign->getHasCollege()) {
             $resolutionsCharts = $chartResults->getResultByCollege(
                 $campaign->getResolutions()

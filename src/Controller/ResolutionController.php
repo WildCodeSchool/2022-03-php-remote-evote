@@ -21,6 +21,7 @@ class ResolutionController extends AbstractController
         Campaign $campaign,
         ResolutionRepository $resolutionRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $resolution = $resolutionRepository->findAll();
         return $this->render('dashboard/resolution/index.html.twig', [
             'campaign' => $campaign,
@@ -34,6 +35,7 @@ class ResolutionController extends AbstractController
         ResolutionRepository $resolutionRepository,
         Campaign $campaign,
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $resolution = new Resolution();
         $form = $this->createForm(ResolutionType::class, $resolution);
         $form->handleRequest($request);
@@ -71,6 +73,7 @@ class ResolutionController extends AbstractController
         Resolution $resolution,
         ResolutionRepository $resolutionRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $form = $this->createForm(ResolutionType::class, $resolution);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,6 +108,7 @@ class ResolutionController extends AbstractController
         Resolution $resolution,
         ResolutionRepository $resolutionRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($this->isCsrfTokenValid('delete' . $resolution->getUuid(), $request->request->get('_token'))) {
             $resolutionRepository->remove($resolution, true);
             $this->addFlash(

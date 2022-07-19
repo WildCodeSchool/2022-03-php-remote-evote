@@ -21,6 +21,7 @@ class CollegeController extends AbstractController
     public function index(
         Campaign $campaign,
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         return $this->render('dashboard/college/index.html.twig', [
             'campaign' => $campaign
         ]);
@@ -35,6 +36,7 @@ class CollegeController extends AbstractController
         College $college,
         CollegeRepository $collegeRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $form = $this->createForm(CollegeType::class, $college);
         $form->handleRequest($request);
 
@@ -63,6 +65,7 @@ class CollegeController extends AbstractController
         CollegeRepository $collegeRepository,
         Campaign $campaign,
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $college = new College();
         $form = $this->createForm(CollegeType::class, $college);
         $form->handleRequest($request);
@@ -93,6 +96,7 @@ class CollegeController extends AbstractController
         College $college,
         CollegeRepository $collegeRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($this->isCsrfTokenValid('delete' . $college->getId(), $request->request->get('_token'))) {
             $collegeRepository->remove($college, true);
             $this->addFlash(

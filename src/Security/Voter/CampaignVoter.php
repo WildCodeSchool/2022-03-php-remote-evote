@@ -11,9 +11,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class CampaignVoter extends Voter
 {
-    public const EDIT = 'edit';
     public const VIEW = 'view';
-    public const DELETE = 'delete';
 
     // private $security;
 
@@ -26,7 +24,7 @@ class CampaignVoter extends Voter
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
+        return in_array($attribute, [self::VIEW])
             && $subject instanceof \App\Entity\Campaign;
     }
 
@@ -45,36 +43,18 @@ class CampaignVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case self::EDIT:
-                // logic to determine if the user can EDIT
-                return $this->canEdit($subject, $user);
+            case self::VIEW:
+                // logic to determine if the user can VIEW
+                return $this->canView($subject, $user);
                 // return true or false
                 break;
-            // case self::VIEW:
-            //     // logic to determine if the user can VIEW
-            //     return $this->canView($subject, $user);
-            //     // return true or false
-            // case self::DELETE:
-            //     // logic to determine if the user can DELETE
-            //     return $this->canDelete($subject, $user);
-            //     // return true or false
-
-            //     break;
         }
 
         return false;
     }
 
-    private function canEdit(Campaign $campaign, User $user): bool
+    private function canView(Campaign $campaign, User $user): bool
     {
         return $user === $campaign->getOwnedBy();
     }
-
-    // private function canView(Campaign $campaign, User $user){
-    //     return $user === $campaign->getOwnedBy();
-    // }
-
-    // private function canDelete(Campaign $campaign, User $user){
-    //     return $user === $campaign->getOwnedBy();
-    // }
 }
