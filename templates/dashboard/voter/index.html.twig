@@ -11,6 +11,7 @@
             {{ campaign.name }}
           </h1>
         </div>
+        <div class="form mt-5">
         <table class="table">
           <thead>
             <tr>
@@ -94,11 +95,11 @@
                       
           </a>
           <a class="btn btn-primary my-5" href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">
-            Retour à la page d'admin
-                      
+            Retour à la page d'admin       
           </a>
         </div>
       </div>
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}
   

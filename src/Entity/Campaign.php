@@ -250,7 +250,7 @@ class Campaign
     /**
      * Get the value of ownedBy
      */
-    public function getOwnedBy(): User
+    public function getOwnedBy(): ?User
     {
         return $this->ownedBy;
     }

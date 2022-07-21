@@ -24,6 +24,7 @@ class VoterController extends AbstractController
     #[Route('/{uuid}/voters', name: 'index')]
     public function index(Campaign $campaign): Response
     {
+        $this->denyAccessUnlessGranted('view', $campaign);
         return $this->render('dashboard/voter/index.html.twig', [
             'campaign' => $campaign
         ]);
@@ -36,6 +37,7 @@ class VoterController extends AbstractController
         CompanyRepository $companyRepository,
         Campaign $campaign
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $voter = new Voter();
         $form = $this->createForm(VoterType::class, $voter, [
             'company' => $campaign->getCompany()
@@ -79,6 +81,7 @@ class VoterController extends AbstractController
         Voter $voter,
         VoterRepository $voterRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $form = $this->createForm(VoterType::class, $voter, [
             'company' => $campaign->getCompany()
         ]);
@@ -112,6 +115,7 @@ class VoterController extends AbstractController
         Voter $voter,
         VoterRepository $voterRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($this->isCsrfTokenValid('delete' . $voter->getUuId(), $request->request->get('_token'))) {
             $voterRepository->remove($voter, true);
             $this->addFlash(
@@ -130,10 +134,11 @@ class VoterController extends AbstractController
         Campaign $campaign,
         Request $request
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         $form = $this->createFormBuilder()
             ->add('file', FileType::class, [
                 'label' => 'Fichier csv',
-                'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider 
+                'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider
             pour la synchronisation automatique des participants au vote'
             ])
             ->getForm();

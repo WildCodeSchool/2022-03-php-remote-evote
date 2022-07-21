@@ -1,0 +1,12 @@
+img {
+    height: auto;
+    width: auto;
+    max-width: 130px;
+    max-height: 130px;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.logos > img:nth-child(2) {
+    border-left: 1px $primary solid; 
+}
