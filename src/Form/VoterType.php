@@ -7,6 +7,7 @@ use App\Entity\College;
 use App\Entity\Company;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -56,8 +57,9 @@ class VoterType extends AbstractType
                 'label' => 'Tél du votant',
                 'help' => 'Merci de rentrer un numéro de téléphone valide (0600000000).'
             ])
-            ->add('votePercentage', NumberType::class, [
-                'label' => 'Indiquez le nombre de voix représentées par ce votant (en %)'
+            ->add('votePercentage', PercentType::class, [
+                'label' => 'Indiquez le nombre de voix représentées par ce votant (en %)',
+                'scale' => 2,
             ])
             ->add('numberOfVote', IntegerType::class, [
                 'label' => 'Nombre de voix',

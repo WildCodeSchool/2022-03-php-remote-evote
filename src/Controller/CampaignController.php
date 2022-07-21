@@ -26,7 +26,7 @@ class CampaignController extends AbstractController
         Request $request,
     ): Response {
         $query = $campaignRepository->queryAll();
-        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 2);
+        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
 
         return $this->render('dashboard/campaign/index.html.twig', [
             'pagination' => $pagination,

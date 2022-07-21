@@ -641,9 +641,6 @@
     "symfony/uid": {
         "version": "v6.0.3"
     },
-    "symfony/ux-chartjs": {
-        "version": "v2.2.0"
-    },
     "symfony/ux-live-component": {
         "version": "2.2",
         "recipe": {

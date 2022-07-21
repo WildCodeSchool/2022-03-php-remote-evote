@@ -11,7 +11,6 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class VoteFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VOTES = [
-        //campaign_0->byColleges
         [
             'answer' => 'approved',
             'resolution' => 'resolution_0',
@@ -38,22 +37,22 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'voter' => 'voter_4',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_0',
             'voter' => 'voter_5',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_0',
             'voter' => 'voter_6',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
             'resolution' => 'resolution_0',
             'voter' => 'voter_7',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
             'resolution' => 'resolution_0',
             'voter' => 'voter_8',
         ],
@@ -87,54 +86,53 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'resolution' => 'resolution_0',
             'voter' => 'voter_14',
         ],
-        //campaign_1->byvoters
         [
             'answer' => 'approved',
             'resolution' => 'resolution_1',
             'voter' => 'voter_15',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_16',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_17',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_18',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_19',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_20',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_21',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_22',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_23',
         ],
         [
-            'answer' => 'rejected',
+            'answer' => 'abstention',
             'resolution' => 'resolution_1',
             'voter' => 'voter_24',
         ],
@@ -144,27 +142,27 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             'voter' => 'voter_25',
         ],
         [
-            'answer' => 'abstention',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_26',
         ],
         [
-            'answer' => 'abstention',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_27',
         ],
         [
-            'answer' => 'abstention',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_28',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_29',
         ],
         [
-            'answer' => 'approved',
+            'answer' => 'rejected',
             'resolution' => 'resolution_1',
             'voter' => 'voter_30',
         ],

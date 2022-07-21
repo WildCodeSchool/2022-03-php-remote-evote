@@ -18,7 +18,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class CampaignRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private Security $security)
     {
         parent::__construct($registry, Campaign::class);
     }
@@ -44,8 +44,8 @@ class CampaignRepository extends ServiceEntityRepository
     public function queryAll(): Query|null
     {
         return $this->createQueryBuilder('c')
-            //->where('c.ownedBy = :user')
-            //->setParameter('user', $this->security->getUser())
+            ->where('c.ownedBy = :user')
+            ->setParameter('user', $this->security->getUser())
             ->join('c.company', 'company')
             ->orderBy('company.name', 'ASC')
             ->getQuery();
