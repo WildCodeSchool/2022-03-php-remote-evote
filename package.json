@@ -27,7 +27,6 @@
         "@popperjs/core": "^2.11.5",
         "bootstrap-icons": "^1.8.3",
         "boxicons": "^2.1.2",
-        "chart.js": "^3.8.0",
         "chartjs-plugin-labels": "^1.1.0"
     }
 }

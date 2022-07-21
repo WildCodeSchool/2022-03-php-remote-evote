@@ -29,6 +29,7 @@ export default class extends Controller {
                                 precision: 2,
                                 fontSize: 16,
                                 fontColor: '#fff',
+                                // position: 'outside'
                             },
                         ]
                     },

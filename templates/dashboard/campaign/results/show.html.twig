@@ -24,11 +24,14 @@
             <p>Fermeture le
                 <strong>{{ campaign.endedAt|date('l d F à H:i:s') }}</strong>
             </p>
-
+            <p>
+                Nombre de votants inscrits : <strong>{{ campaign.voters|length }}</strong>
+            </p>
             {% for resolution in resolutions %}
                 <div class="mb-4">
                     <h3 class="bg-secondary text-white p-2">{{ resolution.name }}</h3>
                     <p>{{ resolution.description }}</p>
+                    <p>Règle d'adoption : {{ resolution.adoptionRule }}</p>
                     {% if campaign.hasCollege %}
                         <div class="text-center">
                             <h4>Résultats par collèges</h4>
@@ -59,22 +62,22 @@
                     {% else %}
                         <div class="row text-center">
                             <h4>Résultats par votants</h4>
-                            {% for vote in resolution.voteResults %}
+                            {% if resolution.voteResults %}
                                 <div class="col-lg-3 mx-auto">
                                     <canvas {{ stimulus_target('chart', 'chart') }}
-                                        data-approved="{{ vote.numApproved }}"
-                                        data-rejected="{{ vote.numRejected }}"
-                                        data-abstention="{{ vote.numAbstention }}"
+                                        data-approved="{{ resolution.voteResults.numApproved }}"
+                                        data-rejected="{{ resolution.voteResults.numRejected }}"
+                                        data-abstention="{{ resolution.voteResults.numAbstention }}"
                                     ></canvas>
                                 </div>
                             {% else %}
                                 <div class="col">
                                     Aucun vote effectué pour le moment
                                 </div>
-                            {% endfor %}
+                            {% endif %}
                         </div>
                     {% endif %}
-                    <p class="fs-3 text-center">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} %</p>
+                    <p class="fs-3 text-center">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} % des votes exprimés.</p>
                 </div>
             {% endfor %}
         </div>
