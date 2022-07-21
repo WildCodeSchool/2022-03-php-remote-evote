@@ -27,6 +27,7 @@ class CampaignController extends AbstractController
     ): Response {
         $query = $campaignRepository->queryAll();
         $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 2);
+
         return $this->render('dashboard/campaign/index.html.twig', [
             'pagination' => $pagination,
         ]);
@@ -71,6 +72,7 @@ class CampaignController extends AbstractController
     #[Route('/{uuid}/edit', name: 'edit')]
     public function edit(Campaign $campaign): Response
     {
+        $this->denyAccessUnlessGranted('view', $campaign);
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
         ]);
@@ -82,6 +84,7 @@ class CampaignController extends AbstractController
         MailerInterface $mailer,
         CampaignRepository $campaignRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if (!$campaign->getStatus()) {
             $voters = $campaign->getVoters();
 
@@ -112,6 +115,7 @@ class CampaignController extends AbstractController
     #[Route('/{uuid}/desactivate', name: 'desactivate')]
     public function desactivate(Campaign $campaign, CampaignRepository $campaignRepository): Response
     {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($campaign->getStatus()) {
             $campaign->setStatus(false);
             $campaignRepository->add($campaign, true);
