@@ -8,6 +8,7 @@ use App\Form\CampaignType;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -19,11 +20,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CampaignController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(CampaignRepository $campaignRepository): Response
-    {
-        $campaigns = $campaignRepository->findAll();
+    public function index(
+        CampaignRepository $campaignRepository,
+        PaginatorInterface $paginator,
+        Request $request,
+    ): Response {
+        $query = $campaignRepository->queryAll();
+        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
+
         return $this->render('dashboard/campaign/index.html.twig', [
-            'campaigns' => $campaigns,
+            'pagination' => $pagination,
         ]);
     }
 
@@ -66,6 +72,7 @@ class CampaignController extends AbstractController
     #[Route('/{uuid}/edit', name: 'edit')]
     public function edit(Campaign $campaign): Response
     {
+        $this->denyAccessUnlessGranted('view', $campaign);
         return $this->render('dashboard/campaign/edit.html.twig', [
             'campaign' => $campaign
         ]);
@@ -77,19 +84,20 @@ class CampaignController extends AbstractController
         MailerInterface $mailer,
         CampaignRepository $campaignRepository
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if (!$campaign->getStatus()) {
             $voters = $campaign->getVoters();
 
             foreach ($voters as $voter) {
                 $email = (new TemplatedEmail())
-                ->from($this->getParameter('mailer_from'))
-                ->to($voter->getEmail())
-                ->subject($campaign->getName())
-                ->htmlTemplate('dashboard/campaign/email.html.twig')
-                ->context([
-                    'voter' => $voter,
-                    'campaign' => $campaign
-                ]);
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($voter->getEmail())
+                    ->subject($campaign->getName())
+                    ->htmlTemplate('dashboard/campaign/email.html.twig')
+                    ->context([
+                        'voter' => $voter,
+                        'campaign' => $campaign
+                    ]);
 
                 $mailer->send($email);
             }
@@ -107,6 +115,7 @@ class CampaignController extends AbstractController
     #[Route('/{uuid}/desactivate', name: 'desactivate')]
     public function desactivate(Campaign $campaign, CampaignRepository $campaignRepository): Response
     {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($campaign->getStatus()) {
             $campaign->setStatus(false);
             $campaignRepository->add($campaign, true);

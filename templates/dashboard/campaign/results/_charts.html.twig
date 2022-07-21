@@ -1,0 +1,73 @@
+<div class="container-result" {{ stimulus_controller('chart') }}>
+    <div class="mb-4">
+        {% if campaign.company is not null %}
+            <h1>Résultats des votes de {{ campaign.company.name }}</h1>
+            <h2><span class="badge bg-primary">{{ campaign.name }}</span></h2>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <p>Ouverture le
+            <strong>{{ campaign.createdAt|date('l d F à H:i:s') }}</strong>
+        </p>
+        <p>Fermeture le
+            <strong>{{ campaign.endedAt|date('l d F à H:i:s') }}</strong>
+        </p>
+        <p>
+            Nombre de votants inscrits : <strong>{{ campaign.voters|length }}</strong>
+        </p>
+        {% for resolution in resolutions %}
+            <div class="mb-4">
+                <h3 class="bg-secondary text-white p-2">{{ resolution.name }}</h3>
+                <p>{{ resolution.description }}</p>
+                <p>Règle d'adoption : {{ resolution.adoptionRule }}</p>
+                {% if campaign.hasCollege %}
+                    <div class="text-center">
+                        <h4>Résultats par collèges</h4>
+                        <div class="row">
+                            {% for vote in resolution.voteResults %}
+                                <div class="col-lg-3 mx-auto">
+                                    {% if vote.numApproved == 0 and vote.numRejected == 0 and vote.numAbstention == 0 %}
+                                        Aucun vote effectué pour le moment
+                                    {% else %}
+                                        <canvas {{ stimulus_target('chart', 'chart') }}
+                                            data-approved="{{ vote.numApproved }}"
+                                            data-rejected="{{ vote.numRejected }}"
+                                            data-abstention="{{ vote.numAbstention }}"
+                                        ></canvas>
+                                    {% endif %}
+                                    <div class=" mt-3">
+                                        <h5>{{ vote.college.name }}</h5>
+                                        <p>Part des votes : {{ vote.college.votePercentage * 100 }} %</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col">
+                                    Aucun vote effectué pour le moment
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row text-center">
+                        <h4>Résultats par votants</h4>
+                        {% if resolution.voteResults %}
+                            <div class="col-lg-3 mx-auto">
+                                <canvas {{ stimulus_target('chart', 'chart') }}
+                                    data-approved="{{ resolution.voteResults.numApproved }}"
+                                    data-rejected="{{ resolution.voteResults.numRejected }}"
+                                    data-abstention="{{ resolution.voteResults.numAbstention }}"
+                                ></canvas>
+                            </div>
+                        {% else %}
+                            <div class="col">
+                                Aucun vote effectué pour le moment
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <p class="fs-3 text-center">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} % des votes exprimés.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

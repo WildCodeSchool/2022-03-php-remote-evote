@@ -32,6 +32,9 @@ class Voter
 
     #[ORM\Column(type: 'string', nullable: true)]
     #[Assert\NotBlank(message: 'Merci de renseigner le téléphone du participant')]
+    #[Assert\Regex(
+        '#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#'
+    )]
     private string $telephone;
 
     #[ORM\Column(type: 'string', nullable: true)]

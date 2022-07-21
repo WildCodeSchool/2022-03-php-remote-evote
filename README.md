@@ -186,27 +186,27 @@ Accessible depuis le tableau de bord, il permet de paramétrer la campagne de vo
 ## Issues connues
 
 Page de connexion 
-- [] Réduire la taille des logos 
+- [ ] Réduire la taille des logos 
 
 Page Tableau de bord
-- [] Manque les boutons de tri des colonnes
-- [] Colonne "Statut" indique integer au lieu de "actif" ou "cloturé"
+- [ ] Manque les boutons de tri des colonnes
+- [ ] Colonne "Statut" indique integer au lieu de "actif" ou "cloturé"
 
 Page Administration de la campagne
-- [] Mise en forme pour donner de l'espace entre les lignes
-- [] Erreur de texte sur un bouton de la section vote = remplacer "Ajouter le vote" par "Activer le vote"
-- [] Activer / Désactiver la campagne n'est pas activé
-- [] Lien pour accéder aux résultats non actif
+- [ ] Mise en forme pour donner de l'espace entre les lignes
+- [ ] Erreur de texte sur un bouton de la section vote = remplacer "Ajouter le vote" par "Activer le vote"
+- [ ] Activer / Désactiver la campagne n'est pas activé
+- [ ] Lien pour accéder aux résultats non actif
 
 Page Ajouter un collège
-- [] Mise en forme pour ajouter de l'espace sur les bords
-- [] Mise en forme pour donner de l'espace entre les lignes
-- [] Section "Pouvoir" non active (bonus)
+- [ ] Mise en forme pour ajouter de l'espace sur les bords
+- [ ] Mise en forme pour donner de l'espace entre les lignes
+- [ ] Section "Pouvoir" non active (bonus)
 
 Page Résultats des votes
-- [] Mise en forme pour ajouter de l'espace entre les lignes
+- [ ] Mise en forme pour ajouter de l'espace entre les lignes
 
  Ensemble du site
-- [] Corriger les fautes d'orthographe
+- [ ] Corriger les fautes d'orthographe
 
 

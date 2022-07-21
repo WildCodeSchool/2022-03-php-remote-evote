@@ -21,7 +21,7 @@ class ResultController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CampaignRepository $campaignRepository): Response
     {
-        $campaigns = $campaignRepository->findAll();
+        $campaigns = $campaignRepository->findBy(['ownedBy' => $this->getUser()]);
         return $this->render('dashboard/campaign/results/index.html.twig', [
             'campaigns' => $campaigns,
         ]);
@@ -32,6 +32,7 @@ class ResultController extends AbstractController
         Campaign $campaign,
         ChartResults $chartResults,
     ): Response {
+        $this->denyAccessUnlessGranted('view', $campaign);
         if ($campaign->getHasCollege()) {
             $resolutionsCharts = $chartResults->getResultByCollege(
                 $campaign->getResolutions()

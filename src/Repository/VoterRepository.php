@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Campaign;
+use App\Entity\Resolution;
 use App\Entity\Voter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +40,28 @@ class VoterRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getVotersWithPercentagesGranted(Campaign $campaign): array
+    {
+        return $this->createQueryBuilder('voter')
+            ->join('voter.campaign', 'c', 'WITH', 'c = :campaign')
+            ->setParameter('campaign', $campaign)
+            ->where('voter.votePercentage > 0')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getVotersAbstained(Resolution $resolution): array
+    {
+        return $this->createQueryBuilder('voter')
+            ->leftJoin('voter.votes', 'votes', 'WITH', 'votes.resolution = :resolution')
+            ->setParameter('resolution', $resolution)
+            ->andWhere('votes.voter IS NULL')
+            ->andWhere('voter.campaign=:campaign')
+            ->setParameter('campaign', $resolution->getCampaign())
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

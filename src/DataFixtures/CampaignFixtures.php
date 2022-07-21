@@ -66,6 +66,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
             $campaign->setStartedAt(new DateTime($campaignName['started_at']));
             $campaign->setEndedAt(new DateTime($campaignName['ended_at']));
             $campaign->setStatus($campaignName['status']);
+            $campaign->setOwnedBy($this->getReference('admin'));
             $this->addReference('campaign_' . $key, $campaign);
             $manager->persist($campaign);
         }
@@ -78,6 +79,7 @@ class CampaignFixtures extends Fixture implements DependentFixtureInterface
         // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
             CompanyFixtures::class,
+            UserFixtures::class,
         ];
     }
 }
