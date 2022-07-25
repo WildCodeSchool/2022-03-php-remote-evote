@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Company;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
+use DateTime;
 use Symfony\Component\Uid\Uuid;
 use App\Repository\CompanyRepository;
 use App\Repository\CampaignRepository;
@@ -85,7 +86,7 @@ class CampaignController extends AbstractController
         CampaignRepository $campaignRepository
     ): Response {
         $this->denyAccessUnlessGranted('view', $campaign);
-        if (!$campaign->getStatus()) {
+        if ($campaign->getEndedAt() !== null || $campaign->getStartedAt() === null) {
             $voters = $campaign->getVoters();
 
             foreach ($voters as $voter) {
@@ -101,7 +102,8 @@ class CampaignController extends AbstractController
 
                 $mailer->send($email);
             }
-            $campaign->setStatus(true);
+            $campaign->setStartedAt(new DateTime("now"));
+            $campaign->setEndedAt(null);
             $campaignRepository->add($campaign, true);
             $this->addFlash(
                 'success',
@@ -116,8 +118,8 @@ class CampaignController extends AbstractController
     public function desactivate(Campaign $campaign, CampaignRepository $campaignRepository): Response
     {
         $this->denyAccessUnlessGranted('view', $campaign);
-        if ($campaign->getStatus()) {
-            $campaign->setStatus(false);
+        if ($campaign->getStartedAt()) {
+            $campaign->setEndedAt(new DateTime("now"));
             $campaignRepository->add($campaign, true);
             $this->addFlash(
                 'success',
