@@ -40,7 +40,7 @@
             <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
           </td>
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-          <td class="{{campaign.status ? 'text-success' : 'text-danger'}}"">{{campaign.status ? 'activé' : 'clôturé'}}</td>
+          <td class="{{campaign.status ? 'text-success' : 'text-danger'}}">{{campaign.status ? 'activé' : 'désactivé'}}</td>
           <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
           <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
           <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
@@ -50,7 +50,6 @@
       {% endfor %}
       </tbody>
   </table>
-
   {{ knp_pagination_render(pagination) }}
   </div>
 </div>
