@@ -142,10 +142,10 @@ class VoterController extends AbstractController
                 'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider
             pour la synchronisation automatique des participants au vote',
                 'constraints' => [
-                new File([
-                    'maxSize' => '2M'
-                ])
-              ]
+                    new File([
+                        'maxSize' => '2M'
+                    ])
+                ]
             ])
             ->getForm();
         $form->handleRequest($request);
