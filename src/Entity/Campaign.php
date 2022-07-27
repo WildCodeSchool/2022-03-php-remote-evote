@@ -95,7 +95,7 @@ class Campaign
         return $this->startedAt;
     }
 
-    public function setStartedAt(DateTime $startedAt): self
+    public function setStartedAt(?DateTime $startedAt): self
     {
         $this->startedAt = $startedAt;
 
@@ -107,7 +107,7 @@ class Campaign
         return $this->endedAt;
     }
 
-    public function setEndedAt(DateTime $endedAt): self
+    public function setEndedAt(?DateTime $endedAt): self
     {
         $this->endedAt = $endedAt;
 

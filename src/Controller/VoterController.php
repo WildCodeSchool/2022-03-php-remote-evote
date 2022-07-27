@@ -140,7 +140,7 @@ class VoterController extends AbstractController
             ->add('file', FileType::class, [
                 'label' => 'Fichier csv',
                 'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider
-            pour la synchronisation automatique des participants au vote',
+                pour la synchronisation automatique des participants au vote',
                 'constraints' => [
                     new File([
                         'maxSize' => '2M'
