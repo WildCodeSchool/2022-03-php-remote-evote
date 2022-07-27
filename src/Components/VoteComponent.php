@@ -41,9 +41,9 @@ class VoteComponent
         $this->voteRepository->add($vote, true);
     }
 
-    public function getHasVoted(): bool
+    public function getHasVoted(): null|Vote
     {
         //retourne le résultat de la requête : si l'utilisateur a déjà voté pour cette résolution ?
-        return (bool) $this->voteRepository->findOneBy(['voter' => $this->voter, 'resolution' => $this->resolution]);
+        return $this->voteRepository->findOneBy(['voter' => $this->voter, 'resolution' => $this->resolution]);
     }
 }
