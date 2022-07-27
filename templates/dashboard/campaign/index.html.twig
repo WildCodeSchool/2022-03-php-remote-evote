@@ -5,11 +5,11 @@
 {% block body %}
 <div class="container">
     <div class="d-grid gap-2 d-md-flex col-4 ms-auto justify-content-md-end ">
-      <a href="{{ path('campaign_new') }}" class="btn btn-primary me-md-2" type="button">Créer un vote</a>
+      <a href="{{ path('campaign_new') }}" class="btn btn-primary me-md-2" type="button">Créer une campagne de vote</a>
     </div>
     <div class="card-body">
       <div class="d-flex align-items-center mb-4">
-        <h1>Campagnes enregistrées sur votre compte</h1>
+        <h1>Campagne(s) enregistrée(s) sur votre compte</h1>
       </div>
 
     <table class="table table-striped">
@@ -41,10 +41,10 @@
           </td>
           <td>{{campaign.createdAt|date('d/m/Y')}}</td>
           <td class="{{campaign.status ? 'text-success' : 'text-danger'}}"">{{campaign.status ? 'activé' : 'clôturé'}}</td>
-          <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
-          <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
-          <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir résolutions</a></td>
-          <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir résultats du vote</td>
+          <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir les participants</a></td>
+          <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir les collèges</a></td>
+          <td><a href="{{ path('campaign_resolution_index', {'uuid' :campaign.uuid}) }}">Voir les résolutions</a></td>
+          <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir les résultats du vote</td>
         </tr>
       </tr>
       {% endfor %}

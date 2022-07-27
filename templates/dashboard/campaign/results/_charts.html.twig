@@ -1,17 +1,17 @@
 <div class="container-result" {{ stimulus_controller('chart') }}>
     <div class="mb-4">
         {% if campaign.company is not null %}
-            <h1>Résultats des votes de {{ campaign.company.name }}</h1>
+            <h1>Résultats des votes {{ campaign.company.name }}</h1>
             <h2><span class="badge bg-primary">{{ campaign.name }}</span></h2>
         {% endif %}
     </div>
 
     <div class="mb-4">
         <p>Ouverture le
-            <strong>{{ campaign.createdAt|date('l d F à H:i:s') }}</strong>
+            <strong>{{ campaign.createdAt|date('d/m/Y à H:i:s') }}</strong>
         </p>
         <p>Fermeture le
-            <strong>{{ campaign.endedAt|date('l d F à H:i:s') }}</strong>
+            <strong>{{ campaign.endedAt|date('d/m/Y à H:i:s') }}</strong>
         </p>
         <p>
             Nombre de votants inscrits : <strong>{{ campaign.voters|length }}</strong>
@@ -66,7 +66,7 @@
                         {% endif %}
                     </div>
                 {% endif %}
-                <p class="fs-3 text-center">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} % des votes exprimés.</p>
+                <p class="fs-3 text-center mt-4">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} % des votes exprimés.</p>
             </div>
         {% endfor %}
     </div>
