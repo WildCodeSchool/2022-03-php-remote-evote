@@ -13,6 +13,7 @@ use App\Repository\CompanyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Loader\Configurator\form;
@@ -139,7 +140,12 @@ class VoterController extends AbstractController
             ->add('file', FileType::class, [
                 'label' => 'Fichier csv',
                 'help' => 'Séléctionner un fichier csv sur votre ordinateur puis valider
-            pour la synchronisation automatique des participants au vote'
+            pour la synchronisation automatique des participants au vote',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M'
+                    ])
+                ]
             ])
             ->getForm();
         $form->handleRequest($request);
