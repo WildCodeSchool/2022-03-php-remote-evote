@@ -64,7 +64,7 @@ class Campaign
     private ?Collection $voters;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
+    private ?Datetime $createdAt;
 
     public function __construct()
     {

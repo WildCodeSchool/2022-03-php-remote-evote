@@ -51,6 +51,17 @@ class CampaignRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    public function queryAllActive(): Query|null
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.ownedBy = :user')
+            ->andWhere('c.endedAt IS NOT NULL')
+            ->setParameter('user', $this->security->getUser())
+            ->join('c.company', 'company')
+            ->orderBy('company.name', 'ASC')
+            ->getQuery();
+    }
+
     //    /**
     //     * @return Campaign[] Returns an array of Campaign objects
     //     */

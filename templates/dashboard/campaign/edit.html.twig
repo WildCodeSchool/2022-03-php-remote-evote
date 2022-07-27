@@ -6,11 +6,13 @@
 	<section class="admin_vote">
 			<h1>Administration de la campagne : {{ campaign.name }}</h1>
 
+			{% if campaign.hasCollege %}
 			<div class="mb-4 mt-5">
 				<h2>Les collèges de votes</h2>
 				<a class="btn btn-primary mt-3" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
 				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Gerer les collèges</a>
 			</div>
+			{% endif %}
 			<hr>
 			<div class="mb-4">
 				<h2>Les votants</h2>
