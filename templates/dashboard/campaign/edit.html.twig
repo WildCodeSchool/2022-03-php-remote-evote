@@ -4,13 +4,15 @@
 
 {% block body %}
 	<section class="admin_vote">
-			<h1>Administration de la campagne : {{ campaign.name }}</h1>
+			<h1>Administration de la campagne :&ensp; {{ campaign.name }}</h1>
 
+			{% if campaign.hasCollege %}
 			<div class="mb-4 mt-5">
 				<h2>Les collèges de votes</h2>
 				<a class="btn btn-primary mt-3" href="{{ path('campaign_college_new', {'uuid': campaign.uuid}) }}">Ajouter un collège</a>
 				<a class="btn btn-outline-primary mt-3" href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Gerer les collèges</a>
 			</div>
+			{% endif %}
 			<hr>
 			<div class="mb-4">
 				<h2>Les votants</h2>
@@ -27,12 +29,12 @@
 			<hr>
 			<div class="mb-4">
 				<h2>Le vote</h2>
-					{% if campaign.status == true %}
-						<a class="btn btn-danger" href="{{ path('campaign_desactivate', {'uuid': campaign.uuid}) }}">Désactiver le vote</a>
+					{% if campaign.endedAt is null %}
+						<a class="btn btn-danger" href="{{ path('campaign_desactivate', {'uuid': campaign.uuid}) }}">Clôturer le vote</a>
 						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
 					{% endif %}
-					{% if campaign.status == false %}
-						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Activer le vote</a>
+					{% if campaign.startedAt is null or campaign.endedAt is not null %}
+						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Démarrer le vote</a>
 						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
 					{% endif %}
 			</div>
