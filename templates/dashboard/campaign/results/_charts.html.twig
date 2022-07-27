@@ -8,10 +8,10 @@
 
     <div class="mb-4">
         <p>Ouverture le
-            <strong>{{ campaign.createdAt|date('d/m/Y à H:i:s') }}</strong>
+            <strong>{{ campaign.createdAt|format_datetime(locale='fr') }}</strong>
         </p>
         <p>Fermeture le
-            <strong>{{ campaign.endedAt|date('d/m/Y à H:i:s') }}</strong>
+            <strong>{{ campaign.endedAt|format_datetime(locale='fr') }}</strong>
         </p>
         <p>
             Nombre de votants inscrits : <strong>{{ campaign.voters|length }}</strong>

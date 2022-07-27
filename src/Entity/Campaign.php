@@ -29,10 +29,10 @@ class Campaign
     private string $name;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTime $startedAt;
+    private ?DateTime $startedAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTime $endedAt;
+    private ?DateTime $endedAt;
 
     #[ORM\Column(type: 'boolean', length: 255)]
     private bool $status;
@@ -64,7 +64,7 @@ class Campaign
     private ?Collection $voters;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
+    private ?Datetime $createdAt;
 
     public function __construct()
     {
@@ -95,7 +95,7 @@ class Campaign
         return $this->startedAt;
     }
 
-    public function setStartedAt(DateTime $startedAt): self
+    public function setStartedAt(?DateTime $startedAt): self
     {
         $this->startedAt = $startedAt;
 
@@ -107,7 +107,7 @@ class Campaign
         return $this->endedAt;
     }
 
-    public function setEndedAt(DateTime $endedAt): self
+    public function setEndedAt(?DateTime $endedAt): self
     {
         $this->endedAt = $endedAt;
 

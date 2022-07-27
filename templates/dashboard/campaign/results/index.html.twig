@@ -14,21 +14,24 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Nom de la campagne</th>
-            <th scope="col">Date</th>
+            <th{% if pagination.isSorted('c.name') %} class="sorted"{% endif %}>
+          {{ knp_pagination_sortable(pagination, 'Nom de la campagne', 'c.name') }} </th>
+            <th{% if pagination.isSorted('c.createdAt') %} class="sorted"{% endif %}>
+          {{ knp_pagination_sortable(pagination, 'Date de création', 'c.createdAt') }}</th>
             <th scope="col">Résultats</th>
           </tr>
         </thead>
         <tbody>
-          {% for campaign in campaigns %}
+          {% for campaign in pagination %}
           <tr>
             <td>{{campaign.name}}</td>
             <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-            <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir les résultats<a/></td>
+            <td><a href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Voir les résultats<a/></td> 
           </tr>
           {% endfor %} 
         </tbody>
       </table>
+      {{ knp_pagination_render(pagination) }}
   </div>
 </div>
 {% endblock %}
