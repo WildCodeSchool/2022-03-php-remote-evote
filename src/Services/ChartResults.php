@@ -53,12 +53,14 @@ class ChartResults
                 ($rule === 'adoption-3/4' && $vote['numApproved'] > $totalOfVoters * 3 / 4 )
             ) {
                 $isAdopted = true;
-                $numApprovedPercent = $vote['numApproved'] * 100 / $totalOfVoters;
-                $resultPercentage = round($numApprovedPercent * $vote['college']->getVotePercentage(), 2);
+                // $numApprovedPercent = $vote['numApproved'] * 100 / $totalOfVoters;
+                // $resultPercentage = round($numApprovedPercent * $vote['college']->getVotePercentage(), 2);
+                $resultPercentage = round(100 * $vote['college']->getVotePercentage(), 2);
             } else {
                 $isAdopted = false;
-                $numRejectedPercent = $totalOfVoters ? $vote['numRejected'] * 100 / $totalOfVoters : 0;
-                $resultPercentage = round($numRejectedPercent * $vote['college']->getVotePercentage(), 2);
+                // $numRejectedPercent = $totalOfVoters ? $vote['numRejected'] * 100 / $totalOfVoters : 0;
+                // $resultPercentage = round($numRejectedPercent * $vote['college']->getVotePercentage(), 2);
+                $resultPercentage = round(100 * $vote['college']->getVotePercentage(), 2);
             }
             $result[] = $this->formatResult($isAdopted, $resultPercentage);
         }
