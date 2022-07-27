@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Datetime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CampaignRepository::class)]
 #[UniqueEntity(
@@ -28,10 +29,10 @@ class Campaign
     private string $name;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTime $startedAt;
+    private ?DateTime $startedAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTime $endedAt;
+    private ?DateTime $endedAt;
 
     #[ORM\Column(type: 'boolean', length: 255)]
     private bool $status;
@@ -57,13 +58,13 @@ class Campaign
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'campaigns')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?User $ownedBy;
+    private UserInterface|null $ownedBy;
 
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Voter::class)]
     private ?Collection $voters;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private Datetime $createdAt;
+    private ?Datetime $createdAt;
 
     public function __construct()
     {
@@ -250,7 +251,7 @@ class Campaign
     /**
      * Get the value of ownedBy
      */
-    public function getOwnedBy(): ?User
+    public function getOwnedBy(): ?UserInterface
     {
         return $this->ownedBy;
     }
@@ -260,7 +261,7 @@ class Campaign
      *
      * @return  self
      */
-    public function setOwnedBy(?User $ownedBy)
+    public function setOwnedBy(?UserInterface $ownedBy)
     {
         $this->ownedBy = $ownedBy;
         return $this;

@@ -56,6 +56,7 @@ class CampaignController extends AbstractController
             }
             $uuid = Uuid::v4();
             $campaign->setUuid($uuid->toRfc4122());
+            $campaign->setOwnedBy($this->getUser());
             $campaignRepository->add($campaign, true);
             $this->addFlash(
                 'success',
