@@ -8,10 +8,10 @@
 
     <div class="mb-4">
         <p>Ouverture le
-            <strong>{{ campaign.createdAt|format_datetime(locale='en') }}</strong>
+            <strong>{{ campaign.createdAt|format_datetime(locale='fr') }}</strong>
         </p>
         <p>Fermeture le
-            <strong>{{ campaign.endedAt|format_datetime(locale='en') }}</strong>
+            <strong>{{ campaign.endedAt|format_datetime(locale='fr') }}</strong>
         </p>
         <p>
             Nombre de votants inscrits : <strong>{{ campaign.voters|length }}</strong>
@@ -66,7 +66,7 @@
                         {% endif %}
                     </div>
                 {% endif %}
-                <p class="fs-3 text-center mt-4">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} %.</p>
+                <p class="fs-3 text-center mt-4">{{resolution.finalResult.message}} à {{ resolution.finalResult.result }} % des votes exprimés.</p>
             </div>
         {% endfor %}
     </div>
