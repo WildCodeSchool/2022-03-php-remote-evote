@@ -39,7 +39,7 @@
                 <a href="{{ path('campaign_edit', {'uuid': campaign.uuid}) }}">{{campaign.name}}</a>
               </td>
               <td>{{campaign.createdAt|date('d/m/Y')}}</td>
-              <td class="{{campaign.status ? 'text-success' : 'text-danger'}}">{{campaign.status ? 'activé' : 'clôturé'}}</td>
+              <td class="{{campaign.endedAt is null and campaign.startedAt is not null ? 'text-success' : 'text-danger'}}">{{campaign.endedAt is null and campaign.startedAt is not null ? 'activé' : 'clôturé'}}</td>
               <td><a href="{{ path('campaign_voter_index', {'uuid': campaign.uuid}) }}">Voir participants</a></td>
               {% if campaign.hasCollege %}
                 <td><a href="{{ path('campaign_college_index', {'uuid' :campaign.uuid}) }}">Voir collèges</a></td>
