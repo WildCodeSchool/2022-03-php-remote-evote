@@ -29,11 +29,15 @@
 			<hr>
 			<div class="mb-4">
 				<h2>Le vote</h2>
-					{% if campaign.endedAt is null %}
+					{% if campaign.startedAt is not null and campaign.endedAt is null %}
 						<a class="btn btn-danger" href="{{ path('campaign_desactivate', {'uuid': campaign.uuid}) }}">Clôturer le vote</a>
 						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
 					{% endif %}
-					{% if campaign.startedAt is null or campaign.endedAt is not null %}
+					{% if campaign.startedAt is not null and campaign.endedAt is not null %}
+						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Démarrer le vote</a>
+						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
+					{% endif %}
+					{% if campaign.startedAt is null and campaign.endedAt is null %}
 						<a class="btn btn-primary" href="{{ path('campaign_activate', {'uuid': campaign.uuid}) }}">Démarrer le vote</a>
 						<a class="btn btn-outline-primary" href="{{ path('results_show', {'uuid' :campaign.uuid}) }}">Consulter les Résultats</a>
 					{% endif %}
