@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Vote;
 use App\Entity\Voter;
 use App\Entity\Campaign;
 use App\Services\ChartResults;
+use App\Repository\VoteRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,5 +56,24 @@ class VoteController extends AbstractController
             'campaign' => $campaign,
             'resolutions' => $resolutionsCharts,
         ]);
+    }
+
+    #[Route('/{uuid}/vote/{id}/delete', name: 'delete', methods: ['POST'])]
+    #[ParamConverter('voter', options: ['mapping' => ['uuid' => 'uuid']])]
+    #[ParamConverter('vote', options: ['mapping' => ['id' => 'id']])]
+    public function delete(
+        Request $request,
+        Voter $voter,
+        Vote $vote,
+        VoteRepository $voteRepository
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $vote->getId(), $request->request->get('_token'))) {
+            $voteRepository->remove($vote, true);
+        }
+
+        return $this->redirectToRoute('voter_resolution_index', [
+            'voter_uuid' => $voter->getUuid(),
+            'campaign_uuid' => $voter->getCampaign()->getUuid()
+        ], Response::HTTP_SEE_OTHER);
     }
 }
