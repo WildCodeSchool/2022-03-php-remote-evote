@@ -7,9 +7,23 @@
     </div>
     <div class="card-footer">
         <div class="text-center">
-            {% if this.hasVoted %}
+            {% if this.hasVoted != false %}
             <div class="alert alert-success">
-        Merci d'avoir voté {{ this.voter.fullName }} <i class="fa fa-check-circle-o"></i>
+            <p>Merci d'avoir voté {{ this.voter.fullName }} <i class="fa fa-check-circle-o"></i></p>
+                <p>
+                    Vous avez voté 
+                    {% if this.hasVoted.answer == "approved" %} 
+                    "Pour"
+                    {% elseif this.hasVoted.answer == "rejected" %}
+                    "Contre"
+                    {% elseif this.hasVoted.answer == "abstention" %}
+                    "Absention"
+                    {% endif %}
+                </p>
+                <form method="post" action="{{ path('voter_delete', {'id': this.hasVoted.id, 'uuid': this.voter.uuid}) }}" onsubmit="return confirm('Le vote actuel va être supprimé pour que vous puissiez revoter.');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ this.hasVoted.id) }}">
+                    <button class="btn btn-warning">Annuler mon vote</button>
+                </form>
             </div>
             {% else %}
             <button class="btn btn-primary " 
