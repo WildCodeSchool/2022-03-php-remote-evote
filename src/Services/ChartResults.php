@@ -141,7 +141,7 @@ class ChartResults
             $resultPercentage = round($vote['numApproved'] * 100 / $totalOfVoters, 2);
         } else {
             $isAdopted = false;
-            $resultPercentage = $totalOfVoters ? round($vote['numRejected'] * 100 / $totalOfVoters, 2) : 0;
+            $resultPercentage = $totalOfVoters ? round($vote['numRejected'] * 200 / $totalOfVoters, 2) : 0;
         }
 
         return $this->formatResult($isAdopted, $resultPercentage);
