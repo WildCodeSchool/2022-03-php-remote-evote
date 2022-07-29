@@ -63,11 +63,11 @@ class VoterManager
 
     private function setCompany(Voter $voter, array $data): void
     {
-        if (!empty($data['StructureRepresentee'])) {
-            $company = $this->companyRepository->findOneByName($data['StructureRepresentee']);
+        if (!empty($data['StructureRepresentée'])) {
+            $company = $this->companyRepository->findOneByName($data['StructureRepresentée']);
             if (!$company) {
                 $company = new Company();
-                $company->setName($data['StructureRepresentee']);
+                $company->setName($data['StructureRepresentée']);
                 $this->entityManager->persist($company);
                 $this->entityManager->flush();
             }
