@@ -183,30 +183,39 @@ Accessible depuis le tableau de bord, il permet de paramétrer la campagne de vo
 3. Voter
 
 
+## MODELISATION DE LA BDD DISPO DANS LE FICHIER DOCS
+
 ## Issues connues
 
-Page de connexion 
-- [ ] Réduire la taille des logos 
+Interface de vote 
 
-Page Tableau de bord
-- [ ] Manque les boutons de tri des colonnes
-- [ ] Colonne "Statut" indique integer au lieu de "actif" ou "cloturé"
+- [ ] faire la sécurisation des routes
 
-Page Administration de la campagne
-- [ ] Mise en forme pour donner de l'espace entre les lignes
-- [ ] Erreur de texte sur un bouton de la section vote = remplacer "Ajouter le vote" par "Activer le vote"
-- [ ] Activer / Désactiver la campagne n'est pas activé
-- [ ] Lien pour accéder aux résultats non actif
+Mode de calcul des pourcentages
 
-Page Ajouter un collège
-- [ ] Mise en forme pour ajouter de l'espace sur les bords
-- [ ] Mise en forme pour donner de l'espace entre les lignes
+- [ ] correction sur l'algo sur la prise en compte d'un pourcentage supérieur a 50
+- [ ] pour une application d'un coef de pondération prenant en compte le poid du collège décommenter les lignes dans l'algo des collèges
+
+Page de connexion
+
+- [ ] Faire le back de la case a cocher  garder ma session ouverte 
+
+
+Page Ajouter un votant
+
 - [ ] Section "Pouvoir" non active (bonus)
 
-Page Résultats des votes
-- [ ] Mise en forme pour ajouter de l'espace entre les lignes
 
- Ensemble du site
-- [ ] Corriger les fautes d'orthographe
+Ensemble du site
+ 
+- [ ] Corriger les erreurs de traductions restantes
+
+
+## Future features 
+
+- [ ] Ajouter un bouton supprimer une campagne
+
+- [ ] Identifier l'utilisateur connecté
+- [ ] Connecter une API pour pouvoir utiliser les mails en masse (le service est pour le momant limiter a un envoi de 5) 
 
 
